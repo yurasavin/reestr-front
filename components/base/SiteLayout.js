@@ -13,6 +13,7 @@ const SiteLayout = ({ children }) => {
     children
   ) : (
     <Layout
+      hasSider
       style={{
         minHeight: "100vh",
       }}
@@ -20,7 +21,15 @@ const SiteLayout = ({ children }) => {
       <SiteSider />
       <Layout className="site-layout">
         <SiteHeader />
-        <Layout.Content>{children}</Layout.Content>
+        <Layout.Content
+          style={{
+            overflow: "auto",
+            height: "86vh",
+            padding: 15,
+          }}
+        >
+          {children}
+        </Layout.Content>
         <SiteFooter />
       </Layout>
     </Layout>

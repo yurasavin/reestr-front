@@ -10,6 +10,7 @@ const SiteHeader = () => {
         display: "flex",
         textAlign: "center",
         justifyContent: "center",
+        height: "7vh",
         fontSize: 20,
       }}
     >

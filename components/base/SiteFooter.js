@@ -5,6 +5,7 @@ const SiteFooter = () => {
     <Layout.Footer
       style={{
         textAlign: "center",
+        height: "7vh",
       }}
     >
       ГБУ РО КВД ©2022

@@ -1,12 +1,47 @@
-import { Button, Checkbox, Form, Spin } from "antd";
+import { useRequest } from "ahooks";
+import { Button, Checkbox, Form, message } from "antd";
+import { useRouter } from "next/router";
 import React from "react";
 import FormPassword from "../components/login/FormPassword";
 import FormUsername from "../components/login/FormUsername";
-import useSubmitLogin from "../hooks/apis/useSubmitLogin";
 import styles from "../styles/Login.module.css";
 
+import { fetcher } from "../services/api";
+
 const Login = () => {
-  const [isFetching, onFinish] = useSubmitLogin();
+  const router = useRouter();
+
+  const onFinish = async (formValues) => {
+    const response = await fetcher("auth/login/", {
+      method: "POST",
+      body: JSON.stringify(formValues),
+    });
+    return response;
+  };
+
+  const onSuccess = ({ data }) => {
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+    }
+    router.push("/");
+  };
+
+  const onError = (error) => {
+    if (error.status === 400) {
+      message.warning(
+        "Аккаунт не найден. Проверьте правильность логина и пароля"
+      );
+    } else {
+      message.warning("Что-то пошло не так. Уже работаем над проблемой");
+    }
+    console.error(error);
+  };
+
+  const { loading, run } = useRequest(onFinish, {
+    manual: true,
+    onSuccess,
+    onError,
+  });
 
   return (
     <Form
@@ -15,7 +50,7 @@ const Login = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
+      onFinish={run}
     >
       <FormUsername />
       <FormPassword />
@@ -29,17 +64,16 @@ const Login = () => {
         </a>
       </Form.Item>
 
-      <Spin spinning={isFetching}>
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className={styles["login-button"]}
-          >
-            Войти
-          </Button>
-        </Form.Item>
-      </Spin>
+      <Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          loading={loading}
+          className={styles["login-button"]}
+        >
+          Войти
+        </Button>
+      </Form.Item>
     </Form>
   );
 };

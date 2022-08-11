@@ -5,12 +5,11 @@ import { fetcher } from "../../services/api";
 const useResource = (path) => {
   const router = useRouter();
   const resource = useSWR(path, fetcher);
+  const error = resource.error;
 
-  if (resource.data) {
-    const status = resource.data.status;
-    if (status === 403 || status === 401) {
-      router.push("/login");
-    }
+  if (error && (error.status === 401 || error.status === 403)) {
+    localStorage.removeItem("token");
+    router.push("/login");
   }
 
   return resource;

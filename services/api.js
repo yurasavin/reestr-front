@@ -17,7 +17,9 @@ const getParams = (customParams) => {
 
 const addAuthorizationHeader = (params) => {
   const token = localStorage.getItem("token");
-  params.headers.Authorization = `Token ${token}`;
+  if (token) {
+    params.headers.Authorization = `Token ${token}`;
+  }
   return params;
 };
 
@@ -28,17 +30,19 @@ const addCors = (params) => {
 
 export const fetcher = async (path, customParams = {}) => {
   const url = `${API_ROOT}/${path}`;
-
   let params = getParams(customParams);
 
   const response = await fetch(url, params);
   let data = {};
-  if (
-    response.status === 400 ||
-    (200 <= response.status && response.status < 300)
-  ) {
+  if (response.status === 400 || response.ok) {
     data = await response.json();
   }
 
-  return { status: response.status, data: data };
+  const ret = { status: response.status, data: data };
+
+  if (response.ok) {
+    return ret;
+  }
+
+  throw ret;
 };

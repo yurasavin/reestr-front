@@ -28,8 +28,15 @@ const addCors = (params) => {
   return params;
 };
 
-export const fetcher = async (path, customParams = {}) => {
-  const url = `${API_ROOT}/${path}`;
+export const fetcher = async (path, queryParams, customParams = {}) => {
+  const url = new URL(`${API_ROOT}/${path}`);
+
+  if (queryParams) {
+    for (const key in queryParams) {
+      url.searchParams.append(key, queryParams[key]);
+    }
+  }
+
   let params = getParams(customParams);
 
   const response = await fetch(url, params);

@@ -3,7 +3,6 @@ import { Layout } from "antd";
 const SiteHeader = () => {
   return (
     <Layout.Header
-      className="site-layout-background"
       style={{
         padding: 0,
         color: "white",

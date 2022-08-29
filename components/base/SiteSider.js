@@ -5,10 +5,10 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useCookieState } from "ahooks";
 import { Layout, Menu } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import styles from "../../styles/SiteSider.module.css";
 
 const items = [
@@ -122,24 +122,24 @@ const items = [
     ],
   },
 ];
+const parseCollapsed = (collapsed) => JSON.parse(collapsed);
+const stringifyCollapsed = (collapsed) => JSON.stringify(collapsed);
 
-const SiteSider = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const SiteSider = ({ siderCollapsed }) => {
+  const [collapsed, setCollapsed] = useCookieState("siderCollapsed", {
+    defaultValue: siderCollapsed,
+  });
   const router = useRouter();
 
-  useEffect(() => {
-    setCollapsed(JSON.parse(localStorage.getItem("sider-collapsed")));
-  }, []);
-
   const changeCollapsed = (value) => {
-    localStorage.setItem("sider-collapsed", value);
-    setCollapsed(value);
+    const strValue = stringifyCollapsed(value);
+    setCollapsed(strValue);
   };
 
   return (
     <Layout.Sider
       collapsible
-      collapsed={collapsed}
+      collapsed={parseCollapsed(collapsed)}
       onCollapse={changeCollapsed}
       width={350}
     >
@@ -153,4 +153,5 @@ const SiteSider = () => {
     </Layout.Sider>
   );
 };
+
 export default SiteSider;

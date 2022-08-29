@@ -1,25 +1,20 @@
 import { Layout } from "antd";
-import { useRouter } from "next/router";
+
 import React from "react";
 import SiteFooter from "./SiteFooter";
 import SiteHeader from "./SiteHeader";
 import SiteSider from "./SiteSider";
 
-const SiteLayout = ({ children }) => {
-  const router = useRouter();
-  const isLoginPage = router.asPath === "/login";
-
-  return isLoginPage ? (
-    children
-  ) : (
+const SiteLayout = ({ children, siderCollapsed }) => {
+  return (
     <Layout
       hasSider
       style={{
         minHeight: "100vh",
       }}
     >
-      <SiteSider />
-      <Layout className="site-layout">
+      <SiteSider siderCollapsed={siderCollapsed} />
+      <Layout>
         <SiteHeader />
         <Layout.Content
           style={{

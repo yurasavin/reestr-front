@@ -12,10 +12,15 @@ const Login = () => {
   const router = useRouter();
 
   const onFinish = async (formValues) => {
-    const response = await fetcher("auth/login/", {
-      method: "POST",
-      body: JSON.stringify(formValues),
-    });
+    const response = await fetcher(
+      "auth/login/",
+      {},
+      {
+        method: "POST",
+        body: JSON.stringify(formValues),
+        headers: { "Content-Type": "application/json", Authorization: null },
+      }
+    );
     return response;
   };
 

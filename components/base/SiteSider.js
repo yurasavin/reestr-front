@@ -74,7 +74,7 @@ const items = [
       {
         label: (
           <Link href="/7-1">
-            <a>Ежемесячный отчет по 223-ФЗ</a>
+            <a>Ежемесячный по 223-ФЗ</a>
           </Link>
         ),
         key: "/7-1",
@@ -82,7 +82,7 @@ const items = [
       {
         label: (
           <Link href="/7-2">
-            <a>Ежемесячный отчет для Беликовой</a>
+            <a>Ежемесячный для Беликовой</a>
           </Link>
         ),
         key: "/7-2",
@@ -90,7 +90,7 @@ const items = [
       {
         label: (
           <Link href="/7-3">
-            <a>Ежеквартальный отчет по 823 ППРО</a>
+            <a>Ежеквартальный по 823 ППРО</a>
           </Link>
         ),
         key: "/7-3",
@@ -106,7 +106,7 @@ const items = [
       {
         label: (
           <Link href="/7-5">
-            <a>Ежегодный отчет по СМП</a>
+            <a>Ежегодный по СМП</a>
           </Link>
         ),
         key: "/7-5",
@@ -141,7 +141,7 @@ const SiteSider = ({ siderCollapsed }) => {
       collapsible
       collapsed={parseCollapsed(collapsed)}
       onCollapse={changeCollapsed}
-      width={350}
+      width={270}
     >
       <div className={styles.logo} />
       <Menu

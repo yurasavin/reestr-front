@@ -9,3 +9,23 @@ body {
 .rotate:hover {
   transform: rotate(90deg);
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(169, 170, 171, 0.75) rgba(0, 0, 0, 0.1);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(169, 170, 171, 0.75);
+  border-radius: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}

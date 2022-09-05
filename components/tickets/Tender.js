@@ -38,16 +38,16 @@ const Tender = ({ tender }) => {
       <Tooltip
         title={
           {
-            in_work: "Осуществляется",
-            done: "Завершена",
-            zero: "Не состоялась",
-            cancel: "Отменена",
+            1: "Осуществляется",
+            2: "Завершена",
+            3: "Не состоялась",
+            4: "Отменена",
           }[tender.status]
         }
       >
         {
           {
-            in_work: (
+            1: (
               <ClockCircleOutlined
                 style={{
                   color: "#096dd9",
@@ -57,7 +57,7 @@ const Tender = ({ tender }) => {
                 }}
               />
             ),
-            done: (
+            2: (
               <CheckCircleOutlined
                 style={{
                   color: "#389e0d",
@@ -67,7 +67,7 @@ const Tender = ({ tender }) => {
                 }}
               />
             ),
-            zero: (
+            3: (
               <InfoCircleOutlined
                 style={{
                   color: "#d48806",
@@ -77,7 +77,7 @@ const Tender = ({ tender }) => {
                 }}
               />
             ),
-            cancel: (
+            4: (
               <CloseCircleOutlined
                 style={{
                   color: "#c41d7f",

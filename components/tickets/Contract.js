@@ -26,11 +26,12 @@ const Contract = ({ contract }) => {
       </Space>
     );
   }
+  const date = contract.date.split("-").reverse().join(".");
 
   return (
-    <Space align="baseline">
+    <Space align="baseline" wrap>
       <span style={{ fontWeight: 500 }}>Контракт</span>
-      <span>{`№ ${contract.num} от ${contract.date}`}</span>
+      <span>{`№ ${contract.num} от ${date}`}</span>
       <Space size={2}>
         <Typography.Text underline>Сумма, руб.:</Typography.Text>
         {contract.price}

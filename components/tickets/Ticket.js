@@ -47,10 +47,10 @@ const Ticket = ({ ticket }) => {
       </Space>
       <Space wrap style={{ paddingLeft: 50 }} size={2}>
         <TagWithTooltip title="Дата" color="rgba(111, 106, 208, 0.2)">
-          {ticket.date}
+          {ticket.date.split("-").reverse().join(".")}
         </TagWithTooltip>
         <TagWithTooltip title="Категория" color="rgba(108, 191, 206, 0.2)">
-          {ticket.tags_name}
+          {ticket.tags_name || "-"}
         </TagWithTooltip>
         <TagWithTooltip title="Способ закупки" color="rgba(58, 156, 234, 0.2)">
           {ticket.tender_type}

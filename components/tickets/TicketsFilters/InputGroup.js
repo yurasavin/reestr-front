@@ -5,7 +5,7 @@ const InputGroup = ({ labelName, children }) => {
         border: "1px solid white",
         borderRadius: 5,
         padding: 4,
-        width: 250,
+        width: 280,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

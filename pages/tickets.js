@@ -8,7 +8,20 @@ import useResource from "../hooks/apis/useResource";
 
 const Tickets = ({ siderCollapsed }) => {
   const [filters, filterSetters] = useFilters();
-  const { data: response, error } = useResource("tickets/", filters);
+  const activeFilters = {};
+  for (const key in filters) {
+    const filterValue = filters[key];
+    if (
+      filterValue !== null &&
+      filterValue !== undefined &&
+      filterValue !== "" &&
+      !(typeof filterValue === "object" && filterValue.length === 0)
+    ) {
+      activeFilters[key] = filterValue;
+    }
+  }
+  const { data: response, error } = useResource("tickets/", activeFilters);
+
 
   if (error)
     return (

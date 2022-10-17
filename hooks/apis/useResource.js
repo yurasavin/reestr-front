@@ -2,9 +2,9 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import { fetcher } from "../../services/api";
 
-const useResource = (path, queryParams) => {
+const useResource = (path, queryParams, options) => {
   const router = useRouter();
-  const resource = useSWR([path, queryParams], fetcher);
+  const resource = useSWR([path, queryParams], fetcher, options);
   const error = resource.error;
 
   if (

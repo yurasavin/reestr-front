@@ -3,7 +3,13 @@ import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
 const Branches = ({ filterSetters }) => {
-  const { data: response, error } = useResource("branches/");
+  const { data: response, error } = useResource(
+    "branches/",
+    {},
+    {
+      revalidateOnFocus: false,
+    }
+  );
   const options = response
     ? response.data.map((branch) => ({
         value: branch.id,

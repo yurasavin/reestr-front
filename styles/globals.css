@@ -29,3 +29,12 @@ body {
   border-radius: 20px;
   border: 2px solid rgba(0, 0, 0, 0.1);
 }
+
+.ticketsLoader .ant-spin.ant-spin-spinning{
+  min-height: 100%;
+}
+
+.ticketsLoader .ant-spin-dot.ant-spin-dot-spin {
+  top: unset !important;
+  bottom: 110px !important;
+}

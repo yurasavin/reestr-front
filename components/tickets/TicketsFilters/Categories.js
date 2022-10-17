@@ -3,7 +3,13 @@ import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
 const Categories = ({ filterSetters }) => {
-  const { data: response, error } = useResource("categories/");
+  const { data: response, error } = useResource(
+    "categories/",
+    {},
+    {
+      revalidateOnFocus: false,
+    }
+  );
   const options = response
     ? response.data.map((category) => ({
         value: category.id,

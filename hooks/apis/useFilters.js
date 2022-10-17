@@ -2,8 +2,6 @@ import { useDebounce } from "ahooks";
 import { useMemo, useState } from "react";
 
 const useFilters = () => {
-  const [offset, setOffset] = useState(0);
-
   const [year, setYear] = useState("");
   const [name, setName] = useState("");
   const [status, setStatus] = useState(null);
@@ -43,8 +41,6 @@ const useFilters = () => {
 
   const filters = useMemo(
     () => ({
-      limit: 20,
-      offset,
       year,
       name: debouncedName,
       status,
@@ -69,7 +65,6 @@ const useFilters = () => {
       contractContractor: debouncedContractContractor,
     }),
     [
-      offset,
       year,
       debouncedName,
       status,
@@ -96,7 +91,6 @@ const useFilters = () => {
   );
 
   const filterSetters = {
-    setOffset,
     setYear,
     setName,
     setStatus,

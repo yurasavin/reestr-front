@@ -3,7 +3,11 @@ import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
 const Users = ({ filterSetters }) => {
-  const { data: response, error } = useResource("users/", { role__gte: 200 });
+  const { data: response, error } = useResource(
+    "users/",
+    { role__gte: 200 },
+    { revalidateOnFocus: false }
+  );
   const options = response
     ? response.data.map((user) => ({
         value: user.id,

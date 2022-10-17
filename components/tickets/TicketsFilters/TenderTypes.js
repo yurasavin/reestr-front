@@ -3,7 +3,13 @@ import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
 const TenderTypes = ({ filterSetters }) => {
-  const { data: response, error } = useResource("tender_types/");
+  const { data: response, error } = useResource(
+    "tender_types/",
+    {},
+    {
+      revalidateOnFocus: false,
+    }
+  );
   const options = response ? response.data : [];
 
   return (

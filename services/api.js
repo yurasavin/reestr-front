@@ -17,7 +17,7 @@ const getParams = (customParams) => {
 
 const addAuthorizationHeader = (params) => {
   const token = localStorage.getItem("token");
-  if (token && !params.headers.hasOwnProperty("Authorization")) {
+  if (token && !params?.headers?.Authorization) {
     params.headers.Authorization = `Token ${token}`;
   }
   return params;

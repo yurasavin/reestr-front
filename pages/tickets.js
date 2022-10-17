@@ -4,7 +4,7 @@ import TicketListItem from "../components/tickets/TicketListItem";
 import TicketsFilters from "../components/tickets/TicketsFilters";
 import getSiderCollapsedCookie from "../helpers/getSiderCollapsedCookie";
 import useFilters from "../hooks/apis/useFilters";
-import useResource from "../hooks/apis/useResource";
+import useInfiniteResource from "../hooks/apis/useInfiniteResource";
 
 const Tickets = ({ siderCollapsed }) => {
   const [filters, filterSetters] = useFilters();
@@ -20,8 +20,32 @@ const Tickets = ({ siderCollapsed }) => {
       activeFilters[key] = filterValue;
     }
   }
-  const { data: response, error } = useResource("tickets/", activeFilters);
 
+  const {
+    data: responses,
+    error,
+    isValidating,
+    size,
+    setSize,
+  } = useInfiniteResource("tickets/", activeFilters);
+
+  const onScroll = (e) => {
+    if (isValidating) return;
+    const el = e.currentTarget;
+    // console.log(el.scrollHeight - el.scrollTop, el.clientHeight);
+    // if (el.scrollHeight - el.scrollTop - 25 <= el.clientHeight) {
+    console.log(el.scrollHeight - el.scrollTop - el.clientHeight);
+    if (el.scrollHeight - el.scrollTop <= el.clientHeight) {
+      console.log("set size to", size + 1);
+      setSize(size + 1);
+    }
+  };
+
+  const tickets = [];
+  if (responses) {
+    responses.map((response) => tickets.push(...response.data.results));
+  }
+  console.log("number of tickets is:", tickets.length);
 
   if (error)
     return (
@@ -32,14 +56,18 @@ const Tickets = ({ siderCollapsed }) => {
       </div>
     );
 
+  const isLoading =
+    !responses || isValidating ? { wrapperClassName: "ticketsLoader" } : false;
+
   return (
     <SiteLayout siderCollapsed={siderCollapsed}>
       <div style={{ display: "flex" }}>
         <List
           itemLayout="vertical"
-          dataSource={response ? response.data.results : []}
-          loading={!response}
+          dataSource={tickets}
+          loading={isLoading}
           renderItem={(ticket) => <TicketListItem ticket={ticket} />}
+          onScroll={onScroll}
           style={{
             width: "100%",
             overflow: "auto",
@@ -47,6 +75,7 @@ const Tickets = ({ siderCollapsed }) => {
             paddingRight: 5,
           }}
         />
+
         <TicketsFilters filters={filters} filterSetters={filterSetters} />
       </div>
     </SiteLayout>

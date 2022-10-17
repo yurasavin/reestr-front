@@ -8,10 +8,14 @@ const Okpds = ({ filterSetters }) => {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearchValue = useDebounce(searchValue, { wait: 900 });
 
-  const { data: response, error } = useResource("okpd2/", {
-    search: debouncedSearchValue,
-    limit: 100,
-  });
+  const { data: response, error } = useResource(
+    "okpd2/",
+    {
+      search: debouncedSearchValue,
+      limit: 100,
+    },
+    { revalidateOnFocus: false }
+  );
   const options = response
     ? response.data.results.map((okpd) => ({
         value: okpd.id,

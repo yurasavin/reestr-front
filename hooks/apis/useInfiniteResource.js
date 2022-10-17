@@ -8,15 +8,17 @@ const useInfiniteResource = (path, queryParams) => {
   const router = useRouter();
 
   const getKey = (pageIndex, previousPageData) => {
-    if (previousPageData && !previousPageData.data.next) {
+    if (!previousPageData) {
+      return [path, queryParams];
+    }
+
+    if (!previousPageData.data.next) {
       return null;
     }
 
-    if (previousPageData && previousPageData.data.next) {
-      const nextUrl = new URL(previousPageData.data.next);
-      const offset = parseInt(nextUrl.searchParams.get("offset"));
-      queryParams = { ...queryParams, limit: PAGE_SIZE, offset };
-    }
+    const nextUrl = new URL(previousPageData.data.next);
+    const offset = parseInt(nextUrl.searchParams.get("offset"));
+    queryParams = { ...queryParams, limit: PAGE_SIZE, offset };
 
     return [path, queryParams];
   };

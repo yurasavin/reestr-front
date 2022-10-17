@@ -31,12 +31,9 @@ const Tickets = ({ siderCollapsed }) => {
 
   const onScroll = (e) => {
     if (isValidating) return;
+    if (responses.at(-1)?.data?.next === null) return;
     const el = e.currentTarget;
-    // console.log(el.scrollHeight - el.scrollTop, el.clientHeight);
-    // if (el.scrollHeight - el.scrollTop - 25 <= el.clientHeight) {
-    console.log(el.scrollHeight - el.scrollTop - el.clientHeight);
-    if (el.scrollHeight - el.scrollTop <= el.clientHeight) {
-      console.log("set size to", size + 1);
+    if (el.scrollHeight - el.scrollTop - 1 <= el.clientHeight) {
       setSize(size + 1);
     }
   };

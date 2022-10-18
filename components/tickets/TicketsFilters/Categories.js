@@ -30,6 +30,7 @@ const Categories = ({ filterSetters }) => {
           option.label.search(new RegExp(inputValue, "i")) !== -1
         }
         style={{ width: "100%" }}
+        getPopupContainer={(triggerNode) => triggerNode.parentElement}
       />
     </InputGroup>
   );

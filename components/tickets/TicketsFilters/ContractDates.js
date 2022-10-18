@@ -12,6 +12,7 @@ const ContractDates = ({ filterSetters }) => {
         }}
         allowEmpty={[true, true]}
         placeholder={["С", "По"]}
+        getPopupContainer={(triggerNode) => triggerNode}
       />
     </InputGroup>
   );

@@ -48,6 +48,7 @@ const TicketsFilters = ({ filterSetters }) => {
             { value: true, label: "В работе" },
             { value: false, label: "Завершена" },
           ]}
+          getPopupContainer={(triggerNode) => triggerNode.parentElement}
         />
       </InputGroup>
       <Dates filterSetters={filterSetters} />
@@ -66,6 +67,7 @@ const TicketsFilters = ({ filterSetters }) => {
           allowClear
           onChange={(values) => filterSetters.setTenderStatuses(values)}
           style={{ width: "100%" }}
+          getPopupContainer={(triggerNode) => triggerNode.parentElement}
           options={[
             { value: 1, label: "Осуществляется" },
             { value: 2, label: "Завершена" },
@@ -86,6 +88,7 @@ const TicketsFilters = ({ filterSetters }) => {
           allowClear
           onChange={(value) => filterSetters.setSmp(value)}
           style={{ width: "100%" }}
+          getPopupContainer={(triggerNode) => triggerNode.parentElement}
           options={[
             { value: true, label: "Да" },
             { value: false, label: "Нет" },

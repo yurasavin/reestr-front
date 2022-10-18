@@ -38,6 +38,7 @@ const Okpds = ({ filterSetters }) => {
           defaultActiveFirstOption={false}
           filterOption={false}
           onSearch={(newSearchValue) => setSearchValue(newSearchValue)}
+          getPopupContainer={(triggerNode) => triggerNode.parentElement}
         />
       )}
     </InputGroup>

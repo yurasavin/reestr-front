@@ -12,6 +12,7 @@ const useFilters = () => {
   const [tenderTypes, setTenderTypes] = useState([]);
   const [branches, setBranches] = useState([]);
   const [okpds, setOkpds] = useState([]);
+  const [clickedOkpd, setClickedOkpd] = useState(null);
   const [users, setUsers] = useState([]);
   const [initiators, setInitiators] = useState([]);
 
@@ -50,6 +51,7 @@ const useFilters = () => {
       tenderTypes,
       branches,
       okpds,
+      clickedOkpd,
       users,
       initiators,
       tenderStatuses,
@@ -74,6 +76,7 @@ const useFilters = () => {
       tenderTypes,
       branches,
       okpds,
+      clickedOkpd,
       users,
       initiators,
       tenderStatuses,
@@ -100,6 +103,7 @@ const useFilters = () => {
     setTenderTypes,
     setBranches,
     setOkpds,
+    setClickedOkpd,
     setUsers,
     setInitiators,
     setTenderStatuses,

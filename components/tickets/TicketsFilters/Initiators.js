@@ -2,7 +2,7 @@ import { Select } from "antd";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
-const Initiators = ({ filterSetters }) => {
+const Initiators = ({ filters, filterSetters }) => {
   const { data: response, error } = useResource(
     "initiators/",
     {},
@@ -24,6 +24,7 @@ const Initiators = ({ filterSetters }) => {
         showArrow
         loading={!response}
         allowClear
+        value={filters.initiators}
         onChange={(values) => filterSetters.setInitiators(values)}
         options={options}
         filterOption={(inputValue, option) =>

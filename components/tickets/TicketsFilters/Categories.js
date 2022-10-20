@@ -2,7 +2,7 @@ import { Select } from "antd";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
-const Categories = ({ filterSetters }) => {
+const Categories = ({ filters, filterSetters }) => {
   const { data: response, error } = useResource(
     "categories/",
     {},
@@ -24,6 +24,7 @@ const Categories = ({ filterSetters }) => {
         showArrow
         loading={!response}
         allowClear
+        value={filters.categories}
         onChange={(values) => filterSetters.setCategories(values)}
         options={options}
         filterOption={(inputValue, option) =>

@@ -1,11 +1,13 @@
 import { useDebounce } from "ahooks";
 import { Select } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
-const Okpds = ({ filterSetters }) => {
+const Okpds = ({ filters, filterSetters }) => {
   const [searchValue, setSearchValue] = useState("");
+  const [values, setValues] = useState([]);
+  const [options, setOptions] = useState([]);
   const debouncedSearchValue = useDebounce(searchValue, { wait: 900 });
 
   const { data: response, error } = useResource(
@@ -16,12 +18,32 @@ const Okpds = ({ filterSetters }) => {
     },
     { revalidateOnFocus: false }
   );
-  const options = response
-    ? response.data.results.map((okpd) => ({
-        value: okpd.id,
-        label: okpd.label,
-      }))
-    : [];
+
+  useEffect(() => {
+    if (filters.clickedOkpd) setSearchValue(filters.clickedOkpd);
+    filterSetters.setClickedOkpd(null);
+  }, [filters.clickedOkpd]);
+
+  useEffect(() => {
+    const options = response
+      ? response.data.results.map((okpd) => ({
+          value: okpd.id,
+          label: okpd.label,
+        }))
+      : [];
+
+    setOptions(options);
+
+    const values = filters.okpds.map((id) => {
+      if (!options.filter((option) => option.value === id).length) {
+        return "Загрузка...";
+      }
+      return id;
+    });
+
+    setValues(values);
+    console.log(filters.okpds, options);
+  }, [filters.okpds, response]);
 
   return (
     <InputGroup labelName="ОКПД2">
@@ -31,6 +53,7 @@ const Okpds = ({ filterSetters }) => {
         <Select
           mode="multiple"
           loading={!response}
+          value={values}
           onChange={(values) => filterSetters.setOkpds(values)}
           style={{ width: "100%" }}
           showSearch

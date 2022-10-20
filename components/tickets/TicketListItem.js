@@ -3,7 +3,7 @@ import Contract from "./Contract";
 import Tender from "./Tender";
 import Ticket from "./Ticket";
 
-const TicketListItem = ({ ticket }) => {
+const TicketListItem = ({ ticket, filterSetters }) => {
   return (
     <List.Item
       key={ticket.id}
@@ -15,7 +15,7 @@ const TicketListItem = ({ ticket }) => {
       }}
     >
       <Space direction="vertical" size={4}>
-        <Ticket ticket={ticket} />
+        <Ticket ticket={ticket} filterSetters={filterSetters} />
         <div style={{ paddingLeft: 50 }}>
           <Tender tender={ticket.tender} />
         </div>

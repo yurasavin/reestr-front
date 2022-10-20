@@ -2,7 +2,7 @@ import { Select } from "antd";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
-const Users = ({ filterSetters }) => {
+const Users = ({ filters, filterSetters }) => {
   const { data: response, error } = useResource(
     "users/",
     { role__gte: 200 },
@@ -22,6 +22,7 @@ const Users = ({ filterSetters }) => {
         showArrow
         loading={!response}
         allowClear
+        value={filters.users}
         onChange={(values) => filterSetters.setUsers(values)}
         options={options}
         filterOption={(inputValue, option) =>

@@ -14,13 +14,14 @@ import Year from "./Year";
 
 const Label = ({ name }) => <label style={{ fontWeight: 500 }}>{name}</label>;
 
-const TicketsFilters = ({ filterSetters }) => {
+const TicketsFilters = ({ filters, filterSetters }) => {
   return (
     <Space
       direction="vertical"
       style={{
         height: "85vh",
-        overflow: "auto",
+        overflowY: "auto",
+        overflowX: "hidden",
         backgroundColor: "#001529",
         display: "flex",
         alignItems: "center",
@@ -42,6 +43,7 @@ const TicketsFilters = ({ filterSetters }) => {
       <InputGroup labelName="Статус">
         <Select
           allowClear
+          value={filters.status}
           onChange={(value) => filterSetters.setStatus(value)}
           style={{ width: "100%" }}
           options={[
@@ -51,13 +53,13 @@ const TicketsFilters = ({ filterSetters }) => {
           getPopupContainer={(triggerNode) => triggerNode.parentElement}
         />
       </InputGroup>
-      <Dates filterSetters={filterSetters} />
-      <Categories filterSetters={filterSetters} />
-      <TenderTypes filterSetters={filterSetters} />
-      <Branches filterSetters={filterSetters} />
-      <Okpds filterSetters={filterSetters} />
-      <Users filterSetters={filterSetters} />
-      <Initiators filterSetters={filterSetters} />
+      <Dates filters={filters} filterSetters={filterSetters} />
+      <Categories filters={filters} filterSetters={filterSetters} />
+      <TenderTypes filters={filters} filterSetters={filterSetters} />
+      <Branches filters={filters} filterSetters={filterSetters} />
+      <Okpds filters={filters} filterSetters={filterSetters} />
+      <Users filters={filters} filterSetters={filterSetters} />
+      <Initiators filters={filters} filterSetters={filterSetters} />
 
       <Label name="Закупка" />
       <InputGroup labelName="Статус">

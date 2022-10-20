@@ -2,7 +2,7 @@ import { Select } from "antd";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
-const Branches = ({ filterSetters }) => {
+const Branches = ({ filters, filterSetters }) => {
   const { data: response, error } = useResource(
     "branches/",
     {},
@@ -24,6 +24,7 @@ const Branches = ({ filterSetters }) => {
         showArrow
         loading={!response}
         allowClear
+        value={filters.branches}
         onChange={(values) => filterSetters.setBranches(values)}
         options={options}
         filterOption={(inputValue, option) =>

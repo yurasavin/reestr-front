@@ -42,7 +42,6 @@ const Tickets = ({ siderCollapsed }) => {
   if (responses) {
     responses.map((response) => tickets.push(...response.data.results));
   }
-  console.log("number of tickets is:", tickets.length);
 
   if (error)
     return (
@@ -63,7 +62,9 @@ const Tickets = ({ siderCollapsed }) => {
           itemLayout="vertical"
           dataSource={tickets}
           loading={isLoading}
-          renderItem={(ticket) => <TicketListItem ticket={ticket} />}
+          renderItem={(ticket) => (
+            <TicketListItem ticket={ticket} filterSetters={filterSetters} />
+          )}
           onScroll={onScroll}
           style={{
             width: "100%",

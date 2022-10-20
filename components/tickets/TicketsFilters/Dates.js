@@ -4,8 +4,12 @@ import InputGroup from "./InputGroup";
 
 const Dates = ({ filters, filterSetters }) => {
   const value = [
-    filters.dateFrom ? moment(filters.dateFrom) : null,
-    filters.dateTo ? moment(filters.dateTo) : null,
+    filters.dateFrom
+      ? moment(filters.dateFrom, ["DD.MM.YYYY", "YYYY-MM-DD"])
+      : null,
+    filters.dateTo
+      ? moment(filters.dateTo, ["DD.MM.YYYY", "YYYY-MM-DD"])
+      : null,
   ];
   return (
     <InputGroup labelName="Дата">

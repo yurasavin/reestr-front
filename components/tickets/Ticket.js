@@ -70,11 +70,15 @@ const Ticket = ({ ticket, filterSetters }) => {
           </Clickable>
         </TagWithTooltip>
         <TagWithTooltip title="Категория" color="rgba(108, 191, 206, 0.2)">
-          <Clickable
-            onClick={() => filterSetters.setCategories([ticket.tag.id])}
-          >
-            {ticket.tag?.name || "-"}
-          </Clickable>
+          {ticket.tag ? (
+            <Clickable
+              onClick={() => filterSetters.setCategories([ticket.tag.id])}
+            >
+              {ticket.tag.name}
+            </Clickable>
+          ) : (
+            "-"
+          )}
         </TagWithTooltip>
         <TagWithTooltip title="Способ закупки" color="rgba(58, 156, 234, 0.2)">
           <Clickable

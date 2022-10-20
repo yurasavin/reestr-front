@@ -9,6 +9,7 @@ const ContractDates = ({ filterSetters }) => {
         onChange={(values, stringValues) => {
           filterSetters.setContractDateFrom(stringValues[0]);
           filterSetters.setContractDateTo(stringValues[1]);
+          console.log(values.rrr.ttt);
         }}
         allowEmpty={[true, true]}
         placeholder={["С", "По"]}

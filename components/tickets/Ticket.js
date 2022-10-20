@@ -109,9 +109,13 @@ const Ticket = ({ ticket, filterSetters }) => {
           </TagWithTooltip>
         ) : null}
         <RoundedTag>
-          <Clickable onClick={() => filterSetters.setUsers([ticket.user.id])}>
-            Ответственный: {ticket.user.last_name}
-          </Clickable>
+          {ticket.user ? (
+            <Clickable onClick={() => filterSetters.setUsers([ticket.user.id])}>
+              Ответственный: {ticket.user.last_name}
+            </Clickable>
+          ) : (
+            "-"
+          )}
         </RoundedTag>
         <RoundedTag>
           <Clickable

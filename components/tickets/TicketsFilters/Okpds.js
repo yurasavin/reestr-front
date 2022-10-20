@@ -42,7 +42,6 @@ const Okpds = ({ filters, filterSetters }) => {
     });
 
     setValues(values);
-    console.log(filters.okpds, options);
   }, [filters.okpds, response]);
 
   return (

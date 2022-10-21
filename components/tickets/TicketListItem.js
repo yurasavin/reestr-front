@@ -17,10 +17,10 @@ const TicketListItem = ({ ticket, filterSetters }) => {
       <Space direction="vertical" size={4}>
         <Ticket ticket={ticket} filterSetters={filterSetters} />
         <div style={{ paddingLeft: 50 }}>
-          <Tender tender={ticket.tender} />
+          <Tender tender={ticket.tender} filterSetters={filterSetters} />
         </div>
         <div style={{ paddingLeft: 50 }}>
-          <Contract contract={ticket.contract} />
+          <Contract contract={ticket.contract} filterSetters={filterSetters} />
         </div>
       </Space>
     </List.Item>

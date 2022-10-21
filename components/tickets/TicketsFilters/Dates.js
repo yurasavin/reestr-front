@@ -1,8 +1,23 @@
 import { DatePicker } from "antd";
 import moment from "moment";
+import { useEffect, useState } from "react";
 import InputGroup from "./InputGroup";
 
-const Dates = ({ filters, filterSetters }) => {
+const Dates = ({
+  filters,
+  filterSetters,
+  parentScrolled,
+  setParentScrolled,
+}) => {
+  const [opened, setOpened] = useState(false);
+
+  useEffect(() => {
+    if (!parentScrolled || !opened) return;
+
+    setOpened(false);
+    setParentScrolled(false);
+  }, [parentScrolled, opened]);
+
   const value = [
     filters.dateFrom
       ? moment(filters.dateFrom, ["DD.MM.YYYY", "YYYY-MM-DD"])
@@ -22,7 +37,11 @@ const Dates = ({ filters, filterSetters }) => {
         }}
         allowEmpty={[true, true]}
         placeholder={["С", "По"]}
-        getPopupContainer={(triggerNode) => triggerNode}
+        open={opened}
+        onOpenChange={(open) => {
+          setOpened(open);
+          if (parentScrolled) setParentScrolled(false);
+        }}
       />
     </InputGroup>
   );

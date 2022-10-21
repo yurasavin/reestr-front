@@ -1,4 +1,5 @@
 import { Input, Select, Space } from "antd";
+import { useState } from "react";
 import Branches from "./Branches";
 import Categories from "./Categories";
 import ContractDates from "./ContractDates";
@@ -15,27 +16,36 @@ import Year from "./Year";
 const Label = ({ name }) => <label style={{ fontWeight: 500 }}>{name}</label>;
 
 const TicketsFilters = ({ filters, filterSetters }) => {
+  const [scrolled, setScrolled] = useState(false);
+
   return (
     <Space
+      onScroll={() => {
+        if (!scrolled) {
+          setScrolled(true);
+        }
+      }}
       direction="vertical"
       style={{
         height: "85vh",
-        overflowY: "auto",
-        overflowX: "hidden",
+        overflow: "auto",
         backgroundColor: "#001529",
         display: "flex",
         alignItems: "center",
         color: "white",
-        padding: 10,
+        padding: "10px 0",
         borderRadius: 8,
-        width: 400,
+        width: 325,
+        minWidth: 325,
+        maxWidth: 325,
       }}
     >
       <Label name="Заявка" />
-      <Year filterSetters={filterSetters} />
+      <Year filters={filters} filterSetters={filterSetters} />
       <InputGroup labelName="Наименование">
         <Input
           allowClear
+          value={filters.nameReal}
           onChange={(e) => filterSetters.setName(e.target.value)}
           style={{ border: "1px solid black", borderRadius: 7 }}
         />
@@ -53,7 +63,12 @@ const TicketsFilters = ({ filters, filterSetters }) => {
           getPopupContainer={(triggerNode) => triggerNode.parentElement}
         />
       </InputGroup>
-      <Dates filters={filters} filterSetters={filterSetters} />
+      <Dates
+        filters={filters}
+        filterSetters={filterSetters}
+        parentScrolled={scrolled}
+        setParentScrolled={setScrolled}
+      />
       <Categories filters={filters} filterSetters={filterSetters} />
       <TenderTypes filters={filters} filterSetters={filterSetters} />
       <Branches filters={filters} filterSetters={filterSetters} />
@@ -67,6 +82,7 @@ const TicketsFilters = ({ filters, filterSetters }) => {
           mode="multiple"
           showArrow
           allowClear
+          value={filters.tenderStatuses}
           onChange={(values) => filterSetters.setTenderStatuses(values)}
           style={{ width: "100%" }}
           getPopupContainer={(triggerNode) => triggerNode.parentElement}
@@ -81,6 +97,7 @@ const TicketsFilters = ({ filters, filterSetters }) => {
       <InputGroup labelName="Номер">
         <Input
           allowClear
+          value={filters.tenderNumReal}
           onChange={(e) => filterSetters.setTenderNum(e.target.value)}
           style={{ border: "1px solid black", borderRadius: 7 }}
         />
@@ -88,6 +105,7 @@ const TicketsFilters = ({ filters, filterSetters }) => {
       <InputGroup labelName="СМП">
         <Select
           allowClear
+          value={filters.smp}
           onChange={(value) => filterSetters.setSmp(value)}
           style={{ width: "100%" }}
           getPopupContainer={(triggerNode) => triggerNode.parentElement}
@@ -97,21 +115,28 @@ const TicketsFilters = ({ filters, filterSetters }) => {
           ]}
         />
       </InputGroup>
-      <TenderPrices filterSetters={filterSetters} />
+      <TenderPrices filters={filters} filterSetters={filterSetters} />
 
       <Label name="Контракт" />
       <InputGroup labelName="Номер">
         <Input
           allowClear
+          value={filters.contractNumReal}
           onChange={(e) => filterSetters.setContractNum(e.target.value)}
           style={{ border: "1px solid black", borderRadius: 7 }}
         />
       </InputGroup>
-      <ContractDates filterSetters={filterSetters} />
-      <ContractPrices filterSetters={filterSetters} />
+      <ContractDates
+        filters={filters}
+        filterSetters={filterSetters}
+        parentScrolled={scrolled}
+        setParentScrolled={setScrolled}
+      />
+      <ContractPrices filters={filters} filterSetters={filterSetters} />
       <InputGroup labelName="Контрагент">
         <Input
           allowClear
+          value={filters.contractContractorReal}
           onChange={(e) => filterSetters.setContractContractor(e.target.value)}
           style={{ border: "1px solid black", borderRadius: 7 }}
         />

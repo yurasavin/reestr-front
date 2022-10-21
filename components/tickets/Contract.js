@@ -1,8 +1,11 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Space, Typography } from "antd";
+import { Button, Space } from "antd";
 import Link from "next/link";
+import Price from "../shared/Price";
+import Clickable from "./Clickable";
+import TagWithTooltip from "./TagWithTooltip";
 
-const Contract = ({ contract }) => {
+const Contract = ({ contract, filterSetters }) => {
   if (!contract) {
     return (
       <Space align="baseline" style={{ display: "flex", alignItems: "center" }}>
@@ -31,14 +34,41 @@ const Contract = ({ contract }) => {
   return (
     <Space align="baseline" wrap>
       <span style={{ fontWeight: 500 }}>Контракт</span>
-      <span>{`№ ${contract.num} от ${date}`}</span>
+      <span>№ {contract.num}</span>
       <Space size={2}>
-        <Typography.Text underline>Сумма, руб.:</Typography.Text>
-        {contract.price}
+        <TagWithTooltip title="Дата">
+          <Clickable
+            onClick={() => {
+              filterSetters.setContractDateFrom(contract.date);
+              filterSetters.setContractDateTo(contract.date);
+            }}
+          >
+            {contract.date.split("-").reverse().join(".")}
+          </Clickable>
+        </TagWithTooltip>
       </Space>
       <Space size={2}>
-        <Typography.Text underline>Контрагент:</Typography.Text>
-        {contract.kontragent}
+        <TagWithTooltip title="Сумма">
+          <Clickable
+            onClick={() => {
+              filterSetters.setContractPriceFrom(contract.price);
+              filterSetters.setContractPriceTo(contract.price);
+            }}
+          >
+            <Price price={contract.price} />
+          </Clickable>
+        </TagWithTooltip>
+      </Space>
+      <Space size={2}>
+        <TagWithTooltip title="Контрагент">
+          <Clickable
+            onClick={() =>
+              filterSetters.setContractContractor(contract.kontragent)
+            }
+          >
+            {contract.kontragent}
+          </Clickable>
+        </TagWithTooltip>
       </Space>
     </Space>
   );

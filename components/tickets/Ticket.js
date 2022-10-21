@@ -1,25 +1,8 @@
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { Space, Tooltip, Typography } from "antd";
+import Clickable from "./Clickable";
 import RoundedTag from "./RoundedTag";
-
-const TagWithTooltip = ({ title, color, children }) => {
-  return (
-    <Tooltip title={title}>
-      <RoundedTag color={color}>{children}</RoundedTag>
-    </Tooltip>
-  );
-};
-
-const Clickable = ({ onClick, children }) => {
-  const style = {
-    cursor: "pointer",
-  };
-  return (
-    <span onClick={onClick} style={style}>
-      {children}
-    </span>
-  );
-};
+import TagWithTooltip from "./TagWithTooltip";
 
 const TicketStatus = ({ status, filterSetters }) => {
   const title = status ? "В работе" : "Завершена";

@@ -1,8 +1,9 @@
 import { useDebounce } from "ahooks";
+import moment from "moment";
 import { useMemo, useState } from "react";
 
 const useFilters = () => {
-  const [year, setYear] = useState("");
+  const [year, setYear] = useState(() => moment().year());
   const [name, setName] = useState("");
   const [status, setStatus] = useState(null);
   const debouncedName = useDebounce(name, { wait: 900 });
@@ -16,7 +17,7 @@ const useFilters = () => {
   const [users, setUsers] = useState([]);
   const [initiators, setInitiators] = useState([]);
 
-  const [tenderStatuses, setTenderStatuses] = useState("");
+  const [tenderStatuses, setTenderStatuses] = useState([]);
   const [tenderNum, setTenderNum] = useState("");
   const debouncedTenderNum = useDebounce(tenderNum, { wait: 900 });
   const [smp, setSmp] = useState(null);
@@ -43,6 +44,7 @@ const useFilters = () => {
   const filters = useMemo(
     () => ({
       year,
+      nameReal: name,
       name: debouncedName,
       status,
       dateFrom,
@@ -55,19 +57,27 @@ const useFilters = () => {
       users,
       initiators,
       tenderStatuses,
+      tenderNumReal: tenderNum,
       tenderNum: debouncedTenderNum,
       smp,
+      tenderPriceFromReal: tenderPriceFrom,
       tenderPriceFrom: debouncedTenderPriceFrom,
+      tenderPriceToReal: tenderPriceTo,
       tenderPriceTo: debouncedTenderPriceTo,
+      contractNumReal: contractNum,
       contractNum: debouncedContractNum,
       contractDateFrom,
       contractDateTo,
+      contractPriceFromReal: contractPriceFrom,
       contractPriceFrom: debouncedContractPriceFrom,
+      contractPriceToReal: contractPriceTo,
       contractPriceTo: debouncedContractPriceTo,
+      contractContractorReal: contractContractor,
       contractContractor: debouncedContractContractor,
     }),
     [
       year,
+      name,
       debouncedName,
       status,
       dateFrom,
@@ -80,15 +90,22 @@ const useFilters = () => {
       users,
       initiators,
       tenderStatuses,
+      tenderNum,
       debouncedTenderNum,
       smp,
+      tenderPriceFrom,
       debouncedTenderPriceFrom,
+      tenderPriceTo,
       debouncedTenderPriceTo,
+      contractNum,
       debouncedContractNum,
       contractDateFrom,
       contractDateTo,
+      contractPriceFrom,
       debouncedContractPriceFrom,
+      contractPriceTo,
       debouncedContractPriceTo,
+      contractContractor,
       debouncedContractContractor,
     ]
   );

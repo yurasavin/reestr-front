@@ -76,7 +76,7 @@ const Tickets = ({ siderCollapsed }) => {
             style={{
               width: "100%",
               overflow: "auto",
-              height: "80vh",
+              height: "78vh",
               paddingRight: 5,
             }}
           />

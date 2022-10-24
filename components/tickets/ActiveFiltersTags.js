@@ -54,8 +54,16 @@ const ActiveFiltersTags = ({ filters, filterSetters }) => {
   );
 
   return (
-    <Space size={2}>
-      Фильтры:
+    <Space
+      size={2}
+      style={{
+        padding: 5,
+        border: "1px solid black",
+        borderRadius: 15,
+        marginBottom: 3,
+      }}
+    >
+      <span style={{ fontWeight: 600 }}>Фильтры:</span>
       <Space size={0} wrap style={{ height: "5vh", overflowY: "scroll" }}>
         <Tag>
           <strong>Год: </strong>

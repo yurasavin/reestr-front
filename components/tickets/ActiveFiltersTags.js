@@ -59,12 +59,13 @@ const ActiveFiltersTags = ({ filters, filterSetters }) => {
       style={{
         padding: 5,
         border: "1px solid black",
-        borderRadius: 15,
+        borderRadius: 10,
         marginBottom: 3,
+        width: "100%",
       }}
     >
       <span style={{ fontWeight: 600 }}>Фильтры:</span>
-      <Space size={0} wrap style={{ height: "5vh", overflowY: "scroll" }}>
+      <Space size={0} wrap style={{ height: "5vh", overflowY: "auto" }}>
         <Tag>
           <strong>Год: </strong>
           {filters.year}

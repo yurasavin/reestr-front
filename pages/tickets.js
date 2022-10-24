@@ -63,7 +63,7 @@ const Tickets = ({ siderCollapsed }) => {
   return (
     <SiteLayout siderCollapsed={siderCollapsed}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ paddingRight: 5 }}>
+        <div style={{ paddingRight: 5, width: "100%" }}>
           <ActiveFiltersTags filters={filters} filterSetters={filterSetters} />
           <List
             itemLayout="vertical"

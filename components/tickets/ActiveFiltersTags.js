@@ -89,7 +89,6 @@ const ActiveFiltersTags = ({ filters, filterSetters }) => {
             closable
             onClose={(e) => {
               e.preventDefault();
-              filterSetters.sasdasd();
               filterSetters.setStatus(undefined);
             }}
           >

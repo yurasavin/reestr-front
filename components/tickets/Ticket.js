@@ -1,5 +1,6 @@
 import { CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { Space, Tooltip, Typography } from "antd";
+import formatDateString from "../../helpers/formatDateString";
 import Clickable from "./Clickable";
 import RoundedTag from "./RoundedTag";
 import TagWithTooltip from "./TagWithTooltip";
@@ -49,7 +50,7 @@ const Ticket = ({ ticket, filterSetters }) => {
               filterSetters.setDateTo(ticket.date);
             }}
           >
-            {ticket.date.split("-").reverse().join(".")}
+            {formatDateString(ticket.date)}
           </Clickable>
         </TagWithTooltip>
         <TagWithTooltip title="Категория" color="rgba(108, 191, 206, 0.2)">
@@ -88,7 +89,7 @@ const Ticket = ({ ticket, filterSetters }) => {
             <Clickable
               onClick={() => {
                 filterSetters.setOkpds([ticket.okpd2.id]);
-                filterSetters.setClickedOkpd(ticket.okpd2.name);
+                filterSetters.setOkpdSearchValueReal(ticket.okpd2.name);
               }}
             >
               ОКПД2: {ticket.okpd2.code}

@@ -94,7 +94,7 @@ const TicketsFilters = ({ filters, filterSetters }) => {
           ]}
         />
       </InputGroup>
-      <InputGroup labelName="Номер">
+      <InputGroup labelName="Номер извещения">
         <Input
           allowClear
           value={filters.tenderNumReal}

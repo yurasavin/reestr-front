@@ -1,5 +1,6 @@
 import { List } from "antd";
 import SiteLayout from "../components/base/SiteLayout";
+import ActiveFiltersTags from "../components/tickets/ActiveFiltersTags";
 import TicketListItem from "../components/tickets/TicketListItem";
 import TicketsFilters from "../components/tickets/TicketsFilters";
 import getSiderCollapsedCookie from "../helpers/getSiderCollapsedCookie";
@@ -10,6 +11,10 @@ const Tickets = ({ siderCollapsed }) => {
   const [filters, filterSetters] = useFilters();
   const activeFilters = {};
   for (const key in filters) {
+    if (key.endsWith("Real")) {
+      continue;
+    }
+
     const filterValue = filters[key];
     if (
       filterValue !== null &&
@@ -57,22 +62,25 @@ const Tickets = ({ siderCollapsed }) => {
 
   return (
     <SiteLayout siderCollapsed={siderCollapsed}>
-      <div style={{ display: "flex" }}>
-        <List
-          itemLayout="vertical"
-          dataSource={tickets}
-          loading={isLoading}
-          renderItem={(ticket) => (
-            <TicketListItem ticket={ticket} filterSetters={filterSetters} />
-          )}
-          onScroll={onScroll}
-          style={{
-            width: "100%",
-            overflow: "auto",
-            height: "85vh",
-            paddingRight: 5,
-          }}
-        />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div>
+          <ActiveFiltersTags filters={filters} filterSetters={filterSetters} />
+          <List
+            itemLayout="vertical"
+            dataSource={tickets}
+            loading={isLoading}
+            renderItem={(ticket) => (
+              <TicketListItem ticket={ticket} filterSetters={filterSetters} />
+            )}
+            onScroll={onScroll}
+            style={{
+              width: "100%",
+              overflow: "auto",
+              height: "80vh",
+              paddingRight: 5,
+            }}
+          />
+        </div>
 
         <TicketsFilters filters={filters} filterSetters={filterSetters} />
       </div>

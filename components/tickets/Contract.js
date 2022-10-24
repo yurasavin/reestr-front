@@ -1,6 +1,7 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
 import Link from "next/link";
+import formatDateString from "../../helpers/formatDateString";
 import Price from "../shared/Price";
 import Clickable from "./Clickable";
 import TagWithTooltip from "./TagWithTooltip";
@@ -29,7 +30,6 @@ const Contract = ({ contract, filterSetters }) => {
       </Space>
     );
   }
-  const date = contract.date.split("-").reverse().join(".");
 
   return (
     <Space align="baseline" wrap>
@@ -43,7 +43,7 @@ const Contract = ({ contract, filterSetters }) => {
               filterSetters.setContractDateTo(contract.date);
             }}
           >
-            {contract.date.split("-").reverse().join(".")}
+            {formatDateString(contract.date)}
           </Clickable>
         </TagWithTooltip>
       </Space>

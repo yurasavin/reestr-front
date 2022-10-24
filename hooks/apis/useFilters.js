@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 const useFilters = () => {
   const [year, setYear] = useState(() => moment().year());
   const [name, setName] = useState("");
-  const [status, setStatus] = useState(null);
+  const [status, setStatus] = useState(undefined);
   const debouncedName = useDebounce(name, { wait: 900 });
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
@@ -13,14 +13,17 @@ const useFilters = () => {
   const [tenderTypes, setTenderTypes] = useState([]);
   const [branches, setBranches] = useState([]);
   const [okpds, setOkpds] = useState([]);
-  const [clickedOkpd, setClickedOkpd] = useState(null);
+  const [okpdSearchValueReal, setOkpdSearchValueReal] = useState("");
+  const debouncedOkpdSearchValueReal = useDebounce(okpdSearchValueReal, {
+    wait: 900,
+  });
   const [users, setUsers] = useState([]);
   const [initiators, setInitiators] = useState([]);
 
   const [tenderStatuses, setTenderStatuses] = useState([]);
   const [tenderNum, setTenderNum] = useState("");
   const debouncedTenderNum = useDebounce(tenderNum, { wait: 900 });
-  const [smp, setSmp] = useState(null);
+  const [smp, setSmp] = useState(undefined);
   const [tenderPriceFrom, setTenderPriceFrom] = useState(null);
   const debouncedTenderPriceFrom = useDebounce(tenderPriceFrom, { wait: 900 });
   const [tenderPriceTo, setTenderPriceTo] = useState(null);
@@ -53,7 +56,8 @@ const useFilters = () => {
       tenderTypes,
       branches,
       okpds,
-      clickedOkpd,
+      okpdSearchValueReal,
+      debouncedOkpdSearchValueReal,
       users,
       initiators,
       tenderStatuses,
@@ -86,7 +90,8 @@ const useFilters = () => {
       tenderTypes,
       branches,
       okpds,
-      clickedOkpd,
+      okpdSearchValueReal,
+      debouncedOkpdSearchValueReal,
       users,
       initiators,
       tenderStatuses,
@@ -120,7 +125,7 @@ const useFilters = () => {
     setTenderTypes,
     setBranches,
     setOkpds,
-    setClickedOkpd,
+    setOkpdSearchValueReal,
     setUsers,
     setInitiators,
     setTenderStatuses,

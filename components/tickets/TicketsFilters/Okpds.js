@@ -1,28 +1,25 @@
-import { useDebounce } from "ahooks";
 import { Select } from "antd";
 import React, { useEffect, useState } from "react";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
+const TEMPORARY_VALUE = "Загрузка...";
+
 const Okpds = ({ filters, filterSetters }) => {
-  const [searchValue, setSearchValue] = useState("");
-  const [values, setValues] = useState([]);
   const [options, setOptions] = useState([]);
-  const debouncedSearchValue = useDebounce(searchValue, { wait: 900 });
 
-  const { data: response, error } = useResource(
-    "okpd2/",
-    {
-      search: debouncedSearchValue,
-      limit: 100,
-    },
-    { revalidateOnFocus: false }
-  );
+  const resourceParams = {
+    search: filters.debouncedOkpdSearchValueReal,
+    limit: 100,
+  };
 
-  useEffect(() => {
-    if (filters.clickedOkpd) setSearchValue(filters.clickedOkpd);
-    filterSetters.setClickedOkpd(null);
-  }, [filters.clickedOkpd]);
+  if (filters.okpds.length) {
+    resourceParams.extra_ids = filters.okpds;
+  }
+
+  const { data: response, error } = useResource("okpd2/", resourceParams, {
+    revalidateOnFocus: false,
+  });
 
   useEffect(() => {
     const options = response
@@ -32,16 +29,14 @@ const Okpds = ({ filters, filterSetters }) => {
         }))
       : [];
 
-    setOptions(options);
-
-    const values = filters.okpds.map((id) => {
-      if (!options.filter((option) => option.value === id).length) {
-        return "Загрузка...";
+    filters.okpds.map((id) => {
+      if (options.filter((option) => option.value === id).length) {
+        return;
       }
-      return id;
+      options.push({ value: id, label: TEMPORARY_VALUE });
     });
 
-    setValues(values);
+    setOptions(options);
   }, [filters.okpds, response]);
 
   return (
@@ -52,14 +47,16 @@ const Okpds = ({ filters, filterSetters }) => {
         <Select
           mode="multiple"
           loading={!response}
-          value={values}
+          value={filters.okpds}
           onChange={(values) => filterSetters.setOkpds(values)}
           style={{ width: "100%" }}
           showSearch
           options={options}
           defaultActiveFirstOption={false}
           filterOption={false}
-          onSearch={(newSearchValue) => setSearchValue(newSearchValue)}
+          onSearch={(newSearchValue) =>
+            filterSetters.setOkpdSearchValueReal(newSearchValue)
+          }
           getPopupContainer={(triggerNode) => triggerNode.parentElement}
         />
       )}

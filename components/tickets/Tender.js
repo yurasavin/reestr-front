@@ -39,18 +39,18 @@ const Tender = ({ tender, filterSetters }) => {
 
   return (
     <Space align="baseline" style={{ marginLeft: -25 }}>
-      <Tooltip
-        title={
-          {
-            1: "Осуществляется",
-            2: "Завершена",
-            3: "Не состоялась",
-            4: "Отменена",
-          }[tender.status]
-        }
+      <Clickable
+        onClick={() => filterSetters.setTenderStatuses([tender.status])}
       >
-        <Clickable
-          onClick={() => filterSetters.setTenderStatuses([tender.status])}
+        <Tooltip
+          title={
+            {
+              1: "Осуществляется",
+              2: "Завершена",
+              3: "Не состоялась",
+              4: "Отменена",
+            }[tender.status]
+          }
         >
           {
             {
@@ -96,8 +96,8 @@ const Tender = ({ tender, filterSetters }) => {
               ),
             }[tender.status]
           }
-        </Clickable>
-      </Tooltip>
+        </Tooltip>
+      </Clickable>
       <label style={{ fontWeight: 500 }}>Закупка</label>
       <span>№ {tender.num}</span>
       <Space size={2}>

@@ -1,4 +1,5 @@
 import { Space, Tag } from "antd";
+import { ROLE_WRITER } from "config/constants";
 import formatDateString from "../../helpers/formatDateString";
 import useResource from "../../hooks/apis/useResource";
 import Price from "../shared/Price";
@@ -43,7 +44,7 @@ const ActiveFiltersTags = ({ filters, filterSetters }) => {
 
   const { data: usersResponse } = useResource(
     "users/",
-    { role__gte: 200 },
+    { role__gte: ROLE_WRITER },
     { revalidateOnFocus: false }
   );
 

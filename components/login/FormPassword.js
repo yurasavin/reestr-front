@@ -9,6 +9,7 @@ const FormPassword = () => {
   return (
     <Form.Item
       name="password"
+      label="Пароль"
       rules={[
         {
           required: true,
@@ -18,7 +19,6 @@ const FormPassword = () => {
     >
       <Input.Password
         prefix={<LockOutlined />}
-        placeholder="Пароль"
         iconRender={(visible) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
         }

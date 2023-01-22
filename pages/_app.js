@@ -1,15 +1,18 @@
 import { ConfigProvider } from "antd";
-import ruRu from "antd/lib/locale/ru_RU";
+import ruRu from "antd/locale/ru_RU";
 import "moment/locale/ru";
 
-import "antd/dist/antd.css";
-
+import Login from "components/login/login";
+import { UserProvider } from "contexts/UserContext";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ConfigProvider locale={ruRu}>
-      <Component {...pageProps} />
+      <UserProvider>
+        <Login />
+        <Component {...pageProps} />
+      </UserProvider>
     </ConfigProvider>
   );
 }

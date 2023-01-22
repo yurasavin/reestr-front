@@ -1,24 +1,32 @@
-import { useRouter } from "next/router";
+import { UserContext } from "contexts/UserContext";
+import { useContext } from "react";
 import useSWRInfinite from "swr/infinite";
 import { fetcher } from "../../services/api";
 
 const PAGE_SIZE = 20;
 
-const useInfiniteResource = (path, queryParams) => {
-  const router = useRouter();
+const useInfiniteResource = (key) => {
+  const { setUser } = useContext(UserContext);
 
   const getKey = (pageIndex, previousPageData) => {
     if (!previousPageData) {
-      return [path, queryParams];
+      return key;
     }
 
     if (!previousPageData.data.next) {
       return null;
     }
 
+    let path = key;
+    let customParams = {};
+    if (Array.isArray(key)) {
+      path = key[0];
+      customParams = key[1];
+    }
+
     const nextUrl = new URL(previousPageData.data.next);
     const offset = parseInt(nextUrl.searchParams.get("offset"));
-    queryParams = { ...queryParams, limit: PAGE_SIZE, offset };
+    const queryParams = { ...customParams, limit: PAGE_SIZE, offset };
 
     return [path, queryParams];
   };
@@ -32,7 +40,7 @@ const useInfiniteResource = (path, queryParams) => {
     (error.status === 401 || error.status === 403)
   ) {
     localStorage.removeItem("token");
-    router.push("/login");
+    setUser(null);
   }
 
   return resource;

@@ -3,13 +3,9 @@ import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
 const Initiators = ({ filters, filterSetters }) => {
-  const { data: response, error } = useResource(
-    "initiators/",
-    {},
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { data: response, error } = useResource("initiators/", {
+    revalidateOnFocus: false,
+  });
   const options = response
     ? response.data.map((user) => ({
         value: user.id,

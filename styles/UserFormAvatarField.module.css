@@ -1,0 +1,13 @@
+.avatarfield {
+  margin-bottom: 0;
+}
+
+.avatarfield > div > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.avatarfield > div > div:first-child {
+  height: 112px;
+}

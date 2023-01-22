@@ -8,27 +8,36 @@ const defaultParams = {
   },
 };
 
-const getParams = (customParams) => {
-  let params = { ...defaultParams, ...customParams };
-  params = addAuthorizationHeader(params);
-  params = addCors(params);
-  return params;
-};
+const getParams = (customParams, skipContentType) => {
+  const authToken = getAuthorizationToken();
+  const params = {
+    ...defaultParams,
+    ...customParams,
+    headers: {
+      Authorization: authToken,
+      ...defaultParams.headers,
+      ...customParams?.headers,
+    },
+  };
 
-const addAuthorizationHeader = (params) => {
-  const token = localStorage.getItem("token");
-  if (token && !params?.headers?.Authorization) {
-    params.headers.Authorization = `Token ${token}`;
+  if (skipContentType) {
+    delete params.headers["Content-Type"];
   }
+
   return params;
 };
 
-const addCors = (params) => {
-  params.mode = "cors";
-  return params;
+const getAuthorizationToken = () => {
+  const token = localStorage.getItem("token");
+  return `Token ${token}`;
 };
 
-export const fetcher = async (path, queryParams, customParams = {}) => {
+export const fetcher = async (
+  path,
+  queryParams,
+  customParams,
+  skipContentType = false
+) => {
   const url = new URL(`${API_ROOT}/${path}`);
 
   if (queryParams) {
@@ -37,7 +46,7 @@ export const fetcher = async (path, queryParams, customParams = {}) => {
     }
   }
 
-  let params = getParams(customParams);
+  let params = getParams(customParams, skipContentType);
 
   const response = await fetch(url, params);
   let data = {};

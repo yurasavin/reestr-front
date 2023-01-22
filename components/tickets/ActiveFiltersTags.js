@@ -9,23 +9,17 @@ const wrapString = (str) => {
 };
 
 const ActiveFiltersTags = ({ filters, filterSetters }) => {
-  const { data: categoriesResponse } = useResource(
-    "categories/",
-    {},
-    { revalidateOnFocus: false }
-  );
+  const { data: categoriesResponse } = useResource("categories/", {
+    revalidateOnFocus: false,
+  });
 
-  const { data: tenderTypesResponse } = useResource(
-    "tender_types/",
-    {},
-    { revalidateOnFocus: false }
-  );
+  const { data: tenderTypesResponse } = useResource("tender_types/", {
+    revalidateOnFocus: false,
+  });
 
-  const { data: branchesResponse } = useResource(
-    "branches/",
-    {},
-    { revalidateOnFocus: false }
-  );
+  const { data: branchesResponse } = useResource("branches/", {
+    revalidateOnFocus: false,
+  });
 
   const okpdsResourceParams = {
     search: filters.debouncedOkpdSearchValueReal,
@@ -37,22 +31,18 @@ const ActiveFiltersTags = ({ filters, filterSetters }) => {
   }
 
   const { data: okpdsResponse, error } = useResource(
-    "okpd2/",
-    okpdsResourceParams,
+    ["okpd2/", okpdsResourceParams],
     { revalidateOnFocus: false }
   );
 
   const { data: usersResponse } = useResource(
-    "users/",
-    { role__gte: ROLE_WRITER },
+    ["users/", { role__gte: ROLE_WRITER }],
     { revalidateOnFocus: false }
   );
 
-  const { data: initiatorsResponse } = useResource(
-    "initiators/",
-    {},
-    { revalidateOnFocus: false }
-  );
+  const { data: initiatorsResponse } = useResource("initiators/", {
+    revalidateOnFocus: false,
+  });
 
   return (
     <Space

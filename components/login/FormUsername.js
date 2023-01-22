@@ -5,6 +5,7 @@ const FormUsername = () => {
   return (
     <Form.Item
       name="username"
+      label="Логин"
       rules={[
         {
           required: true,
@@ -12,7 +13,7 @@ const FormUsername = () => {
         },
       ]}
     >
-      <Input prefix={<UserOutlined />} placeholder="Логин" />
+      <Input prefix={<UserOutlined />} />
     </Form.Item>
   );
 };

@@ -1,5 +1,5 @@
 import { Select } from "antd";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useResource from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 
@@ -17,7 +17,7 @@ const Okpds = ({ filters, filterSetters }) => {
     resourceParams.extra_ids = filters.okpds;
   }
 
-  const { data: response, error } = useResource("okpd2/", resourceParams, {
+  const { data: response, error } = useResource(["okpd2/", resourceParams], {
     revalidateOnFocus: false,
   });
 

@@ -5,8 +5,7 @@ import InputGroup from "./InputGroup";
 
 const Users = ({ filters, filterSetters }) => {
   const { data: response, error } = useResource(
-    "users/",
-    { role__gte: ROLE_WRITER },
+    ["users/options/", { role__gte: ROLE_WRITER }],
     { revalidateOnFocus: false }
   );
   const options = response

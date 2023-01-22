@@ -1,3 +1,4 @@
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { List } from "antd";
 import SiteLayout from "../components/base/SiteLayout";
 import ActiveFiltersTags from "../components/tickets/ActiveFiltersTags";
@@ -79,6 +80,21 @@ const Tickets = ({ siderCollapsed }) => {
               height: "78vh",
             }}
           />
+          <div style={{ position: "relative" }}>
+            <div style={{ position: "absolute", bottom: 50, right: 50 }}>
+              <PlusCircleOutlined
+                className="hover-opacity rotate"
+                style={{
+                  fontSize: 54,
+                  color: "rgb(9, 109, 217)",
+                  background: "rgb(230, 247, 255)",
+                  borderRadius: 25,
+                  cursor: "pointer",
+                }}
+                onClick={() => alert("asdasd")}
+              />
+            </div>
+          </div>
         </div>
 
         <TicketsFilters filters={filters} filterSetters={filterSetters} />

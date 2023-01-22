@@ -1,10 +1,11 @@
-import { useRouter } from "next/router";
+import { UserContext } from "contexts/UserContext";
+import { useContext } from "react";
 import useSWR from "swr";
 import { fetcher } from "../../services/api";
 
-const useResource = (path, queryParams, options) => {
-  const router = useRouter();
-  const resource = useSWR([path, queryParams], fetcher, options);
+const useResource = (key, options) => {
+  const { setUser } = useContext(UserContext);
+  const resource = useSWR(key, fetcher, options);
   const error = resource.error;
 
   if (
@@ -13,7 +14,7 @@ const useResource = (path, queryParams, options) => {
     (error.status === 401 || error.status === 403)
   ) {
     localStorage.removeItem("token");
-    router.push("/login");
+    setUser(null);
   }
 
   return resource;

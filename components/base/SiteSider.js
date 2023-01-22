@@ -3,7 +3,6 @@ import {
   FileOutlined,
   PieChartOutlined,
   TeamOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { useCookieState } from "ahooks";
 import { Layout, Menu } from "antd";
@@ -32,12 +31,12 @@ const items = [
   },
   {
     label: (
-      <Link href="/3">
-        <a>Мои закупки</a>
+      <Link href="/users">
+        <a>Пользователи</a>
       </Link>
     ),
-    key: "/3",
-    icon: <UserOutlined />,
+    key: "/users",
+    icon: <TeamOutlined />,
   },
   {
     label: (

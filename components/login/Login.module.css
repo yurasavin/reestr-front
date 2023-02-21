@@ -28,3 +28,8 @@
 .login-button {
   width: 100%;
 }
+
+.spinner {
+  margin-left: 5px;
+  font-size: 24;
+}

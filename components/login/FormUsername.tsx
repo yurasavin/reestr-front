@@ -13,7 +13,7 @@ const FormUsername = () => {
         },
       ]}
     >
-      <Input prefix={<UserOutlined />} />
+      <Input autoComplete="username" prefix={<UserOutlined />} />
     </Form.Item>
   );
 };

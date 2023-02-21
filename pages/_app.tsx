@@ -1,12 +1,12 @@
 import { ConfigProvider } from "antd";
 import ruRu from "antd/locale/ru_RU";
-import "moment/locale/ru";
 
-import Login from "components/login/Login";
-import { UserProvider } from "contexts/UserContext";
-import "../styles/globals.css";
+import Login from "@components/login/Login";
+import { UserProvider } from "@contexts/UserContext";
+import type { AppProps } from "next/app";
+import "/styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ConfigProvider locale={ruRu}>
       <UserProvider>
@@ -16,5 +16,3 @@ function MyApp({ Component, pageProps }) {
     </ConfigProvider>
   );
 }
-
-export default MyApp;

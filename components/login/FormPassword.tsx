@@ -18,6 +18,7 @@ const FormPassword = () => {
       ]}
     >
       <Input.Password
+        autoComplete="current-password"
         prefix={<LockOutlined />}
         iconRender={(visible) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />

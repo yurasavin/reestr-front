@@ -4,13 +4,16 @@ import {
   PieChartOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
+import { SiderCollapsedContext } from "@contexts/SiderCollapsedContext";
+import { SiderCollapsed } from "@helpers/getSiderCollapsedCookie";
 import { useCookieState } from "ahooks";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, MenuProps } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React, { useContext } from "react";
 import styles from "../../styles/SiteSider.module.css";
 
-const items = [
+const items: MenuProps["items"] = [
   {
     label: (
       <Link href="/">
@@ -121,18 +124,23 @@ const items = [
     ],
   },
 ];
-const parseCollapsed = (collapsed) => JSON.parse(collapsed);
-const stringifyCollapsed = (collapsed) => JSON.stringify(collapsed);
 
-const SiteSider = ({ siderCollapsed }) => {
+const parseCollapsed = (collapsed: string | undefined) =>
+  collapsed === SiderCollapsed.True ? true : false;
+
+const SiteSider: React.FC = () => {
+  const siderCollapsed = useContext(SiderCollapsedContext);
   const [collapsed, setCollapsed] = useCookieState("siderCollapsed", {
     defaultValue: siderCollapsed,
   });
   const router = useRouter();
 
-  const changeCollapsed = (value) => {
-    const strValue = stringifyCollapsed(value);
-    setCollapsed(strValue);
+  const changeCollapsed = (value: boolean): void => {
+    if (value) {
+      setCollapsed(SiderCollapsed.False);
+    } else {
+      setCollapsed(SiderCollapsed.True);
+    }
   };
 
   return (

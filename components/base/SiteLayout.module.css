@@ -1,0 +1,9 @@
+.layout {
+    min-height: 100vh;
+}
+
+.content {
+    overflow: auto;
+    height: 86vh;
+    padding: 15px;
+}

@@ -11,60 +11,36 @@ import { Layout, Menu, MenuProps } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
-import styles from "../../styles/SiteSider.module.css";
+import styles from "./SiteSider.module.css";
 
 const items: MenuProps["items"] = [
   {
-    label: (
-      <Link href="/">
-        <a>Главная</a>
-      </Link>
-    ),
+    label: <Link href="/">Главная</Link>,
     key: "/",
     icon: <PieChartOutlined />,
   },
   {
-    label: (
-      <Link href="/tickets">
-        <a>Реестр</a>
-      </Link>
-    ),
+    label: <Link href="/tickets">Реестр</Link>,
     key: "/tickets",
     icon: <DesktopOutlined />,
   },
   {
-    label: (
-      <Link href="/users">
-        <a>Пользователи</a>
-      </Link>
-    ),
+    label: <Link href="/users">Пользователи</Link>,
     key: "/users",
     icon: <TeamOutlined />,
   },
   {
-    label: (
-      <Link href="/4">
-        <a>Лимиты</a>
-      </Link>
-    ),
+    label: <Link href="/4">Лимиты</Link>,
     key: "/4",
     icon: <FileOutlined />,
   },
   {
-    label: (
-      <Link href="/5">
-        <a>Кредиторская задолженность</a>
-      </Link>
-    ),
+    label: <Link href="/5">Кредиторская задолженность</Link>,
     key: "/5",
     icon: <FileOutlined />,
   },
   {
-    label: (
-      <Link href="/6">
-        <a>Калькулятор НМЦК</a>
-      </Link>
-    ),
+    label: <Link href="/6">Калькулятор НМЦК</Link>,
     key: "/6",
     icon: <FileOutlined />,
   },
@@ -74,51 +50,27 @@ const items: MenuProps["items"] = [
     icon: <TeamOutlined />,
     children: [
       {
-        label: (
-          <Link href="/7-1">
-            <a>Ежемесячный по 223-ФЗ</a>
-          </Link>
-        ),
+        label: <Link href="/7-1">Ежемесячный по 223-ФЗ</Link>,
         key: "/7-1",
       },
       {
-        label: (
-          <Link href="/7-2">
-            <a>Ежемесячный для Беликовой</a>
-          </Link>
-        ),
+        label: <Link href="/7-2">Ежемесячный для Беликовой</Link>,
         key: "/7-2",
       },
       {
-        label: (
-          <Link href="/7-3">
-            <a>Ежеквартальный по 823 ППРО</a>
-          </Link>
-        ),
+        label: <Link href="/7-3">Ежеквартальный по 823 ППРО</Link>,
         key: "/7-3",
       },
       {
-        label: (
-          <Link href="/7-4">
-            <a>Суммы по контрактам до 600 т.р. (44-ФЗ)</a>
-          </Link>
-        ),
+        label: <Link href="/7-4">Суммы по контрактам до 600 т.р. (44-ФЗ)</Link>,
         key: "/7-4",
       },
       {
-        label: (
-          <Link href="/7-5">
-            <a>Ежегодный по СМП</a>
-          </Link>
-        ),
+        label: <Link href="/7-5">Ежегодный по СМП</Link>,
         key: "/7-5",
       },
       {
-        label: (
-          <Link href="/7-6">
-            <a>Сводный отчет по контрактам</a>
-          </Link>
-        ),
+        label: <Link href="/7-6">Сводный отчет по контрактам</Link>,
         key: "/7-6",
       },
     ],

@@ -2,9 +2,11 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useRequest } from "ahooks";
 import { Button, Checkbox, Form, message, Spin } from "antd";
 import { useContext } from "react";
+import { useSWRConfig } from "swr";
 import styles from "./Login.module.css";
 
 import { UserContext } from "@contexts/UserContext";
+import useHeaders from "@hooks/apis/resources/useHeaders";
 import { UserResponse } from "@hooks/apis/useUser";
 import { ErrorResponse, fetcher, Response } from "@services/api";
 import FormPassword from "./FormPassword";
@@ -22,7 +24,9 @@ interface LoginResponse {
 }
 
 const Login: React.FC = () => {
-  const { user, setUser, isMutating } = useContext(UserContext);
+  const { user, setUser, isMutating, setAuthToken } = useContext(UserContext);
+  const { mutate } = useSWRConfig();
+  const headers = useHeaders();
 
   const onFinish = async (formValues: LoginFormData) => {
     const response: Response<LoginResponse> = await fetcher({
@@ -30,18 +34,17 @@ const Login: React.FC = () => {
       fetchParams: {
         method: "POST",
         body: JSON.stringify(formValues),
+        headers,
       },
-      headers: { "Content-Type": "application/json" },
     });
     return response;
   };
 
   const onSuccess = ({ data }: Response<LoginResponse>) => {
     if (data.token) {
-      localStorage.setItem("token", data.token);
-      if (setUser) {
-        setUser(data.user);
-      }
+      setAuthToken(data.token);
+      setUser(data.user);
+      mutate(() => true, undefined, { revalidate: false });
     }
   };
 

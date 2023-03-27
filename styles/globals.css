@@ -4,13 +4,6 @@ body {
   margin: 0;
 }
 
-.rotate {
-  transition: transform .4s ease-in-out;
-}
-.rotate:hover {
-  transform: rotate(90deg);
-}
-
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(169, 170, 171, 0.75) rgba(0, 0, 0, 0.1);
@@ -38,12 +31,4 @@ body {
 .ticketsLoader .ant-spin-dot.ant-spin-dot-spin {
   top: unset !important;
   bottom: 110px !important;
-}
-
-.hover-opacity {
-  opacity: 0.7;
-}
-
-.hover-opacity:hover {
-  opacity: 1;
 }

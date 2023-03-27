@@ -1,0 +1,9 @@
+.button {
+    right: 50px;
+    bottom: 50px;
+    transition: transform .4s ease-in-out;
+}
+
+.button:hover {
+    transform: rotate(90deg);
+}

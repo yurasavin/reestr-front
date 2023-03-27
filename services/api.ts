@@ -12,34 +12,29 @@ export interface ErrorResponse {
   };
 }
 
+const DEFAULT_HEADERS = { "Content-Type": "application/json" };
+
 const DEFAULT_FETCH_PARAMS: RequestInit = {
   method: "GET",
   mode: "cors",
-  headers: {
-    "Content-Type": "application/json",
-  },
 };
 
-interface Fetcher {
+export interface Fetcher {
   path: string;
   queryParams?: { [key: string]: string };
   fetchParams: RequestInit;
-  headers: HeadersInit;
 }
 
 const fetcher = async ({
   path,
   queryParams,
-  fetchParams = DEFAULT_FETCH_PARAMS,
-  headers,
+  fetchParams,
 }: Fetcher): Promise<Response<any>> => {
   const url = buildUrlWithParams(path, queryParams);
-
-  const params = buildFetchParamsWithHeaders(fetchParams, headers);
-  const response = await fetch(url, params);
+  const response = await fetch(url, fetchParams);
 
   let data = {};
-  if (response.status === 400 || response.ok) {
+  if (response.status === 400 || (response.ok && response.status !== 204)) {
     data = await response.json();
   }
 
@@ -68,30 +63,19 @@ const buildUrlWithParams = (
   return url;
 };
 
-const buildFetchParamsWithHeaders = (
-  fetchParams: RequestInit,
-  headers: HeadersInit
-): RequestInit => {
-  if (!headers) {
-    headers = buildDefaultHeaders();
-  }
-  return { ...fetchParams, headers };
-};
-
-const buildDefaultHeaders = (): Headers => {
-  const headers = new Headers({ "Content-Type": "application/json" });
-  const authToken = getAuthorizationToken();
-  if (authToken) {
-    headers.append("Authorization", authToken);
-  }
-  return headers;
-};
-
-const getAuthorizationToken = (): string | undefined => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    return `Token ${token}`;
+const getDefaultFetchParams = (): RequestInit => ({ ...DEFAULT_FETCH_PARAMS });
+const getDefaultHeaders = (): Headers => new Headers(DEFAULT_HEADERS);
+const addAuthTokenToHeaders = (headers: Headers, authToken?: string): void => {
+  if (authToken && !headers.has("Authorization")) {
+    headers.set("Authorization", `Token ${authToken}`);
   }
 };
 
-export { fetcher };
+export {
+  fetcher,
+  DEFAULT_HEADERS,
+  DEFAULT_FETCH_PARAMS,
+  getDefaultFetchParams,
+  getDefaultHeaders,
+  addAuthTokenToHeaders,
+};

@@ -17,9 +17,9 @@ const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
     <List.Item key={user.id}>
       <Row className={styles.listItem}>
         <UserListItemUserAvatar user={user} />
-        <div>
+        <div className={styles.mainFields}>
           <b className={styles.userName}>{user.last_name}</b>
-          <UserListItemUserStatus user={user} />
+          <UserListItemUserStatus is_active={user.is_active} />
           <div>
             <b>Должность: </b>
             {user.first_name}

@@ -5,7 +5,6 @@ const IsActiveField: React.FC = () => {
     <Form.Item
       name="is_active"
       valuePropName="checked"
-      initialValue={true}
       label="Активный пользователь"
     >
       <Switch checkedChildren="Да" unCheckedChildren="Нет" />

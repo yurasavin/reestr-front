@@ -13,8 +13,8 @@ const transformData = (user: UserData): UserFormData => {
     role: user.role,
     email: user.email,
     avatar: user.avatar
-      ? [{ status: "done", url: user.avatar, uid: "", name: "" }]
-      : [],
+      ? [{ status: "done", url: user.avatar, uid: "-1", name: "" }]
+      : undefined,
   };
 };
 

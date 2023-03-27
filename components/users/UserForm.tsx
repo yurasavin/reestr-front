@@ -28,7 +28,7 @@ export interface UserFormData {
   email: string;
   password?: string;
   password_confirm?: string;
-  avatar?: UploadFile[];
+  avatar?: [UploadFile];
 }
 
 interface UserFormProps {
@@ -39,7 +39,7 @@ interface UserFormProps {
 
 const UserForm: React.FC<UserFormProps> = ({
   close,
-  initialValues,
+  initialValues = { is_active: true },
   editUserId,
 }) => {
   const [form] = Form.useForm<UserFormData>();
@@ -58,6 +58,9 @@ const UserForm: React.FC<UserFormProps> = ({
             type: avatarFile.type,
           });
           formData.append("avatar", avatarBlob, avatarFile.name);
+        } else if (formValues.avatar && formValues.avatar[0].url) {
+          // skip adding avatar to the form in this case, because
+          // it's url of the current avatar
         } else {
           formData.append(name, "");
         }

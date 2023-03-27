@@ -77,21 +77,22 @@ const items: MenuProps["items"] = [
   },
 ];
 
-const parseCollapsed = (collapsed: string | undefined) =>
-  collapsed === SiderCollapsed.True ? true : false;
+const parseCollapsed = (collapsed: string | undefined) => {
+  return collapsed === SiderCollapsed.True ? true : false;
+};
 
 const SiteSider: React.FC = () => {
-  const siderCollapsed = useContext(SiderCollapsedContext);
+  const collapsedDefault = useContext(SiderCollapsedContext);
   const [collapsed, setCollapsed] = useCookieState("siderCollapsed", {
-    defaultValue: siderCollapsed,
+    defaultValue: collapsedDefault,
   });
   const router = useRouter();
 
-  const changeCollapsed = (value: boolean): void => {
-    if (value) {
-      setCollapsed(SiderCollapsed.False);
-    } else {
+  const changeCollapsed = (collapsed: boolean): void => {
+    if (collapsed) {
       setCollapsed(SiderCollapsed.True);
+    } else {
+      setCollapsed(SiderCollapsed.False);
     }
   };
 

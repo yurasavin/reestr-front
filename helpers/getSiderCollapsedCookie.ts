@@ -12,10 +12,9 @@ export interface SiderCollapsedPageProps {
 const getSiderCollapsedCookie = (
   context: GetServerSidePropsContext
 ): SiderCollapsed => {
-  if (context.req.cookies.siderCollapsed) {
-    return SiderCollapsed.True;
-  }
-  return SiderCollapsed.False;
+  return context.req.cookies.siderCollapsed === SiderCollapsed.True
+    ? SiderCollapsed.True
+    : SiderCollapsed.False;
 };
 
 const getSiderCollapsedServerSideProps: GetServerSideProps<{

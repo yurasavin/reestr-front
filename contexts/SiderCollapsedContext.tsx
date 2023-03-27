@@ -12,11 +12,10 @@ interface SiderCollapsedProviderProps {
 
 const SiderCollapsedProvider: React.FC<SiderCollapsedProviderProps> = ({
   children,
+  value,
 }) => {
-  const contextValue = SiderCollapsed.False;
-
   return (
-    <SiderCollapsedContext.Provider value={contextValue}>
+    <SiderCollapsedContext.Provider value={value}>
       {children}
     </SiderCollapsedContext.Provider>
   );

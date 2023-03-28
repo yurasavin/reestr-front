@@ -6,35 +6,46 @@ import React, { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import UserListItem from "./UserListItem";
 import styles from "./UsersList.module.css";
+import UsersListSkeleton from "./UsersListSkeleton";
 
 const UsersList: React.FC = () => {
-  const resourse = useContext(UsersResourceContext);
+  const { resource } = useContext(UsersResourceContext);
 
-  if (!resourse) {
+  if (!resource) {
     return <div>Инициализация страницы</div>;
   }
 
-  if (resourse.error) {
+  if (resource.error) {
     return (
       <div>
         Ошибка...
         <br />
-        {resourse.error.toString()}
+        {resource.error.toString()}
       </div>
     );
   }
 
   const loadMoreData = (): void => {
-    if (!resourse.isLoading) {
-      resourse.setSize(resourse.size + 1);
+    if (!resource.isLoading) {
+      resource.setSize(resource.size + 1);
     }
   };
 
   const users: UserData[] = [];
   let dataLength = 0;
-  if (resourse.data) {
-    dataLength = resourse.data[0].data.count;
-    resourse.data.map((response) => users.push(...response.data.results));
+  if (resource.data) {
+    dataLength = resource.data[0].data.count;
+    resource.data.map((response) => users.push(...response.data.results));
+  }
+
+  if (users.length === 0 && resource.isLoading && resource.isValidating) {
+    return (
+      <>
+        <UsersListSkeleton />
+        <UsersListSkeleton />
+        <UsersListSkeleton />
+      </>
+    );
   }
 
   const scrollableID = "scrollableDiv";

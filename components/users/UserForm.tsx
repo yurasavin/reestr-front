@@ -44,7 +44,7 @@ const UserForm: React.FC<UserFormProps> = ({
 }) => {
   const [form] = Form.useForm<UserFormData>();
   const headers = useHeaders({});
-  const usersResource = useContext(UsersResourceContext);
+  const { resource: usersResource } = useContext(UsersResourceContext);
 
   const postForm = async (formValues: UserFormData) => {
     const formData = new FormData();

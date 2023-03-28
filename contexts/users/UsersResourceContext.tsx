@@ -1,9 +1,13 @@
 import useUserInfiniteListResource from "@hooks/apis/resources/useUserListResource";
-import { createContext } from "react";
+import { useDebounce } from "ahooks";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 
-const UsersResourceContext = createContext<ReturnType<
-  typeof useUserInfiniteListResource
-> | null>(null);
+interface UsersResourceContextInterface {
+  resource?: ReturnType<typeof useUserInfiniteListResource>;
+  searchInput?: string;
+  setSearchInput?: Dispatch<SetStateAction<string>>;
+}
+const UsersResourceContext = createContext<UsersResourceContextInterface>({});
 
 interface UsersResourceProviderProps {
   children: React.ReactNode;
@@ -12,7 +16,15 @@ interface UsersResourceProviderProps {
 const UsersResourceProvider: React.FC<UsersResourceProviderProps> = ({
   children,
 }) => {
-  const contextValue = useUserInfiniteListResource();
+  const [searchInput, setSearchInput] = useState("");
+  const debouncedSearch = useDebounce(searchInput, { wait: 500 });
+  const resource = useUserInfiniteListResource(debouncedSearch);
+
+  const contextValue = {
+    resource,
+    searchInput,
+    setSearchInput,
+  };
 
   return (
     <UsersResourceContext.Provider value={contextValue}>

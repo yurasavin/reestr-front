@@ -1,6 +1,7 @@
 import SiteLayout from "@components/base/SiteLayout";
 import AddUserButton from "@components/users/AddUserButton";
 import UsersList from "@components/users/UsersList";
+import UsersSearch from "@components/users/UsersSearch";
 import { SiderCollapsedProvider } from "@contexts/SiderCollapsedContext";
 import { UsersResourceProvider } from "@contexts/users/UsersResourceContext";
 import {
@@ -13,6 +14,7 @@ const Users: React.FC<SiderCollapsedPageProps> = ({ siderCollapsed }) => {
     <SiderCollapsedProvider value={siderCollapsed}>
       <SiteLayout>
         <UsersResourceProvider>
+          <UsersSearch />
           <UsersList />
           <AddUserButton />
         </UsersResourceProvider>

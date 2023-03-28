@@ -14,7 +14,7 @@ const UserListItemUserDeleteButton: React.FC<
   UserListItemUserDeleteButtonProps
 > = ({ user }) => {
   const headers = useHeaders();
-  const usersResource = useContext(UsersResourceContext);
+  const { resource: usersResource } = useContext(UsersResourceContext);
 
   const showConfirm = (user: UserData) => {
     Modal.confirm({

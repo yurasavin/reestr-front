@@ -23,11 +23,11 @@ export interface UserListData {
   results: UserData[];
 }
 
-const useUserInfiniteListResource = (): SWRInfiniteResponse<
-  Response<UserListData>
-> => {
+const useUserInfiniteListResource = (
+  search: string
+): SWRInfiniteResponse<Response<UserListData>> => {
   return useInfiniteResource<UserListData>({
-    swrKey: { path: "users/", queryParams: { limit: "5" } },
+    swrKey: { path: "users/", queryParams: { limit: "5", search } },
   });
 };
 

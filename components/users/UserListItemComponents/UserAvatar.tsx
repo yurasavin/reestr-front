@@ -2,15 +2,13 @@ import Icon from "@ant-design/icons";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import DefaultAvatarSVG from "@public/images/default-avatar.svg";
 import { Image } from "antd";
-import styles from "./UserListItemUserAvatar.module.css";
+import styles from "./UserAvatar.module.css";
 
-interface UserListItemUserAvatarProps {
+interface UserAvatarProps {
   user: UserData;
 }
 
-const UserListItemUserAvatar: React.FC<UserListItemUserAvatarProps> = ({
-  user,
-}) => {
+const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
   if (user.avatar) {
     return (
       <Image
@@ -26,4 +24,4 @@ const UserListItemUserAvatar: React.FC<UserListItemUserAvatarProps> = ({
   return <Icon component={DefaultAvatarSVG} className={styles.defaultAvatar} />;
 };
 
-export default UserListItemUserAvatar;
+export default UserAvatar;

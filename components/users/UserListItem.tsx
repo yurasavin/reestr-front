@@ -3,10 +3,10 @@ import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { List, Row, Space } from "antd";
 import { UserRoleDispalay } from "config/constants";
 import styles from "./UserListItem.module.css";
-import UserListItemUserAvatar from "./UserListItemUserAvatar";
-import UserListItemUserDeleteButton from "./UserListItemUserDeleteButton";
-import UserListItemUserEditButton from "./UserListItemUserEditButton";
-import UserListItemUserStatus from "./UserListItemUserStatus";
+import UserAvatar from "./UserListItemComponents/UserAvatar";
+import UserDeleteButton from "./UserListItemComponents/UserDeleteButton";
+import UserEditButton from "./UserListItemComponents/UserEditButton";
+import UserStatus from "./UserListItemComponents/UserStatus";
 
 interface UserListItemProps {
   user: UserData;
@@ -16,10 +16,10 @@ const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
   return (
     <List.Item key={user.id}>
       <Row className={styles.listItem}>
-        <UserListItemUserAvatar user={user} />
+        <UserAvatar user={user} />
         <div className={styles.mainFields}>
           <b className={styles.userName}>{user.last_name}</b>
-          <UserListItemUserStatus is_active={user.is_active} />
+          <UserStatus is_active={user.is_active} />
           <div>
             <b>Должность: </b>
             {user.first_name}
@@ -37,8 +37,8 @@ const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
             {formatDateString(user.last_login)}
           </div>
           <Space>
-            <UserListItemUserEditButton user={user} />
-            <UserListItemUserDeleteButton user={user} />
+            <UserEditButton user={user} />
+            <UserDeleteButton user={user} />
           </Space>
         </div>
       </Row>

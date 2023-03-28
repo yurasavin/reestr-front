@@ -6,13 +6,11 @@ import { Button, message, Modal } from "antd";
 import { useContext } from "react";
 import { fetcher } from "services/api";
 
-interface UserListItemUserDeleteButtonProps {
+interface UserDeleteButtonProps {
   user: UserData;
 }
 
-const UserListItemUserDeleteButton: React.FC<
-  UserListItemUserDeleteButtonProps
-> = ({ user }) => {
+const UserDeleteButton: React.FC<UserDeleteButtonProps> = ({ user }) => {
   const headers = useHeaders();
   const { resource: usersResource } = useContext(UsersResourceContext);
 
@@ -50,4 +48,4 @@ const UserListItemUserDeleteButton: React.FC<
     </Button>
   );
 };
-export default UserListItemUserDeleteButton;
+export default UserDeleteButton;

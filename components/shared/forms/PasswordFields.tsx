@@ -5,6 +5,31 @@ import {
 } from "@ant-design/icons";
 import { Form, Input } from "antd";
 
+const CurrentPasswordField: React.FC = () => {
+  return (
+    <Form.Item
+      name="current_password"
+      label="Текущий пароль"
+      hasFeedback
+      rules={[
+        {
+          required: true,
+          message: "Введите текущий пароль",
+        },
+      ]}
+    >
+      <Input.Password
+        prefix={<LockOutlined />}
+        placeholder="Текущий пароль"
+        autoComplete="on"
+        iconRender={(visible) =>
+          visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+        }
+      />
+    </Form.Item>
+  );
+};
+
 const PasswordField: React.FC = () => {
   return (
     <Form.Item
@@ -64,4 +89,4 @@ const PasswordConfirmField: React.FC = () => {
   );
 };
 
-export { PasswordConfirmField, PasswordField };
+export { CurrentPasswordField, PasswordConfirmField, PasswordField };

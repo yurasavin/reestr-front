@@ -1,13 +1,11 @@
 import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
-import styles from "./UserListItemUserStatus.module.css";
+import styles from "./UserStatus.module.css";
 
-interface UserListItemUserStatusProps {
+interface UserStatusProps {
   is_active: Boolean;
 }
 
-const UserListItemUserStatus: React.FC<UserListItemUserStatusProps> = ({
-  is_active,
-}) => {
+const UserStatus: React.FC<UserStatusProps> = ({ is_active }) => {
   const title = is_active ? "Активный" : "Заблокирован";
   return (
     <div className={styles.statusContainer}>
@@ -21,4 +19,4 @@ const UserListItemUserStatus: React.FC<UserListItemUserStatusProps> = ({
   );
 };
 
-export default UserListItemUserStatus;
+export default UserStatus;

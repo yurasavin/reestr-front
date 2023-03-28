@@ -7,15 +7,15 @@ import { Form, message, Modal, UploadFile } from "antd";
 import { ValidateErrorEntity } from "rc-field-form/es/interface";
 import { useContext } from "react";
 import { fetcher } from "services/api";
+import {
+  PasswordConfirmField,
+  PasswordField,
+} from "../shared/forms/PasswordFields";
 import AvatarField from "./userFormFields/AvatarField";
 import EmailField from "./userFormFields/EmailField";
 import FirstNameField from "./userFormFields/FirstNameField";
 import IsActiveField from "./userFormFields/IsActiveField";
 import LastNameField from "./userFormFields/LastNameField";
-import {
-  PasswordConfirmField,
-  PasswordField,
-} from "./userFormFields/PasswordFields";
 import RoleField from "./userFormFields/RoleField";
 import UsernameField from "./userFormFields/UsernameField";
 

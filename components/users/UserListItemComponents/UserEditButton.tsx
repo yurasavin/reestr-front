@@ -2,7 +2,7 @@ import { EditTwoTone } from "@ant-design/icons";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { Button } from "antd";
 import { useState } from "react";
-import UserForm, { UserFormData } from "./UserForm";
+import UserForm, { UserFormData } from "../UserForm";
 
 const transformData = (user: UserData): UserFormData => {
   return {
@@ -18,13 +18,11 @@ const transformData = (user: UserData): UserFormData => {
   };
 };
 
-interface UserListItemUserEditButtonProps {
+interface UserEditButtonProps {
   user: UserData;
 }
 
-const UserListItemUserEditButton: React.FC<UserListItemUserEditButtonProps> = ({
-  user,
-}) => {
+const UserEditButton: React.FC<UserEditButtonProps> = ({ user }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -48,4 +46,4 @@ const UserListItemUserEditButton: React.FC<UserListItemUserEditButtonProps> = ({
     </>
   );
 };
-export default UserListItemUserEditButton;
+export default UserEditButton;

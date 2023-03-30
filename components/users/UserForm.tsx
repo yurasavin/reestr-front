@@ -66,7 +66,7 @@ const UserForm: React.FC<UserFormProps> = ({
         }
       } else {
         const value = formValues[name as keyof UserFormData];
-        if (value) {
+        if (value !== undefined) {
           formData.append(name, value.toString());
         }
       }

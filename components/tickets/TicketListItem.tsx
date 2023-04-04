@@ -8,20 +8,29 @@ const TicketListItem = ({ ticket, filterSetters }) => {
     <List.Item
       key={ticket.id}
       style={{
-        border: "1px solid black",
-        borderRadius: 15,
-        margin: "5px 0",
+        border: "1px solid #00000078",
+        borderRadius: 5,
+        margin: "5px 5px 5px 0",
         padding: "5px 5px 5px 10px",
       }}
     >
-      <Space direction="vertical" size={4}>
+      <div>
+        <Space>
+          <span
+            style={{
+              fontWeight: 450,
+              // color: "rgb(4 84 231)",
+              fontSize: 20,
+            }}
+          >
+            {ticket.name.charAt(0).toUpperCase() + ticket.name.slice(1)}
+          </span>
+        </Space>
+      </div>
+      <Space direction="horizontal" align="start" size={50}>
         <Ticket ticket={ticket} filterSetters={filterSetters} />
-        <div style={{ paddingLeft: 50 }}>
-          <Tender tender={ticket.tender} filterSetters={filterSetters} />
-        </div>
-        <div style={{ paddingLeft: 50 }}>
-          <Contract contract={ticket.contract} filterSetters={filterSetters} />
-        </div>
+        <Tender tender={ticket.tender} filterSetters={filterSetters} />
+        <Contract contract={ticket.contract} filterSetters={filterSetters} />
       </Space>
     </List.Item>
   );

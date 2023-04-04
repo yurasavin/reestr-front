@@ -8,7 +8,22 @@ import "/styles/globals.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ConfigProvider locale={ruRu}>
+    <ConfigProvider
+      locale={ruRu}
+      theme={{
+        token: {
+          fontFamily: "'Fira Sans', sans-serif",
+        },
+        components: {
+          Menu: {
+            colorItemBgSelected: "rgb(4 84 231)",
+          },
+          FloatButton: {
+            colorPrimary: "rgb(4 84 231)",
+          },
+        },
+      }}
+    >
       <UserProvider>
         <Login />
         <Component {...pageProps} />

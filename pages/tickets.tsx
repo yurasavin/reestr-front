@@ -1,110 +1,23 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
-import { List } from "antd";
+import TicketAddButton from "@components/tickets/TicketAddButton";
+import TicketsList from "@components/tickets/TicketsList";
+import { SiderCollapsedProvider } from "@contexts/SiderCollapsedContext";
+import {
+  getSiderCollapsedServerSideProps,
+  SiderCollapsedPageProps,
+} from "@helpers/getSiderCollapsedCookie";
+
 import SiteLayout from "../components/base/SiteLayout";
-import ActiveFiltersTags from "../components/tickets/ActiveFiltersTags";
-import TicketListItem from "../components/tickets/TicketListItem";
-import TicketsFilters from "../components/tickets/TicketsFilters";
-import getSiderCollapsedCookie from "../helpers/getSiderCollapsedCookie";
-import useFilters from "../hooks/apis/useFilters";
-import useInfiniteResource from "../hooks/apis/useInfiniteResource";
 
-const Tickets = ({ siderCollapsed }) => {
-  const [filters, filterSetters] = useFilters();
-  const activeFilters = {};
-  for (const key in filters) {
-    if (key.endsWith("Real")) {
-      continue;
-    }
-
-    const filterValue = filters[key];
-    if (
-      filterValue !== null &&
-      filterValue !== undefined &&
-      filterValue !== "" &&
-      !(typeof filterValue === "object" && filterValue.length === 0)
-    ) {
-      activeFilters[key] = filterValue;
-    }
-  }
-
-  const {
-    data: responses,
-    error,
-    isValidating,
-    size,
-    setSize,
-  } = useInfiniteResource("tickets/", activeFilters);
-
-  const onScroll = (e) => {
-    if (isValidating) return;
-    if (responses.at(-1)?.data?.next === null) return;
-    const el = e.currentTarget;
-    if (el.scrollHeight - el.scrollTop - 1 <= el.clientHeight) {
-      setSize(size + 1);
-    }
-  };
-
-  const tickets = [];
-  if (responses) {
-    responses.map((response) => tickets.push(...response.data.results));
-  }
-
-  if (error)
-    return (
-      <div>
-        Ошибка...
-        <br />
-        {error.toString()}
-      </div>
-    );
-
-  const isLoading =
-    !responses || isValidating ? { wrapperClassName: "ticketsLoader" } : false;
-
+const Tickets: React.FC<SiderCollapsedPageProps> = ({ siderCollapsed }) => {
   return (
-    <SiteLayout siderCollapsed={siderCollapsed}>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ paddingRight: 5, width: "100%" }}>
-          <ActiveFiltersTags filters={filters} filterSetters={filterSetters} />
-          <List
-            itemLayout="vertical"
-            dataSource={tickets}
-            loading={isLoading}
-            renderItem={(ticket) => (
-              <TicketListItem ticket={ticket} filterSetters={filterSetters} />
-            )}
-            onScroll={onScroll}
-            style={{
-              width: "100%",
-              overflow: "auto",
-              height: "78vh",
-            }}
-          />
-          <div style={{ position: "relative" }}>
-            <div style={{ position: "absolute", bottom: 50, right: 50 }}>
-              <PlusCircleOutlined
-                className="hover-opacity rotate"
-                style={{
-                  fontSize: 54,
-                  color: "rgb(9, 109, 217)",
-                  background: "rgb(230, 247, 255)",
-                  borderRadius: 25,
-                  cursor: "pointer",
-                }}
-                onClick={() => alert("asdasd")}
-              />
-            </div>
-          </div>
-        </div>
-
-        <TicketsFilters filters={filters} filterSetters={filterSetters} />
-      </div>
-    </SiteLayout>
+    <SiderCollapsedProvider value={siderCollapsed}>
+      <SiteLayout>
+        <TicketsList />
+        <TicketAddButton />
+      </SiteLayout>
+    </SiderCollapsedProvider>
   );
 };
 
-export async function getServerSideProps(context) {
-  return { props: { siderCollapsed: getSiderCollapsedCookie(context) } };
-}
-
+export { getSiderCollapsedServerSideProps as getServerSideProps };
 export default Tickets;

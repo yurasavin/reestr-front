@@ -1,0 +1,13 @@
+.container {
+    min-width: 200px;
+}
+
+.addButton {
+    display: flex;
+    justify-content: center;
+}
+
+.hover:hover {
+    color: rgb(4 84 231) !important;
+    background: white !important;
+}

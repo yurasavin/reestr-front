@@ -1,7 +1,5 @@
 import { UserRole } from "@config/constants";
 import { useInfiniteResource } from "@hooks/apis/resources/useResource";
-import { Response } from "@services/api";
-import { SWRInfiniteResponse } from "swr/infinite/dist/infinite";
 
 export interface UserData {
   id: number;
@@ -16,7 +14,7 @@ export interface UserData {
   avatar: string | null;
 }
 
-export interface UserListData {
+interface UserListData {
   count: number;
   next: string | null;
   previous: string | null;
@@ -25,7 +23,7 @@ export interface UserListData {
 
 const useUserInfiniteListResource = (
   search: string
-): SWRInfiniteResponse<Response<UserListData>> => {
+): ReturnType<typeof useInfiniteResource<UserListData>> => {
   return useInfiniteResource<UserListData>({
     swrKey: { path: "users/", queryParams: { limit: "5", search } },
   });

@@ -1,7 +1,7 @@
+import { UserRoleDispalay } from "@config/constants/userRoles";
 import { formatDateString } from "@helpers/formatDateString";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { List, Row, Space } from "antd";
-import { UserRoleDispalay } from "config/constants";
 import styles from "./UserListItem.module.css";
 import UserAvatar from "./UserListItemComponents/UserAvatar";
 import UserDeleteButton from "./UserListItemComponents/UserDeleteButton";

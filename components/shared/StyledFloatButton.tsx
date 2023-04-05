@@ -9,7 +9,7 @@ const StyledFloatButton: React.FC<StyledFloatButtonProps> = (props) => {
   return (
     <FloatButton
       className={styles.button}
-      icon={<PlusOutlined />}
+      icon={<PlusOutlined className={styles.icon} />}
       type="primary"
       {...props}
     />

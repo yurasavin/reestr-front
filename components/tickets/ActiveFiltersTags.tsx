@@ -1,5 +1,5 @@
+import { ROLE_WRITER } from "@config/constants/userRoles";
 import { Space, Tag } from "antd";
-import { ROLE_WRITER } from "config/constants";
 import { formatDateString } from "../../helpers/formatDateString";
 import { useResource } from "../../hooks/apis/useResource";
 import Price from "../shared/Price";

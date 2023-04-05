@@ -2,8 +2,17 @@
     right: 50px;
     bottom: 50px;
     transition: transform .4s ease-in-out;
+    border: 1px solid var(--primary);
 }
 
 .button:hover {
     transform: rotate(90deg);
+}
+
+.icon {
+    color: var(--primary-hover)
+}
+
+.button:hover .icon {
+    color: var(--primary)
 }

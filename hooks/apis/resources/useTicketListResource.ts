@@ -2,6 +2,48 @@ import { useInfiniteResource } from "@hooks/apis/resources/useResource";
 
 export interface TicketData {
   id: number;
+  name: string;
+  tag: {
+    id: number;
+    name: string;
+  } | null;
+  status: boolean;
+  okpd2: {
+    id: number;
+    code: string;
+    name: string;
+  } | null;
+  tender_type: {
+    value: number;
+    label: string;
+  };
+  initiator: {
+    id: number;
+    name: string;
+  };
+  filial: {
+    id: number;
+    name: string;
+  };
+  user: {
+    id: number;
+    last_name: string;
+  } | null;
+  date: string;
+  tender: {
+    id: number;
+    num: string;
+    status: number;
+    smp: boolean;
+    price: string;
+  } | null;
+  contract: {
+    id: number;
+    num: string;
+    date: string;
+    price: string | null;
+    kontragent: string;
+  } | null;
 }
 
 interface TicketListData {

@@ -1,4 +1,4 @@
-import { UserRole } from "@config/constants";
+import { UserRole } from "@config/constants/userRoles";
 import { useInfiniteResource } from "@hooks/apis/resources/useResource";
 
 export interface UserData {

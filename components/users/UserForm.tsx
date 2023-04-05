@@ -1,4 +1,4 @@
-import { UserRole } from "@config/constants";
+import { UserRole } from "@config/constants/userRoles";
 import { UsersResourceContext } from "@contexts/users/UsersResourceContext";
 import useHeaders from "@hooks/apis/resources/useHeaders";
 import { ErrorResponse } from "@services/api";

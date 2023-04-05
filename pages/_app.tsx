@@ -12,14 +12,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       locale={ruRu}
       theme={{
         token: {
-          fontFamily: "'Fira Sans', sans-serif",
+          fontFamily: "var(--font-family)",
         },
         components: {
           Menu: {
-            colorItemBgSelected: "rgb(4 84 231)",
+            colorItemBgSelected: "var(--primary)",
           },
           FloatButton: {
-            colorPrimary: "rgb(4 84 231)",
+            colorPrimary: "var(--primary)",
+            colorPrimaryHover: "var(--primary-hover)",
           },
         },
       }}

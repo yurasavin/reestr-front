@@ -1,3 +1,13 @@
+:root {
+  --font-family: 'Fira Sans', sans-serif;
+  --primary: rgb(4 84 231);
+  --primary-hover: white;
+  --process-color: rgb(141 55 228);
+  --process-background: rgb(240 236 245);
+  --finished-color:#389e0d;
+  --finished-background: rgb(232 245 219);
+}
+
 html,
 body {
   margin: 0;
@@ -21,13 +31,4 @@ body {
   background-color: rgba(169, 170, 171, 0.75);
   border-radius: 20px;
   border: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-.ticketsLoader .ant-spin.ant-spin-spinning{
-  min-height: 100%;
-}
-
-.ticketsLoader .ant-spin-dot.ant-spin-dot-spin {
-  top: unset !important;
-  bottom: 110px !important;
 }

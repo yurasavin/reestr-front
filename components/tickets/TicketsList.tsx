@@ -5,6 +5,7 @@ import useTicketInfiniteListResource, {
 } from "@hooks/apis/resources/useTicketListResource";
 import { List, Spin } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import TicketListItemSkeleton from "./TicketListItemSkeleton";
 import styles from "./TicketsList.module.css";
 
 const TicketsList: React.FC = () => {
@@ -58,7 +59,10 @@ const TicketsList: React.FC = () => {
   if (tickets.length === 0 && resource.isLoading && resource.isValidating) {
     return (
       <>
-        <div>skeleton</div>
+        <TicketListItemSkeleton />
+        <TicketListItemSkeleton />
+        <TicketListItemSkeleton />
+        <TicketListItemSkeleton />
       </>
     );
   }

@@ -1,5 +1,5 @@
+import { ROLE_WRITER } from "@config/constants/userRoles";
 import { Select } from "antd";
-import { ROLE_WRITER } from "config/constants";
 import { useResource } from "../../../hooks/apis/useResource";
 import InputGroup from "./InputGroup";
 

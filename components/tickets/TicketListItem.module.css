@@ -1,0 +1,15 @@
+.listItem {
+    border: 1px solid #00000078 !important;
+    border-radius: 5px !important;
+    margin: 5px 5px 5px 0 !important;
+    padding: 5px 5px 5px 10px !important;
+}
+
+.listItemTitle {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.listItemTitle:first-letter {
+    text-transform: uppercase;
+}

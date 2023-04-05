@@ -1,5 +1,5 @@
+import { UserRole, UserRoleDispalay } from "@config/constants/userRoles";
 import { Form, Select, Tooltip } from "antd";
-import { UserRole, UserRoleDispalay } from "config/constants";
 
 const RoleField: React.FC = () => {
   return (

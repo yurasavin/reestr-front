@@ -47,17 +47,10 @@ export interface TicketData {
   } | null;
 }
 
-interface TicketListData {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: TicketData[];
-}
-
 const useTicketInfiniteListResource = (): ReturnType<
-  typeof useInfiniteResource<TicketListData>
+  typeof useInfiniteResource<TicketData>
 > => {
-  return useInfiniteResource<TicketListData>({
+  return useInfiniteResource<TicketData>({
     swrKey: { path: "tickets/", queryParams: { limit: "10" } },
   });
 };

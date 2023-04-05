@@ -14,17 +14,10 @@ export interface UserData {
   avatar: string | null;
 }
 
-interface UserListData {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: UserData[];
-}
-
 const useUserInfiniteListResource = (
   search: string
-): ReturnType<typeof useInfiniteResource<UserListData>> => {
-  return useInfiniteResource<UserListData>({
+): ReturnType<typeof useInfiniteResource<UserData>> => {
+  return useInfiniteResource<UserData>({
     swrKey: { path: "users/", queryParams: { limit: "5", search } },
   });
 };

@@ -5,6 +5,16 @@ export interface Response<T> {
   data: T;
 }
 
+export interface PaginatedResponse<T> {
+  status: number;
+  data: {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: T[];
+  };
+}
+
 export interface ErrorResponse {
   status: number;
   data: {

@@ -3,6 +3,7 @@ import {
   fetcher,
   getDefaultFetchParams,
   getDefaultHeaders,
+  PaginatedResponse,
   Response,
 } from "@services/api";
 import { UserContext } from "contexts/UserContext";
@@ -80,14 +81,14 @@ function useInfiniteResource<T>({
   otherFetcherOptions = {},
   headers,
   SWROptions,
-}: UseResource): SWRInfiniteResponse<Response<T>> {
+}: UseResource): SWRInfiniteResponse<PaginatedResponse<T>> {
   const { authToken, onAuthError } = useContext(UserContext);
 
   const fetchParams = getFetchParams(otherFetcherOptions, headers, authToken);
 
   const getKey = (
     pageIndex: number,
-    previousPageData: Response<T>
+    previousPageData: PaginatedResponse<T>
   ): ResourceSwrKey | null => {
     if (!previousPageData) {
       return swrKey;
@@ -105,7 +106,7 @@ function useInfiniteResource<T>({
     };
   };
 
-  const resource = useSWRInfinite<Response<T>>(
+  const resource = useSWRInfinite<PaginatedResponse<T>>(
     getKey,
     (key: ResourceSwrKey) =>
       fetcher({ ...key, ...otherFetcherOptions, fetchParams }),

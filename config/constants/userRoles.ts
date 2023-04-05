@@ -1,4 +1,3 @@
-// User roles
 enum UserRole {
   Planning = 100,
   TenderSpecialist = 200,

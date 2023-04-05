@@ -1,13 +1,17 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Space } from "antd";
-import Link from "next/link";
+import { TicketData } from "@hooks/apis/resources/useTicketListResource";
+import { Space } from "antd";
 import { formatDateString } from "../../helpers/formatDateString";
 import Price from "../shared/Price";
+import AddButton from "./AddButton";
 import styles from "./Contract.module.css";
 import SectionHeader from "./TicketListItemComponents/SectionHeader";
 import SectionItem from "./TicketListItemComponents/SectionItem";
 
-const Contract = ({ contract, filterSetters }) => {
+interface ContractProps {
+  contract: TicketData["contract"];
+}
+
+const Contract: React.FC<ContractProps> = ({ contract }) => {
   return (
     <Space direction="vertical" wrap className={styles.container} size={0}>
       <SectionHeader text="Контракт" />
@@ -23,23 +27,7 @@ const Contract = ({ contract, filterSetters }) => {
           <SectionItem title="Контрагент">{contract.kontragent}</SectionItem>
         </>
       ) : (
-        <Link href="/" className={styles.addButton}>
-          <Button
-            shape="round"
-            icon={<PlusCircleOutlined style={{ height: 14 }} />}
-            size="small"
-            className={styles.hover}
-            style={{
-              color: "white",
-              background: "rgb(4 84 231)",
-              height: 20,
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            Добавить
-          </Button>
-        </Link>
+        <AddButton onClick={() => alert("under construction")} />
       )}
     </Space>
   );

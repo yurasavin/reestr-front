@@ -1,3 +1,4 @@
+import { TenderStatus } from "@config/constants/tender";
 import { useInfiniteResource } from "@hooks/apis/resources/useResource";
 
 export interface TicketData {
@@ -33,7 +34,7 @@ export interface TicketData {
   tender: {
     id: number;
     num: string;
-    status: number;
+    status: TenderStatus;
     smp: boolean;
     price: string;
   } | null;

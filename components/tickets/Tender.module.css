@@ -2,12 +2,30 @@
     min-width: 200px;
 }
 
-.addButton {
-    display: flex;
-    justify-content: center;
+.iconProcess {
+    color: var(--process-color);
+    background: var(--process-background);
 }
 
-.hover:hover {
-    color: rgb(4 84 231) !important;
-    background: white !important;
+.iconFinished {
+    color: var(--finished-color);
+    background: var(--finished-background);
+}
+
+.iconNotHappen {
+    color: var(--not-happen-color);
+    background: var(--not-happen-background);
+}
+
+.iconCancelled {
+    color: var(--cancelled-color);
+    background: var(--cancelled-background);
+}
+
+.iconProcess,
+.iconFinished,
+.iconNotHappen,
+.iconCancelled {
+    border-radius: 10px;
+    font-size: 16px;
 }

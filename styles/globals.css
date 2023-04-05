@@ -6,6 +6,10 @@
   --process-background: rgb(240 236 245);
   --finished-color:#389e0d;
   --finished-background: rgb(232 245 219);
+  --not-happen-color: rgb(244 105 14);
+  --not-happen-background: rgb(255 226 207);
+  --cancelled-color: rgb(245 10 10);
+  --cancelled-background: rgb(255 226 226);
 }
 
 html,

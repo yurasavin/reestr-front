@@ -40,7 +40,7 @@ const Tender: React.FC<TenderProps> = ({ tender }) => {
           <SectionItem title="Номер">{tender.num}</SectionItem>
           <SectionItem title="СМП">{tender.smp ? "Да" : "Нет"}</SectionItem>
           <SectionItem title="НМЦК">
-            <Price price={tender.price} />
+            <Price priceStr={tender.price} />
           </SectionItem>
         </>
       ) : (

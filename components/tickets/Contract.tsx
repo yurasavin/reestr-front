@@ -22,7 +22,7 @@ const Contract: React.FC<ContractProps> = ({ contract }) => {
             {formatDateString(contract.date)}
           </SectionItem>
           <SectionItem title="Сумма">
-            <Price price={contract.price} />
+            <Price priceStr={contract.price} />
           </SectionItem>
           <SectionItem title="Контрагент">{contract.kontragent}</SectionItem>
         </>

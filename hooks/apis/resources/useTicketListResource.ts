@@ -42,7 +42,7 @@ export interface TicketData {
     id: number;
     num: string;
     date: string;
-    price: string | null;
+    price: string;
     kontragent: string;
   } | null;
 }

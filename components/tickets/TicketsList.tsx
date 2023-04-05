@@ -9,24 +9,6 @@ import TicketListItemSkeleton from "./TicketListItemSkeleton";
 import styles from "./TicketsList.module.css";
 
 const TicketsList: React.FC = () => {
-  // const [filters, filterSetters] = useFilters();
-  // const activeFilters = {};
-  // for (const key in filters) {
-  //   if (key.endsWith("Real")) {
-  //     continue;
-  //   }
-
-  //   const filterValue = filters[key];
-  //   if (
-  //     filterValue !== null &&
-  //     filterValue !== undefined &&
-  //     filterValue !== "" &&
-  //     !(typeof filterValue === "object" && filterValue.length === 0)
-  //   ) {
-  //     activeFilters[key] = filterValue;
-  //   }
-  // }
-
   const resource = useTicketInfiniteListResource();
 
   if (!resource) {
@@ -71,7 +53,6 @@ const TicketsList: React.FC = () => {
 
   return (
     <div id={scrollableID} className={styles.ticketslist}>
-      {/* <ActiveFiltersTags filters={filters} filterSetters={filterSetters} /> */}
       <InfiniteScroll
         dataLength={tickets.length}
         next={loadMoreData}
@@ -92,8 +73,6 @@ const TicketsList: React.FC = () => {
           renderItem={(ticket) => <TicketListItem ticket={ticket} />}
         />
       </InfiniteScroll>
-
-      {/* <TicketsFilters filters={filters} filterSetters={filterSetters} /> */}
     </div>
   );
 };

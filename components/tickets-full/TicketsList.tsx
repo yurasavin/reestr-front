@@ -1,5 +1,5 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import TicketListItem from "@components/tickets/TicketListItem";
+import TicketListItem from "@components/tickets-full/TicketListItem";
 import useTicketInfiniteListResource, {
   TicketData,
 } from "@hooks/apis/resources/useTicketListResource";

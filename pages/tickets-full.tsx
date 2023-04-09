@@ -1,5 +1,5 @@
-import TicketAddButton from "@components/tickets/TicketAddButton";
-import TicketsList from "@components/tickets/TicketsList";
+import TicketAddButton from "@components/tickets-full/TicketAddButton";
+import TicketsList from "@components/tickets-full/TicketsList";
 import { SiderCollapsedProvider } from "@contexts/SiderCollapsedContext";
 import {
   getSiderCollapsedServerSideProps,

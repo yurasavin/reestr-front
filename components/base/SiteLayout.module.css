@@ -3,7 +3,8 @@
 }
 
 .content {
-    overflow: auto;
-    height: 86vh;
+    overflow: hidden;
+    height: 90vh;
     padding: 15px;
+    background-color: var(--primary-hover);
 }

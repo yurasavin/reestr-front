@@ -20,7 +20,7 @@ const items: MenuProps["items"] = [
     icon: <PieChartOutlined />,
   },
   {
-    label: <Link href="/tickets">Реестр</Link>,
+    label: <Link href="/tickets">Заявки</Link>,
     key: "/tickets",
     icon: <DesktopOutlined />,
   },

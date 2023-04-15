@@ -16,8 +16,8 @@ const Users: React.FC<SiderCollapsedPageProps> = ({ siderCollapsed }) => {
         <UsersResourceProvider>
           <UsersSearch />
           <UsersList />
-          <AddUserButton />
         </UsersResourceProvider>
+        <AddUserButton />
       </SiteLayout>
     </SiderCollapsedProvider>
   );

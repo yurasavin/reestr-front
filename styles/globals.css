@@ -10,6 +10,9 @@
   --not-happen-background: rgb(255 226 207);
   --cancelled-color: rgb(245 10 10);
   --cancelled-background: rgb(255 226 226);
+  --border-color: #87878796;
+  --border-color-light: #87878754;
+  --item-hover: #3c8ae114
 }
 
 html,
@@ -19,20 +22,22 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(169, 170, 171, 0.75) rgba(0, 0, 0, 0.1);
+  scrollbar-color: var(--border-color) var(--border-color-light);
 }
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 8px;
+  border-radius: 20px;
 }
 
 *::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--border-color-light);
+  border-radius: 20px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(169, 170, 171, 0.75);
+  background-color: var(--border-color);
   border-radius: 20px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--border-color);
 }

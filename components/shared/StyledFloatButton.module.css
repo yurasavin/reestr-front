@@ -1,6 +1,6 @@
 .button {
     right: 50px;
-    bottom: 50px;
+    bottom: 25px;
     transition: transform .4s ease-in-out;
     border: 1px solid var(--primary);
 }

@@ -1,0 +1,11 @@
+.container {
+    min-width: 100%;
+}
+
+.firstCol {
+    min-width: 35%;
+}
+
+.secondCol {
+    min-width: 35%;
+}

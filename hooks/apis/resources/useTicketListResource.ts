@@ -1,10 +1,9 @@
-import { TenderStatus } from "@config/constants/tender";
 import { useInfiniteResource } from "@hooks/apis/resources/useResource";
 
 export interface TicketData {
   id: number;
   name: string;
-  tag: {
+  category: {
     id: number;
     name: string;
   } | null;
@@ -31,27 +30,28 @@ export interface TicketData {
     last_name: string;
   } | null;
   date: string;
-  tender: {
+  limits: {
     id: number;
-    num: string;
-    status: TenderStatus;
-    smp: boolean;
-    price: string;
-  } | null;
-  contract: {
-    id: number;
-    num: string;
-    date: string;
-    price: string;
-    kontragent: string;
-  } | null;
+    year: number;
+  }[];
 }
 
-const useTicketInfiniteListResource = (): ReturnType<
+interface useTicketInfiniteListResourceProps {
+  search: string;
+  year: number;
+}
+
+const useTicketInfiniteListResource = ({
+  search,
+  year,
+}: useTicketInfiniteListResourceProps): ReturnType<
   typeof useInfiniteResource<TicketData>
 > => {
   return useInfiniteResource<TicketData>({
-    swrKey: { path: "tickets/", queryParams: { limit: "10" } },
+    swrKey: {
+      path: "tickets/",
+      queryParams: { limit: "10", search, year: year.toString() },
+    },
   });
 };
 

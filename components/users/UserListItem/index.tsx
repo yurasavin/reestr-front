@@ -2,11 +2,11 @@ import { UserRoleDispalay } from "@config/constants/userRoles";
 import { formatDateString } from "@helpers/formatDateString";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { List, Row, Space } from "antd";
+import UserAvatar from "../UserListItemComponents/UserAvatar";
+import UserDeleteButton from "../UserListItemComponents/UserDeleteButton";
+import UserEditButton from "../UserListItemComponents/UserEditButton";
+import UserStatus from "../UserListItemComponents/UserStatus";
 import styles from "./UserListItem.module.css";
-import UserAvatar from "./UserListItemComponents/UserAvatar";
-import UserDeleteButton from "./UserListItemComponents/UserDeleteButton";
-import UserEditButton from "./UserListItemComponents/UserEditButton";
-import UserStatus from "./UserListItemComponents/UserStatus";
 
 interface UserListItemProps {
   user: UserData;

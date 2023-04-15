@@ -1,8 +1,8 @@
 import { Layout } from "antd";
 
-import SiteHeader from "./SiteHeader";
+import SiteHeader from "../SiteHeader";
+import SiteSider from "../SiteSider";
 import styles from "./SiteLayout.module.css";
-import SiteSider from "./SiteSider";
 
 interface SiteLayoutProps {
   children: React.ReactNode;

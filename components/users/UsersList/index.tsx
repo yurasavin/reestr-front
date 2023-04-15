@@ -4,9 +4,9 @@ import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { List, Spin } from "antd";
 import React, { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import UserListItem from "./UserListItem";
+import UserListItem from "../UserListItem";
+import UsersListSkeleton from "../UsersListSkeleton";
 import styles from "./UsersList.module.css";
-import UsersListSkeleton from "./UsersListSkeleton";
 
 const UsersList: React.FC = () => {
   const { resource } = useContext(UsersResourceContext);

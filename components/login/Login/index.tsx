@@ -9,8 +9,8 @@ import { UserContext } from "@contexts/UserContext";
 import useHeaders from "@hooks/apis/resources/useHeaders";
 import { UserResponse } from "@hooks/apis/useUser";
 import { ErrorResponse, fetcher, Response } from "@services/api";
-import FormPassword from "./FormPassword";
-import FormUsername from "./FormUsername";
+import FormPassword from "../FormPassword";
+import FormUsername from "../FormUsername";
 
 interface LoginFormData {
   username: string;

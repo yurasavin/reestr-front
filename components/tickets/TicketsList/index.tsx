@@ -60,7 +60,6 @@ const TicketsList: React.FC = () => {
         hasMore={tickets.length < dataLength}
         loader={
           <div className={styles.loader}>
-            Загрузка...{" "}
             <Spin
               indicator={<LoadingOutlined className={styles.spinner} spin />}
             />

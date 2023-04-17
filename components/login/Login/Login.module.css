@@ -16,10 +16,10 @@
 
 .form {
   width: 330px;
-  background-color: #f0f2f5;
+  background-color: var(--item-hover);
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid #1f1f1fc7;
+  border: 1px solid var(--border-color);
 }
 .forgot {
   float: right;

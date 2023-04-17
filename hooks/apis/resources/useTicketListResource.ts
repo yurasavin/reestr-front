@@ -57,7 +57,7 @@ const useTicketInfiniteListResource = ({
   typeof useInfiniteResource<TicketData>
 > => {
   const queryParams = {
-    limit: "10",
+    limit: "20",
     search,
     year: year === undefined ? "" : year.toString(),
     status: status === undefined ? "" : JSON.stringify(status),

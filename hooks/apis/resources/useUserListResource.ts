@@ -18,7 +18,7 @@ const useUserInfiniteListResource = (
   search: string
 ): ReturnType<typeof useInfiniteResource<UserData>> => {
   return useInfiniteResource<UserData>({
-    swrKey: { path: "users/", queryParams: { limit: "5", search } },
+    swrKey: { path: "users/", queryParams: { limit: "10", search } },
   });
 };
 

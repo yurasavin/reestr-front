@@ -1,10 +1,11 @@
 :root {
   --font-family: 'Fira Sans', sans-serif;
   --primary: rgb(4 84 231);
+  --helper-color: #00000078;
   --primary-hover: white;
   --process-color: rgb(141 55 228);
   --process-background: rgb(240 236 245);
-  --finished-color:#389e0d;
+  --finished-color: #389e0d;
   --finished-background: rgb(232 245 219);
   --not-happen-color: rgb(244 105 14);
   --not-happen-background: rgb(255 226 207);

@@ -45,6 +45,7 @@ const TicketsList: React.FC = () => {
         <TicketListItemSkeleton />
         <TicketListItemSkeleton />
         <TicketListItemSkeleton />
+        <TicketListItemSkeleton />
       </>
     );
   }

@@ -7,16 +7,16 @@
 }
 
 .statusActive {
-    color: #389e0d;
-    background: #f6ffed;
+    color: var(--finished-color);
+    background: var(--finished-background);
     border-radius: 10px;
     font-size: 20px;
     margin-left: 5px;
 }
 
 .statusBlocked {
-    color: #9e1f0d;
-    background: #ffedf1;
+    color: var(--cancelled-color);
+    background: var(--cancelled-background);
     border-radius: 10px;
     font-size: 20px;
     margin-left: 5px;

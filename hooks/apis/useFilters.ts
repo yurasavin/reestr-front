@@ -3,6 +3,7 @@ import moment from "moment";
 import { useMemo, useState } from "react";
 
 const useFilters = () => {
+  // TODO: replace moment with dayjs
   const [year, setYear] = useState(() => moment().year());
   const [name, setName] = useState("");
   const [status, setStatus] = useState(undefined);

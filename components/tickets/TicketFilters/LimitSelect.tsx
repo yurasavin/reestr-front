@@ -14,13 +14,24 @@ const LimitSelect: React.FC = () => {
     swrKey: { path: "limits/" },
   });
 
+  let options: { value: number; label: string }[] = [];
+
+  if (resource.data) {
+    options = resource.data.data.map((limit) => ({
+      value: limit.year,
+      label: limit.year.toString(),
+    }));
+    options.reverse();
+  }
+
   return (
     <Select
-      fieldNames={{ value: "year", label: "year" }}
+      allowClear
+      placeholder="Лимиты"
       defaultValue={year}
       loading={!resource.data}
-      onSelect={(year) => setYear && setYear(year)}
-      options={resource.data?.data}
+      onChange={(year) => setYear && setYear(year)}
+      options={options}
     />
   );
 };

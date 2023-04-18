@@ -1,13 +1,13 @@
 import TicketAddButton from "@components/tickets/TicketAddButton";
-import TicketsList from "@components/tickets/TicketsList";
+import TicketsList from "@components/tickets/TicketsList/TicketsList";
 import { SiderCollapsedProvider } from "@contexts/SiderCollapsedContext";
 import {
   getSiderCollapsedServerSideProps,
   SiderCollapsedPageProps,
 } from "@helpers/getSiderCollapsedCookie";
 
-import SiteLayout from "@components/base/SiteLayout";
-import TicketFilters from "@components/tickets/TicketFilters";
+import SiteLayout from "@components/base/SiteLayout/SiteLayout";
+import TicketFilters from "@components/tickets/TicketFilters/TicketFilters";
 import { TicketsResourceProvider } from "@contexts/tickets/TicketsResourceContext";
 
 const Tickets: React.FC<SiderCollapsedPageProps> = ({ siderCollapsed }) => {

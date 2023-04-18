@@ -1,11 +1,11 @@
 import { LoadingOutlined } from "@ant-design/icons";
-import TicketListItem from "@components/tickets/TicketListItem";
+import TicketListItem from "@components/tickets/TicketListItem/TicketListItem";
 import { TicketsResourceContext } from "@contexts/tickets/TicketsResourceContext";
 import { TicketData } from "@hooks/apis/resources/useTicketListResource";
 import { List, Spin } from "antd";
 import { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import TicketListItemSkeleton from "../TicketListItemSkeleton";
+import TicketListItemSkeleton from "../TicketListItemSkeleton/TicketListItemSkeleton";
 import styles from "./TicketsList.module.css";
 
 const TicketsList: React.FC = () => {

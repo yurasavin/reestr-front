@@ -1,7 +1,7 @@
 import { ConfigProvider } from "antd";
 import ruRu from "antd/locale/ru_RU";
 
-import Login from "@components/login/Login";
+import Login from "@components/login/Login/Login";
 import { UserProvider } from "@contexts/UserContext";
 import "dayjs/locale/ru";
 import type { AppProps } from "next/app";

@@ -1,4 +1,4 @@
-import StyledFloatButton from "@components/shared/StyledFloatButton";
+import StyledFloatButton from "@components/shared/StyledFloatButton/StyledFloatButton";
 import { useState } from "react";
 
 const TicketAddButton: React.FC = () => {

@@ -1,4 +1,4 @@
-import SiteLayout from "@components/base/SiteLayout";
+import SiteLayout from "@components/base/SiteLayout/SiteLayout";
 import { SiderCollapsedProvider } from "@contexts/SiderCollapsedContext";
 import {
   getSiderCollapsedServerSideProps,

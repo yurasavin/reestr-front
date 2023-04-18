@@ -12,8 +12,8 @@ import {
 import { TicketData } from "@hooks/apis/resources/useTicketListResource";
 import { Space, Tooltip } from "antd";
 import { formatDateString } from "../../../helpers/formatDateString";
-import SectionItem from "../TicketListItem/SectionItem";
-import TicketStatus from "../TicketStatus";
+import SectionItem from "../TicketListItem/SectionItem/SectionItem";
+import TicketStatus from "../TicketStatus/TicketStatus";
 import styles from "./Ticket.module.css";
 
 interface TicketProps {

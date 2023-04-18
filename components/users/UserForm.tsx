@@ -11,7 +11,7 @@ import {
   PasswordConfirmField,
   PasswordField,
 } from "../shared/forms/PasswordFields";
-import AvatarField from "./userFormFields/AvatarField";
+import AvatarField from "./userFormFields/AvatarField/AvatarField";
 import EmailField from "./userFormFields/EmailField";
 import FirstNameField from "./userFormFields/FirstNameField";
 import IsActiveField from "./userFormFields/IsActiveField";

@@ -1,7 +1,7 @@
-import SiteLayout from "@components/base/SiteLayout";
+import SiteLayout from "@components/base/SiteLayout/SiteLayout";
 import AddUserButton from "@components/users/AddUserButton";
-import UsersFilters from "@components/users/UsersFilters/intex";
-import UsersList from "@components/users/UsersList";
+import UsersFilters from "@components/users/UsersFilters/UsersFilters";
+import UsersList from "@components/users/UsersList/UsersList";
 import { SiderCollapsedProvider } from "@contexts/SiderCollapsedContext";
 import { UsersResourceProvider } from "@contexts/users/UsersResourceContext";
 import {

@@ -1,6 +1,6 @@
 import ListItem from "@components/shared/ListItem/ListItem";
 import { TicketData } from "@hooks/apis/resources/useTicketListResource";
-import Ticket from "../Ticket";
+import Ticket from "../Ticket/Ticket";
 import styles from "./TicketListItem.module.css";
 
 interface TicketListItemProps {

@@ -8,6 +8,13 @@
     font-weight: 600;
     letter-spacing: 0.4px;
     width: 100%;
-    justify-content: space-between;
     align-items: end;
+}
+
+.justifySpaceBetween {
+    justify-content: space-between;
+}
+
+.justifyStart {
+    justify-content: start;
 }

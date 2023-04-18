@@ -1,7 +1,8 @@
+import ListItem from "@components/shared/ListItem/ListItem";
 import { UserRoleDispalay } from "@config/constants/userRoles";
 import { formatDateString } from "@helpers/formatDateString";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
-import { List, Row, Space } from "antd";
+import { Row, Space } from "antd";
 import UserAvatar from "../UserListItemComponents/UserAvatar";
 import UserDeleteButton from "../UserListItemComponents/UserDeleteButton";
 import UserEditButton from "../UserListItemComponents/UserEditButton";
@@ -14,11 +15,11 @@ interface UserListItemProps {
 
 const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
   return (
-    <List.Item key={user.id}>
+    <ListItem key={user.id} onClick={() => {}}>
+      <b className={styles.userName}>{user.last_name}</b>
       <Row className={styles.listItem}>
         <UserAvatar user={user} />
         <div className={styles.mainFields}>
-          <b className={styles.userName}>{user.last_name}</b>
           <UserStatus is_active={user.is_active} />
           <div>
             <b>Должность: </b>
@@ -42,7 +43,7 @@ const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
           </Space>
         </div>
       </Row>
-    </List.Item>
+    </ListItem>
   );
 };
 export default UserListItem;

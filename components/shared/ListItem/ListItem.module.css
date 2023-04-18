@@ -1,0 +1,11 @@
+.listItem {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 5px !important;
+    margin: 5px 5px 10px 0 !important;
+    padding: 5px 5px 5px 10px !important;
+}
+
+.listItem:hover {
+    cursor: pointer;
+    background-color: var(--item-hover);
+}

@@ -14,9 +14,9 @@ import ListItemTitle from "@components/shared/ListItem/ListItemTitle/ListItemTit
 import { formatDateString } from "@helpers/formatDateString";
 import { TicketData } from "@hooks/apis/resources/useTicketListResource";
 import { Space, Tooltip } from "antd";
-import TicketStatus from "../TicketStatus/TicketStatus";
 import SectionItem from "./SectionItem/SectionItem";
 import styles from "./TicketListItem.module.css";
+import TicketStatus from "./TicketStatus/TicketStatus";
 
 interface TicketListItemProps {
   ticket: TicketData;

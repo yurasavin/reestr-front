@@ -58,7 +58,6 @@ const UsersList: React.FC = () => {
         hasMore={users.length < dataLength}
         loader={
           <div className={styles.loader}>
-            Загрузка...{" "}
             <Spin
               indicator={<LoadingOutlined className={styles.spinner} spin />}
             />

@@ -15,7 +15,7 @@ const UsersSearch: React.FC = () => {
         placeholder="Поиск"
         allowClear
         className={styles.input}
-        addonBefore={<SearchOutlined />}
+        suffix={<SearchOutlined />}
       />
     </Tooltip>
   );

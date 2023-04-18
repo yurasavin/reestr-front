@@ -4,9 +4,9 @@ import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { List, Spin } from "antd";
 import React, { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import UserListItem from "../UserListItem/UserListItem";
-import UsersListSkeleton from "../UsersListSkeleton/UsersListSkeleton";
+import UserListItem from "./UserListItem/UserListItem";
 import styles from "./UsersList.module.css";
+import UsersListSkeleton from "./UsersListSkeleton/UsersListSkeleton";
 
 const UsersList: React.FC = () => {
   const { resource } = useContext(UsersResourceContext);
@@ -68,7 +68,7 @@ const UsersList: React.FC = () => {
         <List
           itemLayout="vertical"
           dataSource={users}
-          renderItem={(user) => <UserListItem user={user} />}
+          renderItem={(user) => <UserListItem key={user.id} user={user} />}
         />
       </InfiniteScroll>
     </div>

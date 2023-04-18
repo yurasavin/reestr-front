@@ -10,14 +10,14 @@ import { fetcher } from "services/api";
 import {
   PasswordConfirmField,
   PasswordField,
-} from "../shared/forms/PasswordFields";
-import AvatarField from "./userFormFields/AvatarField/AvatarField";
-import EmailField from "./userFormFields/EmailField";
-import FirstNameField from "./userFormFields/FirstNameField";
-import IsActiveField from "./userFormFields/IsActiveField";
-import LastNameField from "./userFormFields/LastNameField";
-import RoleField from "./userFormFields/RoleField";
-import UsernameField from "./userFormFields/UsernameField";
+} from "../../shared/forms/PasswordFields";
+import AvatarField from "./fields/AvatarField/AvatarField";
+import EmailField from "./fields/EmailField";
+import FirstNameField from "./fields/FirstNameField";
+import IsActiveField from "./fields/IsActiveField";
+import LastNameField from "./fields/LastNameField";
+import RoleField from "./fields/RoleField";
+import UsernameField from "./fields/UsernameField";
 
 export interface UserFormData {
   is_active: boolean;

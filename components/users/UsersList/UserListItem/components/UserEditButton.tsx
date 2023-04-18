@@ -1,8 +1,8 @@
 import { EditTwoTone } from "@ant-design/icons";
+import UserForm, { UserFormData } from "@components/users/UserForm/UserForm";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { Button } from "antd";
 import { useState } from "react";
-import UserForm, { UserFormData } from "../UserForm";
 
 const transformData = (user: UserData): UserFormData => {
   return {

@@ -1,6 +1,6 @@
 import StyledFloatButton from "@components/shared/StyledFloatButton/StyledFloatButton";
 import { useState } from "react";
-import UserForm from "./UserForm";
+import UserForm from "./UserForm/UserForm";
 
 const AddUserButton: React.FC = () => {
   const [open, setOpen] = useState(false);

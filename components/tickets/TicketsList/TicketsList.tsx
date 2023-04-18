@@ -70,7 +70,9 @@ const TicketsList: React.FC = () => {
         <List
           itemLayout="vertical"
           dataSource={tickets}
-          renderItem={(ticket) => <TicketListItem ticket={ticket} />}
+          renderItem={(ticket) => (
+            <TicketListItem key={ticket.id} ticket={ticket} />
+          )}
         />
       </InfiniteScroll>
     </div>

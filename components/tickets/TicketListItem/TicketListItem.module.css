@@ -1,9 +1,7 @@
-.title {
-    font-weight: 500;
-    font-size: 20px;
-    padding-bottom: 3px;
+.firstCol {
+    min-width: 35%;
 }
 
-.title:first-letter {
-    text-transform: uppercase;
+.secondCol {
+    min-width: 35%;
 }

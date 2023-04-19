@@ -1,23 +1,15 @@
-.statusContainer {
-    display: flex;
-}
-
-.label {
-    padding-right: 4px;
-}
-
 .statusActive {
     color: var(--finished-color);
     background: var(--finished-background);
-    border-radius: 10px;
-    font-size: 20px;
-    margin-left: 5px;
 }
 
 .statusBlocked {
     color: var(--cancelled-color);
     background: var(--cancelled-background);
+}
+
+.statusActive,
+.statusBlocked {
     border-radius: 10px;
-    font-size: 20px;
-    margin-left: 5px;
+    font-size: 16px;
 }

@@ -1,8 +1,16 @@
 import ListItem from "@components/shared/ListItem/ListItem";
+import ListItemTitle from "@components/shared/ListItem/ListItemTitle/ListItemTitle";
+import SectionItem from "@components/tickets/TicketsList/TicketListItem/SectionItem/SectionItem";
+import UserCreatedDateIcon from "@components/users/icons/UserCreatedDateIcon";
+import UserLastLoginDateIcon from "@components/users/icons/UserLastLoginDateIcon";
+import UserLoginIcon from "@components/users/icons/UserLoginIcon";
+import UserPositionIcon from "@components/users/icons/UserPositionIcon";
+import UserRoleIcon from "@components/users/icons/UserRoleIcon";
+import UserStatusIcon from "@components/users/icons/UserStatusIcon";
 import { UserRoleDispalay } from "@config/constants/userRoles";
 import { formatDateString } from "@helpers/formatDateString";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
-import { Row, Space } from "antd";
+import { Space } from "antd";
 import styles from "./UserListItem.module.css";
 import UserAvatar from "./components/UserAvatar/UserAvatar";
 import UserDeleteButton from "./components/UserDeleteButton";
@@ -15,34 +23,46 @@ interface UserListItemProps {
 
 const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
   return (
-    <ListItem key={user.id} onClick={() => {}}>
-      <b className={styles.userName}>{user.last_name}</b>
-      <Row className={styles.listItem}>
+    <ListItem>
+      <Space align="start">
         <UserAvatar user={user} />
-        <div className={styles.mainFields}>
-          <UserStatus is_active={user.is_active} />
-          <div>
-            <b>Должность: </b>
-            {user.first_name}
-          </div>
-          <div>
-            <b>Роль: </b>
-            {UserRoleDispalay[user.role]}
-          </div>
-          <div>
-            <b>Дата создания: </b>
-            {formatDateString(user.date_joined)}
-          </div>
-          <div>
-            <b>Последний вход: </b>
-            {formatDateString(user.last_login)}
-          </div>
-          <Space>
+        <Space direction="vertical" size={5}>
+          <ListItemTitle text={user.last_name} />
+          <Space align="start" size={25}>
+            <Space direction="vertical" size={5} className={styles.firstCol}>
+              <SectionItem title="Статус" icon={<UserStatusIcon />}>
+                <UserStatus is_active={user.is_active} />
+              </SectionItem>
+              <SectionItem title="Логин" icon={<UserLoginIcon />}>
+                {user.username}
+              </SectionItem>
+            </Space>
+            <Space direction="vertical" size={5} className={styles.secondCol}>
+              <SectionItem title="Дата создания" icon={<UserCreatedDateIcon />}>
+                {formatDateString(user.date_joined)}
+              </SectionItem>
+              <SectionItem
+                title="Последний вход"
+                icon={<UserLastLoginDateIcon />}
+              >
+                {formatDateString(user.last_login)}
+              </SectionItem>
+            </Space>
+            <Space direction="vertical" size={5}>
+              <SectionItem title="Должность" icon={<UserPositionIcon />}>
+                {user.first_name}
+              </SectionItem>
+              <SectionItem title="Роль" icon={<UserRoleIcon />}>
+                {UserRoleDispalay[user.role]}
+              </SectionItem>
+            </Space>
+          </Space>
+          <Space className={styles.buttons}>
             <UserEditButton user={user} />
             <UserDeleteButton user={user} />
           </Space>
-        </div>
-      </Row>
+        </Space>
+      </Space>
     </ListItem>
   );
 };

@@ -1,4 +1,5 @@
 import { CheckCircleOutlined, StopOutlined } from "@ant-design/icons";
+import { Space } from "antd";
 import styles from "./UserStatus.module.css";
 
 interface UserStatusProps {
@@ -7,15 +8,16 @@ interface UserStatusProps {
 
 const UserStatus: React.FC<UserStatusProps> = ({ is_active }) => {
   const title = is_active ? "Активный" : "Заблокирован";
+
   return (
-    <div className={styles.statusContainer}>
-      <b className={styles.label}>Статус:</b> {title}
+    <Space size={8}>
+      {title}
       {is_active ? (
         <CheckCircleOutlined className={styles.statusActive} />
       ) : (
         <StopOutlined className={styles.statusBlocked} />
       )}
-    </div>
+    </Space>
   );
 };
 

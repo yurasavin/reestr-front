@@ -1,11 +1,11 @@
-.listItem {
-    font-size: 16px;
+.firstCol {
+    min-width: 250px;
 }
 
-.userName {
-    font-size: 18px;
+.secondCol {
+    min-width: 250px;
 }
 
-.mainFields {
-    margin-left: 15px;
+.buttons {
+    margin-top: 20px;
 }

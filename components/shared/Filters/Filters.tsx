@@ -13,9 +13,7 @@ const Filters: React.FC<FiltersProps> = ({
   justify = "justifySpaceBetween",
   children,
 }) => {
-  return (
-    <Space className={`${style.container} ${style[justify]}`}>{children}</Space>
-  );
+  return <Space className={style[justify]}>{children}</Space>;
 };
 
 export default Filters;

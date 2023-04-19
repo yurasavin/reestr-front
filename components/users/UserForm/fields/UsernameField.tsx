@@ -1,6 +1,10 @@
+import UserLoginIcon from "@components/users/icons/UserLoginIcon";
 import { Form, Input, Tooltip } from "antd";
+import FormItemLabel from "./FormItemLabel/FormItemLabel";
 
 const UsernameField: React.FC = () => {
+  const label = <FormItemLabel text="Логин" icon={<UserLoginIcon />} />;
+
   return (
     <Tooltip
       title="Имя для входа в приложение"
@@ -9,7 +13,7 @@ const UsernameField: React.FC = () => {
     >
       <Form.Item
         name="username"
-        label="Логин"
+        label={label}
         rules={[
           {
             required: true,

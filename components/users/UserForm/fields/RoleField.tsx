@@ -1,7 +1,11 @@
+import UserRoleIcon from "@components/users/icons/UserRoleIcon";
 import { UserRole, UserRoleDispalay } from "@config/constants/userRoles";
 import { Form, Select, Tooltip } from "antd";
+import FormItemLabel from "./FormItemLabel/FormItemLabel";
 
 const RoleField: React.FC = () => {
+  const label = <FormItemLabel text="Роль" icon={<UserRoleIcon />} />;
+
   return (
     <Tooltip
       title="Роль пользователя в приложении"
@@ -10,7 +14,7 @@ const RoleField: React.FC = () => {
     >
       <Form.Item
         name="role"
-        label="Роль"
+        label={label}
         rules={[
           {
             required: true,
@@ -18,7 +22,7 @@ const RoleField: React.FC = () => {
           },
         ]}
       >
-        <Select>
+        <Select placeholder="Роль">
           {}
           <Select.Option value={UserRole.Planning}>
             {UserRoleDispalay[UserRole.Planning]}

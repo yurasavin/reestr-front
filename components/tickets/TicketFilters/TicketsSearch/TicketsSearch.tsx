@@ -8,7 +8,7 @@ const TicketsSearch: React.FC = () => {
   const { searchInput, setSearchInput } = useContext(TicketsResourceContext);
 
   return (
-    <Tooltip title="Поиск">
+    <Tooltip title="Поиск по названию, ответственному, филиалу, инициатору, категории и ОКПД2">
       <Input
         value={searchInput}
         onChange={(e) => setSearchInput && setSearchInput(e.target.value)}

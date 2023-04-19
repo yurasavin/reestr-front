@@ -6,6 +6,9 @@
 }
 
 .listItem:hover {
-    cursor: pointer;
     background-color: var(--item-hover);
+}
+
+.listItemClickable:hover {
+    cursor: pointer;
 }

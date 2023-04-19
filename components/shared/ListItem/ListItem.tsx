@@ -4,12 +4,17 @@ import styles from "./ListItem.module.css";
 
 interface ListItemProps {
   children: React.ReactNode;
-  onClick: MouseEventHandler;
+  onClick?: MouseEventHandler;
 }
 
 const ListItem: React.FC<ListItemProps> = ({ children, onClick }) => {
   return (
-    <List.Item className={styles.listItem} onClick={onClick}>
+    <List.Item
+      className={`${styles.listItem} ${
+        onClick ? styles.listItemClickable : ""
+      }`}
+      onClick={onClick}
+    >
       {children}
     </List.Item>
   );

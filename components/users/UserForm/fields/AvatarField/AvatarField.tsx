@@ -1,8 +1,10 @@
 import ImgCropUpload from "@components/shared/forms/ImgCropUpload";
+import UserAvatarIcon from "@components/users/icons/UserAvatarIcon";
 import { Form, Modal } from "antd";
 import { RcFile, UploadChangeParam, UploadFile } from "antd/es/upload";
 import Image from "next/image";
 import { useState } from "react";
+import FormItemLabel from "../FormItemLabel/FormItemLabel";
 import styles from "./AvatarField.module.css";
 
 const AvatarField: React.FC = () => {
@@ -27,12 +29,14 @@ const AvatarField: React.FC = () => {
     setPreviewVisible(true);
   };
 
+  const label = <FormItemLabel text="Фото" icon={<UserAvatarIcon />} />;
+
   return (
     <>
       <Form.Item
         name="avatar"
         valuePropName="fileList"
-        label="Фото"
+        label={label}
         className={styles.avatarfield}
         getValueFromEvent={(e: UploadChangeParam<UploadFile<any>>) =>
           e.fileList.length ? e.fileList : undefined

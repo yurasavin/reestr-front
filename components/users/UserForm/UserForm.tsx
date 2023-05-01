@@ -134,7 +134,7 @@ const UserForm: React.FC<UserFormProps> = ({
         form={form}
         initialValues={initialValues}
         name="user-form"
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 10 }}
       >
         <AvatarField />
         <IsActiveField />

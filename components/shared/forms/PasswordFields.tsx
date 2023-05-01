@@ -3,6 +3,8 @@ import {
   EyeTwoTone,
   LockOutlined,
 } from "@ant-design/icons";
+import FormItemLabel from "@components/users/UserForm/fields/FormItemLabel/FormItemLabel";
+import UserPasswordIcon from "@components/users/icons/UserPasswordIcon";
 import { Form, Input } from "antd";
 
 const CurrentPasswordField: React.FC = () => {
@@ -21,7 +23,6 @@ const CurrentPasswordField: React.FC = () => {
       <Input.Password
         prefix={<LockOutlined />}
         placeholder="Текущий пароль"
-        autoComplete="on"
         iconRender={(visible) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
         }
@@ -31,10 +32,12 @@ const CurrentPasswordField: React.FC = () => {
 };
 
 const PasswordField: React.FC = () => {
+  const label = <FormItemLabel text="Пароль" icon={<UserPasswordIcon />} />;
+
   return (
     <Form.Item
       name="password"
-      label="Пароль"
+      label={label}
       hasFeedback
       rules={[
         {
@@ -44,9 +47,7 @@ const PasswordField: React.FC = () => {
       ]}
     >
       <Input.Password
-        prefix={<LockOutlined />}
         placeholder="Пароль"
-        autoComplete="off"
         iconRender={(visible) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
         }
@@ -56,10 +57,14 @@ const PasswordField: React.FC = () => {
 };
 
 const PasswordConfirmField: React.FC = () => {
+  const label = (
+    <FormItemLabel text="Подтверждение пароля" icon={<UserPasswordIcon />} />
+  );
+
   return (
     <Form.Item
       name="password_confirm"
-      label="Подтверждение пароля"
+      label={label}
       dependencies={["password"]}
       hasFeedback
       rules={[
@@ -78,9 +83,7 @@ const PasswordConfirmField: React.FC = () => {
       ]}
     >
       <Input.Password
-        prefix={<LockOutlined />}
         placeholder="Подтверждение пароля"
-        autoComplete="off"
         iconRender={(visible) =>
           visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
         }

@@ -1,10 +1,14 @@
+import UserEmailIcon from "@components/users/icons/UserEmailIcon";
 import { Form, Input } from "antd";
+import FormItemLabel from "./FormItemLabel/FormItemLabel";
 
 const EmailField: React.FC = () => {
+  const label = <FormItemLabel text="Email" icon={<UserEmailIcon />} />;
+
   return (
     <Form.Item
       name="email"
-      label="Email"
+      label={label}
       rules={[
         {
           type: "email",

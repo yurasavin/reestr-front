@@ -4,7 +4,6 @@
 
 .content {
     overflow: hidden;
-    height: 90vh;
-    padding: 15px;
+    padding: 5px 5px 0 10px;
     background-color: var(--primary-hover);
 }

@@ -1,0 +1,11 @@
+.containerDisplay {
+    padding-left: 10px;
+    color: var(--primary-hover);
+    transition: all 0.75s ease-out;
+}
+
+.containerHidden {
+    color: transparent;
+    font-size: 0px;
+    transition: all 0.25s ease-out;
+}

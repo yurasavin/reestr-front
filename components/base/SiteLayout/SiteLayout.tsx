@@ -1,6 +1,5 @@
 import { Layout } from "antd";
 
-import SiteHeader from "../SiteHeader/SiteHeader";
 import SiteSider from "../SiteSider/SiteSider";
 import styles from "./SiteLayout.module.css";
 
@@ -13,7 +12,6 @@ const SiteLayout: React.FC<SiteLayoutProps> = ({ children }) => {
     <Layout hasSider className={styles.layout}>
       <SiteSider />
       <Layout>
-        <SiteHeader />
         <Layout.Content className={styles.content}>{children}</Layout.Content>
       </Layout>
     </Layout>

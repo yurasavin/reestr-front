@@ -8,9 +8,11 @@ import { SiderCollapsedContext } from "@contexts/SiderCollapsedContext";
 import { SiderCollapsed } from "@helpers/getSiderCollapsedCookie";
 import { useCookieState } from "ahooks";
 import { Layout, Menu, MenuProps } from "antd";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
+import SiteName from "./SiteName/SiteName";
 import styles from "./SiteSider.module.css";
 
 const items: MenuProps["items"] = [
@@ -103,7 +105,15 @@ const SiteSider: React.FC = () => {
       onCollapse={changeCollapsed}
       width={270}
     >
-      <div className={styles.logo} />
+      <div className={styles.logo}>
+        <Image
+          width={32}
+          height={32}
+          alt="site-logo"
+          src={"/images/logo.ico"}
+        />
+        <SiteName collapsed={collapsed} />
+      </div>
       <Menu
         theme="dark"
         defaultSelectedKeys={[router.asPath]}

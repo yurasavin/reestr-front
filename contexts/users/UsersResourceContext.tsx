@@ -6,6 +6,10 @@ interface UsersResourceContextInterface {
   resource?: ReturnType<typeof useUserInfiniteListResource>;
   searchInput?: string;
   setSearchInput?: Dispatch<SetStateAction<string>>;
+  role?: number;
+  setRole?: Dispatch<SetStateAction<number | undefined>>;
+  status?: boolean;
+  setStatus?: Dispatch<SetStateAction<boolean | undefined>>;
 }
 const UsersResourceContext = createContext<UsersResourceContextInterface>({});
 
@@ -18,12 +22,23 @@ const UsersResourceProvider: React.FC<UsersResourceProviderProps> = ({
 }) => {
   const [searchInput, setSearchInput] = useState("");
   const debouncedSearch = useDebounce(searchInput, { wait: 500 });
-  const resource = useUserInfiniteListResource(debouncedSearch);
+
+  const [role, setRole] = useState<number>();
+  const [status, setStatus] = useState<boolean>();
+  const resource = useUserInfiniteListResource({
+    search: debouncedSearch,
+    role,
+    status,
+  });
 
   const contextValue = {
     resource,
     searchInput,
     setSearchInput,
+    role,
+    setRole,
+    status,
+    setStatus,
   };
 
   return (

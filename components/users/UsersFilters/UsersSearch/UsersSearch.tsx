@@ -8,7 +8,7 @@ const UsersSearch: React.FC = () => {
   const { searchInput, setSearchInput } = useContext(UsersResourceContext);
 
   return (
-    <Tooltip title="Поиск по имени или должности">
+    <Tooltip title="Поиск по логину, имени и должности">
       <Input
         value={searchInput}
         onChange={(e) => setSearchInput && setSearchInput(e.target.value)}

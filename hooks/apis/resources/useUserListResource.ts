@@ -14,11 +14,28 @@ export interface UserData {
   avatar: string | null;
 }
 
-const useUserInfiniteListResource = (
-  search: string
-): ReturnType<typeof useInfiniteResource<UserData>> => {
+interface useUserInfiniteListResourceProps {
+  search: string;
+  role?: number;
+  status?: boolean;
+}
+
+const useUserInfiniteListResource = ({
+  search,
+  role,
+  status,
+}: useUserInfiniteListResourceProps): ReturnType<
+  typeof useInfiniteResource<UserData>
+> => {
+  const queryParams = {
+    limit: "10",
+    search,
+    role: role === undefined ? "" : role.toString(),
+    is_active: status === undefined ? "" : JSON.stringify(status),
+  };
+
   return useInfiniteResource<UserData>({
-    swrKey: { path: "users/", queryParams: { limit: "10", search } },
+    swrKey: { path: "users/", queryParams },
   });
 };
 

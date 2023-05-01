@@ -2,6 +2,7 @@ import { UsersResourceContext } from "@contexts/users/UsersResourceContext";
 import { useResource } from "@hooks/apis/resources/useResource";
 import { Select } from "antd";
 import React, { useContext } from "react";
+import styles from "./RolesFilter.module.css";
 
 interface RoleData {
   id: number;
@@ -17,14 +18,14 @@ const RolesFilter: React.FC = () => {
   return (
     <Select
       allowClear
+      className={styles.select}
       defaultValue={role}
       fieldNames={{ value: "id", label: "name" }}
       loading={!resource.data}
       placeholder="Роль"
-      // onChange={(tenderTypes) => setTenderTypes && setTenderTypes(tenderTypes)}
-      // options={options}
+      onChange={(role) => setRole && setRole(role)}
+      options={resource?.data?.data}
       virtual={false}
-      // listHeight={400}
     />
   );
 };

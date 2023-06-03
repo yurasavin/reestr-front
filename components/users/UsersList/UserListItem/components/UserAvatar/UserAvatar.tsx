@@ -1,7 +1,7 @@
 import Icon from "@ant-design/icons";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import DefaultAvatarSVG from "@public/images/default-avatar.svg";
-import { Image } from "antd";
+import Image from "next/image";
 import styles from "./UserAvatar.module.css";
 
 interface UserAvatarProps {
@@ -17,7 +17,6 @@ const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
         height={150}
         width={150}
         className={styles.avatar}
-        preview={false}
       />
     );
   }

@@ -1,12 +1,8 @@
-import moment from "moment";
+import dayjs from "dayjs";
 
 const formatDateString = (dateStr: string | null) => {
-  // TODO: replace moment with dayjs
-  const momentDate = moment(dateStr);
-  if (momentDate.isValid()) {
-    return momentDate.format("DD.MM.YYYY");
-  }
-  return "---";
+  const dayjsDate = dayjs(dateStr);
+  return dayjsDate.isValid() ? dayjsDate.format("DD.MM.YYYY") : "---";
 };
 
 export { formatDateString };

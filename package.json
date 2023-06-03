@@ -16,7 +16,6 @@
     "ahooks": "^3.7.7",
     "antd": "^5.5.2",
     "antd-img-crop": "^4.12.2",
-    "moment": "^2.29.4",
     "next": "^13.4.4",
     "rc-virtual-list": "^3.5.2",
     "react": "18.2.0",

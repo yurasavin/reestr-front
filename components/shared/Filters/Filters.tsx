@@ -9,6 +9,7 @@ interface FiltersProps {
   justify?: JustifySpaceBetween | JustifyStart;
   children: React.ReactNode;
 }
+
 const Filters: React.FC<FiltersProps> = ({
   justify = "justifySpaceBetween",
   children,

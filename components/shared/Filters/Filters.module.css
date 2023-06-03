@@ -1,6 +1,5 @@
 .justifySpaceBetween,
 .justifyStart {
-    margin-bottom: 10px;
     border: 1px solid var(--border-color);
     padding: 7px;
     border-radius: 5px;
@@ -9,7 +8,8 @@
     font-weight: 600;
     letter-spacing: 0.4px;
     width: 100%;
-    align-items: end;
+    align-items: center;
+    height: 6%;
 }
 
 .justifySpaceBetween {

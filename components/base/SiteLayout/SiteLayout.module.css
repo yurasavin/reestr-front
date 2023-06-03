@@ -1,9 +1,9 @@
 .layout {
     min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .content {
-    overflow: hidden;
-    padding: 5px 5px 0 10px;
     background-color: var(--primary-hover);
 }

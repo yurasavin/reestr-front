@@ -19,6 +19,16 @@ const moduleExports = {
     });
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.r2.cloudflarestorage.com",
+        port: "",
+        pathname: "**",
+      },
+    ],
+  },
 };
 
 const sentryWebpackPluginOptions = {

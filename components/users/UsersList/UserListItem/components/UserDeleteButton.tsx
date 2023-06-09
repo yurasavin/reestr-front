@@ -31,7 +31,7 @@ const UserDeleteButton: React.FC<UserDeleteButtonProps> = ({ user }) => {
       message.success("Пользователь удален!");
     } catch (error) {
       message.warning("Что-то пошло не так. Уже работаем над проблемой");
-      console.log(error);
+      console.error(error);
     }
   };
 

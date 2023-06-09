@@ -22,18 +22,18 @@ export interface ErrorResponse {
   };
 }
 
+export interface Fetcher {
+  path: string;
+  queryParams?: { [key: string]: string };
+  fetchParams: RequestInit;
+}
+
 const DEFAULT_HEADERS = { "Content-Type": "application/json" };
 
 const DEFAULT_FETCH_PARAMS: RequestInit = {
   method: "GET",
   mode: "cors",
 };
-
-export interface Fetcher {
-  path: string;
-  queryParams?: { [key: string]: string };
-  fetchParams: RequestInit;
-}
 
 const fetcher = async ({
   path,
@@ -75,9 +75,9 @@ const buildUrlWithParams = (
 
 const getDefaultFetchParams = (): RequestInit => ({ ...DEFAULT_FETCH_PARAMS });
 const getDefaultHeaders = (): Headers => new Headers(DEFAULT_HEADERS);
-const addAuthTokenToHeaders = (headers: Headers, authToken?: string): void => {
-  if (authToken && !headers.has("Authorization")) {
-    headers.set("Authorization", `Token ${authToken}`);
+const addAuthTokenToHeaders = (headers: Headers, accessToken: string): void => {
+  if (!headers.has("Authorization")) {
+    headers.set("Authorization", `Bearer ${accessToken}`);
   }
 };
 

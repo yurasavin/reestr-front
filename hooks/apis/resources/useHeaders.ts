@@ -9,7 +9,7 @@ const useHeaders = (initHeaders?: { [key: string]: string }): Headers => {
     const headers = new Headers(initHeaders || DEFAULT_HEADERS);
 
     if (authToken && !headers.has("Authorization")) {
-      headers.set("Authorization", `Token ${authToken}`);
+      headers.set("Authorization", `Bearer ${authToken}`);
     }
     return headers;
   }, [authToken, initHeaders]);

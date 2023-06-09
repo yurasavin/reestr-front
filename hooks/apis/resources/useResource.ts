@@ -35,7 +35,7 @@ const PAGE_SIZE = "20";
 const getFetchParams = (
   otherFetcherOptions: ResourceOtherFetcherOptions,
   headers?: Headers,
-  authToken?: string
+  accessToken: string | null
 ): RequestInit => {
   const fetchParams: RequestInit =
     "fetchParams" in otherFetcherOptions && otherFetcherOptions.fetchParams
@@ -48,7 +48,9 @@ const getFetchParams = (
     fetchParams.headers = getDefaultHeaders();
   }
 
-  addAuthTokenToHeaders(fetchParams.headers, authToken);
+  if (accessToken) {
+    addAuthTokenToHeaders(fetchParams.headers, accessToken);
+  }
 
   return fetchParams;
 };
@@ -59,19 +61,23 @@ function useResource<T>({
   headers,
   SWROptions,
 }: UseResource): SWRResponse<Response<T>> {
-  const { authToken, onAuthError } = useContext(UserContext);
+  const { accessToken, setAccessToken } = useContext(UserContext);
 
-  const fetchParams = getFetchParams(otherFetcherOptions, headers, authToken);
+  const fetchParams = getFetchParams(otherFetcherOptions, headers, accessToken);
   const fetcherOptions = { ...swrKey, ...otherFetcherOptions, fetchParams };
 
-  const resource = useSWR<Response<T>>(swrKey, () => fetcher(fetcherOptions), {
-    onError(err, key, config) {
-      if (err.status === 401) {
-        onAuthError();
-      }
-    },
-    ...SWROptions,
-  });
+  const resource = useSWR<Response<T>>(
+    accessToken ? swrKey : null,
+    () => fetcher(fetcherOptions),
+    {
+      onError(err, key, config) {
+        if (err.status === 401) {
+          setAccessToken(null);
+        }
+      },
+      ...SWROptions,
+    }
+  );
 
   return resource;
 }
@@ -82,14 +88,18 @@ function useInfiniteResource<T>({
   headers,
   SWROptions,
 }: UseResource): SWRInfiniteResponse<PaginatedResponse<T>> {
-  const { authToken, onAuthError } = useContext(UserContext);
+  const { accessToken, setAccessToken } = useContext(UserContext);
 
-  const fetchParams = getFetchParams(otherFetcherOptions, headers, authToken);
+  const fetchParams = getFetchParams(otherFetcherOptions, headers, accessToken);
 
   const getKey = (
     pageIndex: number,
     previousPageData: PaginatedResponse<T>
   ): ResourceSwrKey | null => {
+    if (!accessToken) {
+      return null;
+    }
+
     if (!previousPageData) {
       return swrKey;
     }
@@ -113,7 +123,7 @@ function useInfiniteResource<T>({
     {
       onError(err, key, config) {
         if (err.status === 401) {
-          onAuthError();
+          setAccessToken(null);
         }
       },
       ...SWROptions,
@@ -123,4 +133,4 @@ function useInfiniteResource<T>({
   return resource;
 }
 
-export { useResource, useInfiniteResource };
+export { useInfiniteResource, useResource };

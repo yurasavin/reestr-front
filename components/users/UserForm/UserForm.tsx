@@ -72,11 +72,10 @@ const UserForm: React.FC<UserFormProps> = ({
       }
     }
 
-    const path = editUserId ? `users/${editUserId}/` : "users/";
-    const method = editUserId ? "PATCH" : "POST";
+    const path = editUserId ? `users/${editUserId}/update/` : "users/";
     return fetcher({
       path,
-      fetchParams: { method, body: formData, headers },
+      fetchParams: { method: "POST", body: formData, headers },
     });
   };
 

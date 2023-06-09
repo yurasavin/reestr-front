@@ -1,4 +1,4 @@
-import { EditTwoTone } from "@ant-design/icons";
+import { EditOutlined } from "@ant-design/icons";
 import UserForm, { UserFormData } from "@components/users/UserForm/UserForm";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { Button } from "antd";
@@ -31,7 +31,7 @@ const UserEditButton: React.FC<UserEditButtonProps> = ({ user }) => {
         type="primary"
         size="small"
         ghost
-        icon={<EditTwoTone />}
+        icon={<EditOutlined />}
         onClick={() => setOpen(true)}
       >
         Редактировать

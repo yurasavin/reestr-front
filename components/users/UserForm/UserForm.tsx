@@ -3,15 +3,10 @@ import { UsersResourceContext } from "@contexts/users/UsersResourceContext";
 import useHeaders from "@hooks/apis/resources/useHeaders";
 import { ErrorResponse } from "@services/api";
 import { useRequest } from "ahooks";
-import { Form, message, Modal, UploadFile } from "antd";
+import { Form, message, Modal } from "antd";
 import { ValidateErrorEntity } from "rc-field-form/es/interface";
 import { useContext } from "react";
 import { fetcher } from "services/api";
-import {
-  PasswordConfirmField,
-  PasswordField,
-} from "../../shared/forms/PasswordFields";
-import AvatarField from "./fields/AvatarField/AvatarField";
 import EmailField from "./fields/EmailField";
 import FirstNameField from "./fields/FirstNameField";
 import IsActiveField from "./fields/IsActiveField";
@@ -26,9 +21,6 @@ export interface UserFormData {
   first_name: string;
   role: UserRole;
   email: string;
-  password?: string;
-  password_confirm?: string;
-  avatar?: [UploadFile];
 }
 
 interface UserFormProps {
@@ -43,39 +35,16 @@ const UserForm: React.FC<UserFormProps> = ({
   editUserId,
 }) => {
   const [form] = Form.useForm<UserFormData>();
-  const headers = useHeaders({});
+  const headers = useHeaders();
   const { resource: usersResource } = useContext(UsersResourceContext);
 
   const postForm = async (formValues: UserFormData) => {
-    const formData = new FormData();
+    const payload = JSON.stringify(formValues);
 
-    for (const name in formValues) {
-      if (name === "avatar") {
-        if (formValues.avatar && formValues.avatar[0].originFileObj) {
-          const avatarFile = formValues.avatar[0].originFileObj;
-          const avatarArray = [new Uint8Array(await avatarFile.arrayBuffer())];
-          const avatarBlob = await new Blob(avatarArray, {
-            type: avatarFile.type,
-          });
-          formData.append("avatar", avatarBlob, avatarFile.name);
-        } else if (formValues.avatar && formValues.avatar[0].url) {
-          // skip adding avatar to the form in this case, because
-          // it's url of the current avatar
-        } else {
-          formData.append(name, "");
-        }
-      } else {
-        const value = formValues[name as keyof UserFormData];
-        if (value !== undefined) {
-          formData.append(name, value.toString());
-        }
-      }
-    }
-
-    const path = editUserId ? `users/${editUserId}/update/` : "users/";
+    const path = editUserId ? `users/${editUserId}/update/` : "users/create/";
     return fetcher({
       path,
-      fetchParams: { method: "POST", body: formData, headers },
+      fetchParams: { method: "POST", body: payload, headers },
     });
   };
 
@@ -83,7 +52,8 @@ const UserForm: React.FC<UserFormProps> = ({
     manual: true,
     onSuccess: () => {
       usersResource?.mutate();
-      message.success("Изменения сохранены!");
+      const msg = editUserId ? "Изменения сохранены" : "Пользователь создан";
+      message.success(msg);
       close();
     },
     onError: (error: ErrorResponse | TypeError) => {
@@ -129,25 +99,13 @@ const UserForm: React.FC<UserFormProps> = ({
       onCancel={close}
       onOk={onOk}
     >
-      <Form
-        form={form}
-        initialValues={initialValues}
-        name="user-form"
-        labelCol={{ span: 10 }}
-      >
-        <AvatarField />
+      <Form form={form} initialValues={initialValues} labelCol={{ span: 10 }}>
         <IsActiveField />
         <UsernameField />
         <LastNameField />
         <FirstNameField />
         <RoleField />
         <EmailField />
-        {!editUserId && (
-          <>
-            <PasswordField />
-            <PasswordConfirmField />
-          </>
-        )}
       </Form>
     </Modal>
   );

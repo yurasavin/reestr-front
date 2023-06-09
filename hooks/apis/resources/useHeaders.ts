@@ -3,16 +3,16 @@ import { DEFAULT_HEADERS } from "@services/api";
 import { useContext, useMemo } from "react";
 
 const useHeaders = (initHeaders?: { [key: string]: string }): Headers => {
-  const { authToken } = useContext(UserContext);
+  const { accessToken } = useContext(UserContext);
 
   const headers = useMemo(() => {
     const headers = new Headers(initHeaders || DEFAULT_HEADERS);
 
-    if (authToken && !headers.has("Authorization")) {
-      headers.set("Authorization", `Bearer ${authToken}`);
+    if (accessToken && !headers.has("Authorization")) {
+      headers.set("Authorization", `Bearer ${accessToken}`);
     }
     return headers;
-  }, [authToken, initHeaders]);
+  }, [accessToken, initHeaders]);
 
   return headers;
 };

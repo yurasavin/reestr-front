@@ -13,6 +13,7 @@ import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { Space } from "antd";
 import styles from "./UserListItem.module.css";
 import UserAvatar from "./components/UserAvatar/UserAvatar";
+import UserChangePasswordButton from "./components/UserChangePasswordButton";
 import UserDeleteButton from "./components/UserDeleteButton";
 import UserEditButton from "./components/UserEditButton";
 import UserStatus from "./components/UserStatus/UserStatus";
@@ -59,6 +60,7 @@ const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
           </Space>
           <Space className={styles.buttons}>
             <UserEditButton user={user} />
+            <UserChangePasswordButton userId={user.id} />
             <UserDeleteButton user={user} />
           </Space>
         </Space>

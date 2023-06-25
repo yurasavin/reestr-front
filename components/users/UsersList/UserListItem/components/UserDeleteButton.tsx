@@ -24,15 +24,10 @@ const UserDeleteButton: React.FC<UserDeleteButtonProps> = ({ user }) => {
   };
 
   const deleteUser = async (userId: number) => {
-    try {
-      const path = `users/${userId}/`;
-      await fetcher({ path, fetchParams: { method: "DELETE", headers } });
-      usersResource?.mutate();
-      message.success("Пользователь удален!");
-    } catch (error) {
-      message.warning("Что-то пошло не так. Уже работаем над проблемой");
-      console.error(error);
-    }
+    const path = `users/${userId}/delete/`;
+    await fetcher({ path, fetchParams: { method: "POST", headers } });
+    usersResource?.mutate();
+    message.success("Пользователь удален");
   };
 
   return (

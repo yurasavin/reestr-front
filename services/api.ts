@@ -1,3 +1,5 @@
+import { message } from "antd";
+
 const API_ROOT = process.env.NEXT_PUBLIC_API_ROOT;
 
 export interface Response<T> {
@@ -41,7 +43,14 @@ const fetcher = async ({
   fetchParams,
 }: Fetcher): Promise<Response<any>> => {
   const url = buildUrlWithParams(path, queryParams);
-  const response = await fetch(url, fetchParams);
+
+  let response: globalThis.Response;
+  try {
+    response = await fetch(url, fetchParams);
+  } catch (error) {
+    message.warning("Ошибка сети. Повторите попытку позже");
+    throw error;
+  }
 
   let data = {};
   if (response.status === 400 || (response.ok && response.status !== 204)) {
@@ -53,6 +62,12 @@ const fetcher = async ({
 
   if (response.ok) {
     return ret;
+  }
+
+  if (response.status === 500) {
+    message.warning("Что-то пошло не так. Уже работаем над проблемой");
+  } else if (response.status === 403) {
+    message.warning("У вас нет прав для выполнения данного действия");
   }
 
   throw ret;
@@ -82,10 +97,10 @@ const addAuthTokenToHeaders = (headers: Headers, accessToken: string): void => {
 };
 
 export {
-  fetcher,
-  DEFAULT_HEADERS,
   DEFAULT_FETCH_PARAMS,
+  DEFAULT_HEADERS,
+  addAuthTokenToHeaders,
+  fetcher,
   getDefaultFetchParams,
   getDefaultHeaders,
-  addAuthTokenToHeaders,
 };

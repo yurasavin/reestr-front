@@ -56,9 +56,6 @@ const Login: React.FC = () => {
   const onError = (error: Error | ErrorResponse) => {
     if (!(error instanceof Error) && error.status === 400) {
       message.warning("Проверьте правильность логина и пароля");
-    } else {
-      message.warning("Что-то пошло не так. Уже работаем над проблемой");
-      console.error(error);
     }
   };
 

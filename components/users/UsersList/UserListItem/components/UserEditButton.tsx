@@ -1,22 +1,8 @@
 import { EditOutlined } from "@ant-design/icons";
-import UserForm, { UserFormData } from "@components/users/UserForm/UserForm";
+import UserForm from "@components/users/UserForm/UserForm";
 import { UserData } from "@hooks/apis/resources/useUserListResource";
 import { Button } from "antd";
 import { useState } from "react";
-
-const transformData = (user: UserData): UserFormData => {
-  return {
-    is_active: user.is_active,
-    username: user.username,
-    last_name: user.last_name,
-    first_name: user.first_name,
-    role: user.role,
-    email: user.email,
-    avatar: user.avatar
-      ? [{ status: "done", url: user.avatar, uid: "-1", name: "" }]
-      : undefined,
-  };
-};
 
 interface UserEditButtonProps {
   user: UserData;
@@ -39,7 +25,7 @@ const UserEditButton: React.FC<UserEditButtonProps> = ({ user }) => {
       {open && (
         <UserForm
           close={() => setOpen(false)}
-          initialValues={transformData(user)}
+          initialValues={user}
           editUserId={user.id}
         />
       )}

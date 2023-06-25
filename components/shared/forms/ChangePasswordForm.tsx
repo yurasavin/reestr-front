@@ -1,9 +1,6 @@
-import useHeaders from "@hooks/apis/resources/useHeaders";
-import { ErrorResponse } from "@services/api";
-import { useRequest } from "ahooks";
+import usePostForm from "@hooks/apis/resources/usePostForm";
 import { Form, message, Modal } from "antd";
 import { ValidateErrorEntity } from "rc-field-form/es/interface";
-import { fetcher } from "services/api";
 import {
   CurrentPasswordField,
   PasswordConfirmField,
@@ -22,35 +19,16 @@ interface ChangePasswordFormProps {
 
 const ChangePasswordForm: React.FC<ChangePasswordFormProps> = ({ close }) => {
   const [form] = Form.useForm<ChangePasswordFormData>();
-  const headers = useHeaders();
 
-  const postForm = async (formValues: ChangePasswordFormData) => {
-    const path = "users/change-password/";
-    const method = "POST";
-    return fetcher({
-      path,
-      fetchParams: { method, body: JSON.stringify(formValues), headers },
-    });
+  const path = "users/change-password/";
+  const onSuccess = () => {
+    message.success("Пароль изменен!");
+    close();
   };
 
-  const { loading, run } = useRequest(postForm, {
-    manual: true,
-    onSuccess: () => {
-      message.success("Пароль изменен!");
-      close();
-    },
-    onError: (error: ErrorResponse | TypeError) => {
-      const responseError = error as ErrorResponse;
-      if (responseError.data && responseError.status === 400) {
-        for (const fieldName in responseError.data) {
-          const errorMessage = responseError.data[fieldName];
-          message.warning(errorMessage);
-        }
-      } else {
-        message.warning("Что-то пошло не так. Уже работаем над проблемой");
-      }
-      console.error(error);
-    },
+  const { loading, run } = usePostForm<ChangePasswordFormData>({
+    path,
+    onSuccess,
   });
 
   const onOk = async () => {

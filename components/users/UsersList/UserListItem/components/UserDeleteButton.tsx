@@ -16,7 +16,7 @@ const UserDeleteButton: React.FC<UserDeleteButtonProps> = ({ user }) => {
 
   const showConfirm = (user: UserData) => {
     Modal.confirm({
-      title: `Удаление пользователя "${user.last_name}"`,
+      title: `Удаление пользователя ${user.last_name}`,
       icon: <ExclamationCircleOutlined />,
       content: "Вы уверены?",
       onOk: () => deleteUser(user.id),

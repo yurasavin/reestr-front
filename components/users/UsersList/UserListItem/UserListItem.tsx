@@ -1,6 +1,6 @@
 import ListItem from "@components/shared/ItemsList/ListItem/ListItem";
 import ListItemTitle from "@components/shared/ItemsList/ListItem/ListItemTitle/ListItemTitle";
-import SectionItem from "@components/tickets/TicketsList/TicketListItem/SectionItem/SectionItem";
+import SectionItem from "@components/shared/ItemsList/ListItem/SectionItem/SectionItem";
 import UserCreatedDateIcon from "@components/users/icons/UserCreatedDateIcon";
 import UserLastLoginDateIcon from "@components/users/icons/UserLastLoginDateIcon";
 import UserLoginIcon from "@components/users/icons/UserLoginIcon";

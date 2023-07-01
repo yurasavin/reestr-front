@@ -34,8 +34,8 @@ const PAGE_SIZE = "20";
 
 const getFetchParams = (
   otherFetcherOptions: ResourceOtherFetcherOptions,
-  headers?: Headers,
-  accessToken: string | null
+  accessToken: string | null,
+  headers?: Headers
 ): RequestInit => {
   const fetchParams: RequestInit =
     "fetchParams" in otherFetcherOptions && otherFetcherOptions.fetchParams
@@ -63,7 +63,7 @@ function useResource<T>({
 }: UseResource): SWRResponse<Response<T>> {
   const { accessToken, setAccessToken } = useContext(UserContext);
 
-  const fetchParams = getFetchParams(otherFetcherOptions, headers, accessToken);
+  const fetchParams = getFetchParams(otherFetcherOptions, accessToken, headers);
   const fetcherOptions = { ...swrKey, ...otherFetcherOptions, fetchParams };
 
   const resource = useSWR<Response<T>>(
@@ -90,7 +90,7 @@ function useInfiniteResource<T>({
 }: UseResource): SWRInfiniteResponse<PaginatedResponse<T>> {
   const { accessToken, setAccessToken } = useContext(UserContext);
 
-  const fetchParams = getFetchParams(otherFetcherOptions, headers, accessToken);
+  const fetchParams = getFetchParams(otherFetcherOptions, accessToken, headers);
 
   const getKey = (
     pageIndex: number,

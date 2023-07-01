@@ -47,7 +47,7 @@ const ItemsList: React.FC<ItemsListProps> = ({
   };
 
   // TODO: type implements
-  const listData = [];
+  const listData: { id: number }[] = [];
   let dataLength = 0;
   if (resource.data) {
     dataLength = resource.data[0].data.count;

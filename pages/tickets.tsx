@@ -9,6 +9,7 @@ import {
 import SiteLayout from "@components/base/SiteLayout/SiteLayout";
 import TicketFilters from "@components/tickets/TicketFilters/TicketFilters";
 import { TicketsResourceProvider } from "@contexts/tickets/TicketsResourceContext";
+import { SWRConfig } from "swr";
 
 const Tickets: React.FC<SiderCollapsedPageProps> = ({ siderCollapsed }) => {
   return (
@@ -16,7 +17,9 @@ const Tickets: React.FC<SiderCollapsedPageProps> = ({ siderCollapsed }) => {
       <SiteLayout>
         <TicketsResourceProvider>
           <TicketFilters />
-          <TicketsList />
+          <SWRConfig value={{ provider: () => new Map() }}>
+            <TicketsList />
+          </SWRConfig>
         </TicketsResourceProvider>
         <TicketAddButton />
       </SiteLayout>

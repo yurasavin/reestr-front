@@ -15,7 +15,7 @@
     "@svgr/webpack": "^8.0.1",
     "@types/react": "^18.2.8",
     "ahooks": "^3.7.7",
-    "antd": "^5.5.2",
+    "antd": "^5.7.0",
     "antd-img-crop": "^4.12.2",
     "next": "^13.4.4",
     "rc-virtual-list": "^3.5.2",

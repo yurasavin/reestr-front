@@ -9,7 +9,7 @@ import "/styles/globals.css";
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ConfigProvider
-      // Move this code to dedicated component
+      // Refactor this code to dedicated component
       locale={ruRu}
       theme={{
         token: {
@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         },
         components: {
           Menu: {
-            colorItemBgSelected: "var(--primary)",
+            itemSelectedBg: "var(--primary)",
           },
           FloatButton: {
             colorPrimary: "var(--primary)",

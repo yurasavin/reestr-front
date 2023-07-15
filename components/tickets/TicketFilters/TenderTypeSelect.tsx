@@ -1,19 +1,13 @@
 import { TicketsResourceContext } from "@contexts/tickets/TicketsResourceContext";
-import { useResource } from "@hooks/apis/resources/useResource";
+import useTenderTypesResource, {
+  TenderTypeData,
+} from "@hooks/apis/resources/useTenderTypesResource";
 import { Select } from "antd";
 import { useContext } from "react";
-import styles from "./TenderTypeSelect.module.css";
-
-interface TenderTypeData {
-  id: number;
-  name: string;
-}
 
 const TenderTypeSelect: React.FC = () => {
   const { tenderTypes, setTenderTypes } = useContext(TicketsResourceContext);
-  const resource = useResource<TenderTypeData[]>({
-    swrKey: { path: "tenders/tender-types/" },
-  });
+  const resource = useTenderTypesResource();
 
   const options223FZ: TenderTypeData[] = [];
   const options44FZ: TenderTypeData[] = [];
@@ -33,7 +27,6 @@ const TenderTypeSelect: React.FC = () => {
 
   return (
     <Select
-      className={styles.select}
       allowClear
       defaultValue={tenderTypes}
       fieldNames={{ value: "id", label: "name" }}
@@ -46,6 +39,7 @@ const TenderTypeSelect: React.FC = () => {
       maxTagCount="responsive"
       virtual={false}
       listHeight={400}
+      style={{ width: 350 }}
     />
   );
 };

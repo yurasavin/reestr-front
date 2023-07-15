@@ -32,6 +32,7 @@ const LimitSelect: React.FC = () => {
       loading={!resource.data}
       onChange={(year) => setYear && setYear(year)}
       options={options}
+      style={{ width: 100 }}
     />
   );
 };

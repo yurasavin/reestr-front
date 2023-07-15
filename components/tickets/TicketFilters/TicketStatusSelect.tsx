@@ -1,17 +1,16 @@
 import { TicketsResourceContext } from "@contexts/tickets/TicketsResourceContext";
 import { Select } from "antd";
 import { useContext } from "react";
-import styles from "./StatusSelect.module.css";
 
-const StatusSelect: React.FC = () => {
+const TicketStatusSelect: React.FC = () => {
   const { status, setStatus } = useContext(TicketsResourceContext);
 
   return (
     <Select
-      className={styles.select}
-      placeholder="Статус"
+      placeholder="Статус заявки"
       allowClear
       defaultValue={status}
+      style={{ width: 150 }}
       onChange={(status) => setStatus && setStatus(status)}
       options={[
         { value: true, label: "В работе" },
@@ -21,4 +20,4 @@ const StatusSelect: React.FC = () => {
   );
 };
 
-export default StatusSelect;
+export default TicketStatusSelect;

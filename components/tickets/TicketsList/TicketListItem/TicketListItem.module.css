@@ -1,7 +1,14 @@
-.firstCol {
-    min-width: 35%;
+.innerContainer {
+    width: 100%;
 }
 
-.secondCol {
-    min-width: 35%;
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category {
+    background-color: var(--finished-color);
+    color: var(--primary-hover);
+    margin-inline-end: 0px;
 }

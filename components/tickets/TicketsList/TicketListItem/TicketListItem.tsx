@@ -1,23 +1,15 @@
-import {
-  AuditOutlined,
-  CalendarOutlined,
-  FileProtectOutlined,
-  HomeOutlined,
-  InfoCircleOutlined,
-  PieChartOutlined,
-  TableOutlined,
-  TagOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import ListItem from "@components/shared/ItemsList/ListItem/ListItem";
-import ListItemTitle from "@components/shared/ItemsList/ListItem/ListItemTitle/ListItemTitle";
+import { CalendarOutlined, TagOutlined } from "@ant-design/icons";
+import ItemsListItem from "@components/shared/ItemsList/ItemsListItem/ItemsListItem";
+import ListItemTitle from "@components/shared/ItemsList/ItemsListItem/ListItemTitle/ListItemTitle";
 import { formatDateString } from "@helpers/formatDateString";
 import { TicketData } from "@hooks/apis/resources/useTicketListResource";
-import { Space, Tooltip } from "antd";
+import { Space, Tag } from "antd";
 
-import SectionItem from "@components/shared/ItemsList/ListItem/SectionItem/SectionItem";
-import styles from "./TicketListItem.module.css";
-import TicketStatus from "./TicketStatus/TicketStatus";
+import SectionItem from "@components/shared/ItemsList/ItemsListItem/SectionItem/SectionItem";
+import TicketListContractCard from "./TicketListContractCard";
+import style from "./TicketListItem.module.css";
+import TicketListTenderCard from "./TicketListTenderCard";
+import TicketListTicketCard from "./TicketListTicketCard";
 
 interface TicketListItemProps {
   itemData: TicketData;
@@ -27,42 +19,27 @@ const TicketListItem: React.FC<TicketListItemProps> = ({
   itemData: ticket,
 }) => {
   return (
-    <ListItem onClick={() => alert("under development...")}>
-      <ListItemTitle text={ticket.name} />
-      <Space direction="vertical" size={0} className={styles.firstCol}>
-        <SectionItem title="Статус" icon={<InfoCircleOutlined />}>
-          <TicketStatus status={ticket.status} />
-        </SectionItem>
-        <SectionItem title="Дата" icon={<CalendarOutlined />}>
-          {formatDateString(ticket.date)}
-        </SectionItem>
-        <SectionItem title="Ответственный" icon={<UserOutlined />}>
-          {ticket.user?.last_name}
-        </SectionItem>
+    <ItemsListItem>
+      <Space direction="vertical" className={style.innerContainer} size={0}>
+        <Space align="center" className={style.header}>
+          <ListItemTitle text={ticket.name} />
+          <Space direction="vertical" align="end" size={5}>
+            <Tag icon={<TagOutlined />} className={style.category}>
+              {ticket?.category_name}
+            </Tag>
+            <SectionItem title="Дата" icon={<CalendarOutlined />}>
+              {formatDateString(ticket.date)}
+            </SectionItem>
+          </Space>
+        </Space>
+
+        <div style={{ width: "100%", display: "flex", gap: 8 }}>
+          <TicketListTicketCard ticket={ticket} />
+          <TicketListTenderCard ticket={ticket} />
+          <TicketListContractCard ticket={ticket} />
+        </div>
       </Space>
-      <Space direction="vertical" size={0} className={styles.secondCol}>
-        <SectionItem title="Филиал" icon={<HomeOutlined />}>
-          {ticket.filial.name}
-        </SectionItem>
-        <SectionItem title="Инициатор" icon={<AuditOutlined />}>
-          {ticket.initiator.name}
-        </SectionItem>
-        <SectionItem title="Способ закупки" icon={<FileProtectOutlined />}>
-          {ticket.tender_type.label}
-        </SectionItem>
-      </Space>
-      <Space direction="vertical" size={0}>
-        <SectionItem title="ОКПД2" icon={<TableOutlined />}>
-          <Tooltip title={ticket.okpd2?.name}>{ticket.okpd2?.code}</Tooltip>
-        </SectionItem>
-        <SectionItem title="Категория" icon={<TagOutlined />}>
-          {ticket.category?.name}
-        </SectionItem>
-        <SectionItem title="Лимиты" icon={<PieChartOutlined />}>
-          {ticket.limits.map((limit) => limit.year).join(", ")}
-        </SectionItem>
-      </Space>
-    </ListItem>
+    </ItemsListItem>
   );
 };
 

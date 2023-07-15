@@ -1,6 +1,6 @@
-import ListItem from "@components/shared/ItemsList/ListItem/ListItem";
-import ListItemTitle from "@components/shared/ItemsList/ListItem/ListItemTitle/ListItemTitle";
-import SectionItem from "@components/shared/ItemsList/ListItem/SectionItem/SectionItem";
+import ItemsListItem from "@components/shared/ItemsList/ItemsListItem/ItemsListItem";
+import ListItemTitle from "@components/shared/ItemsList/ItemsListItem/ListItemTitle/ListItemTitle";
+import SectionItem from "@components/shared/ItemsList/ItemsListItem/SectionItem/SectionItem";
 import UserCreatedDateIcon from "@components/users/icons/UserCreatedDateIcon";
 import UserLastLoginDateIcon from "@components/users/icons/UserLastLoginDateIcon";
 import UserLoginIcon from "@components/users/icons/UserLoginIcon";
@@ -24,7 +24,7 @@ interface UserListItemProps {
 
 const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
   return (
-    <ListItem>
+    <ItemsListItem>
       <Space align="start">
         <UserAvatar user={user} />
         <Space direction="vertical" size={5}>
@@ -65,7 +65,7 @@ const UserListItem: React.FC<UserListItemProps> = ({ user }) => {
           </Space>
         </Space>
       </Space>
-    </ListItem>
+    </ItemsListItem>
   );
 };
 export default UserListItem;

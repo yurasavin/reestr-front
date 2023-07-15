@@ -1,21 +1,8 @@
-.justifySpaceBetween,
-.justifyStart {
-    border: 1px solid var(--border-color);
+.filters {
     padding: 7px;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: var(--primary);
     color: var(--primary-hover);
-    font-weight: 600;
-    letter-spacing: 0.4px;
     width: 100%;
-    align-items: center;
-    height: 6%;
-}
-
-.justifySpaceBetween {
-    justify-content: space-between;
-}
-
-.justifyStart {
-    justify-content: start;
 }

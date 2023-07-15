@@ -1,20 +1,30 @@
 import { Space } from "antd";
 import React from "react";
-import style from "./Filters.module.css";
-
-type JustifySpaceBetween = "justifySpaceBetween";
-type JustifyStart = "justifyStart";
+import styles from "./Filters.module.css";
 
 interface FiltersProps {
-  justify?: JustifySpaceBetween | JustifyStart;
-  children: React.ReactNode;
+  align?: "start" | "end" | "center" | "baseline";
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const Filters: React.FC<FiltersProps> = ({
-  justify = "justifySpaceBetween",
+  align = "start",
   children,
+  style,
 }) => {
-  return <Space className={style[justify]}>{children}</Space>;
+  return (
+    <>
+      <Space
+        className={styles.filters}
+        align={align}
+        wrap
+        style={{ columnGap: 25, ...style }}
+      >
+        {children}
+      </Space>
+    </>
+  );
 };
 
 export default Filters;

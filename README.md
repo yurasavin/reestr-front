@@ -37,4 +37,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 To check and update package.json version numbers:
 
-`npm update --save`
+`npm update --save [pkg-name]`
+
+To install concrete version
+`npm i [pkg-name]@[version]`
+
+To delete package
+`npm uninstall --save [pkg-name]`

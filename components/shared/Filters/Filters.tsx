@@ -5,20 +5,15 @@ import styles from "./Filters.module.css";
 interface FiltersProps {
   align?: "start" | "end" | "center" | "baseline";
   children?: React.ReactNode;
-  style?: React.CSSProperties;
 }
 
-const Filters: React.FC<FiltersProps> = ({
-  align = "start",
-  children,
-  style,
-}) => {
+const Filters: React.FC<FiltersProps> = ({ align = "start", children }) => {
   return (
     <Space
       className={styles.filters}
       align={align}
       wrap
-      style={{ columnGap: 25, ...style }}
+      style={{ columnGap: 25 }}
     >
       {children}
     </Space>

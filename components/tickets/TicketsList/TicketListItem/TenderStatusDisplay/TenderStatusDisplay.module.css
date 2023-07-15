@@ -1,0 +1,27 @@
+.iconProcess {
+    color: var(--process-color);
+    background: var(--process-background);
+}
+
+.iconFinished {
+    color: var(--finished-color);
+    background: var(--finished-background);
+}
+
+.iconCancelled {
+    color: var(--cancelled-color);
+    background: var(--cancelled-background);
+}
+
+.iconNotHappen {
+    color: var(--not-happen-color);
+    background: var(--not-happen-background);
+}
+
+.iconProcess,
+.iconFinished,
+.iconCancelled,
+.iconNotHappen {
+    border-radius: 10px;
+    font-size: 16px;
+}

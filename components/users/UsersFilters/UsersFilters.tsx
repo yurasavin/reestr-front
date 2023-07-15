@@ -7,7 +7,7 @@ import UsersSearch from "./UsersSearch/UsersSearch";
 
 const UsersFilters: React.FC = () => {
   return (
-    <Filters justify="justifyStart">
+    <Filters align="start">
       <UsersSearch />
       <FilterItem title="Статус">
         <StatusFilter />

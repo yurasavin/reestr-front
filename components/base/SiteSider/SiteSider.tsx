@@ -1,7 +1,6 @@
 import {
   DesktopOutlined,
   FileOutlined,
-  InboxOutlined,
   PieChartOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
@@ -23,13 +22,8 @@ const items: MenuProps["items"] = [
     icon: <PieChartOutlined />,
   },
   {
-    label: <Link href="/tickets">Заявки</Link>,
+    label: <Link href="/tickets">Реестр</Link>,
     key: "/tickets",
-    icon: <InboxOutlined />,
-  },
-  {
-    label: <Link href="/tenders">Закупки</Link>,
-    key: "/tenders",
     icon: <DesktopOutlined />,
   },
   {

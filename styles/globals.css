@@ -7,8 +7,8 @@
   --process-background: rgb(240 236 245);
   --finished-color: #389e0d;
   --finished-background: rgb(232 245 219);
-  --not-happen-color: rgb(244 105 14);
-  --not-happen-background: rgb(255 226 207);
+  --not-happen-color: rgb(201, 192, 63);
+  --not-happen-background: rgb(245, 247, 181);
   --cancelled-color: rgb(245 10 10);
   --cancelled-background: rgb(255 226 226);
   --border-color: #87878796;

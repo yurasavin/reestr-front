@@ -14,16 +14,14 @@ const Filters: React.FC<FiltersProps> = ({
   style,
 }) => {
   return (
-    <>
-      <Space
-        className={styles.filters}
-        align={align}
-        wrap
-        style={{ columnGap: 25, ...style }}
-      >
-        {children}
-      </Space>
-    </>
+    <Space
+      className={styles.filters}
+      align={align}
+      wrap
+      style={{ columnGap: 25, ...style }}
+    >
+      {children}
+    </Space>
   );
 };
 

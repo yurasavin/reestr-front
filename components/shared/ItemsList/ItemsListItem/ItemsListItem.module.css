@@ -1,7 +1,7 @@
 .listItem {
     border: 1px solid var(--border-color) !important;
     border-radius: 5px !important;
-    margin: 5px 5px 10px 0 !important;
+    margin: 5px 5px 5px 5px !important;
     padding: 5px 5px 5px 10px !important;
 }
 
@@ -9,6 +9,3 @@
     background-color: var(--item-hover);
 }
 
-.listItemClickable:hover {
-    cursor: pointer;
-}

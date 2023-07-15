@@ -1,0 +1,14 @@
+.ticketContainer {
+    overflow: hidden;
+    display: flex;
+}
+
+.expandContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.expand {
+    font-size: 22px;
+}

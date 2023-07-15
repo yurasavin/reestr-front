@@ -1,40 +1,82 @@
-import FilterItem from "@components/shared/Filters/FilterItem/FilterItem";
-import Filters from "@components/shared/Filters/Filters";
-import { useSize } from "ahooks";
-import { useRef } from "react";
-import DateFilter from "./DateFilter/DateFilter";
+import { DownCircleFilled, UpCircleFilled } from "@ant-design/icons";
+import filtersStyle from "@components/shared/Filters/Filters.module.css";
+import { Space } from "antd";
+import { useState } from "react";
+import CategoryNameInput from "./CategoryNameInput";
+import ContractDateSelect from "./ContractDateSelect";
+import ContractNumInput from "./ContractNumInput";
+import ContractPriceInput from "./ContractPriceInput";
+import FilialSelect from "./FilialSelect";
+import InitiatorSelect from "./InitiatorSelect";
+import KontragentInput from "./KontragentInput";
 import LimitSelect from "./LimitSelect";
-import StatusSelect from "./StatusSelect/StatusSelect";
-import TenderTypeSelect from "./TenderTypeSelect/TenderTypeSelect";
-import TicketsSearch from "./TicketsSearch/TicketsSearch";
-
-const MINIMUM_TITLES_DISPLAY_WIDTH = 1410;
+import NmckInput from "./NmckInput";
+import OkpdInput from "./OkpdInput";
+import TenderNum from "./TenderNum";
+import TenderStatusSelect from "./TenderStatusSelect";
+import TenderTypeSelect from "./TenderTypeSelect";
+import TicketDateFilter from "./TicketDateFilter";
+import style from "./TicketFilters.module.css";
+import TicketName from "./TicketName";
+import TicketStatusSelect from "./TicketStatusSelect";
+import UserSelect from "./UserSelect";
 
 const TicketFilters: React.FC = () => {
-  // TODO: Fix jumping of this element on sider collapse
-  const elementRef = useRef(null);
-  const size = useSize(elementRef);
-
-  const showTitle = !size || size.width >= MINIMUM_TITLES_DISPLAY_WIDTH;
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   return (
-    <div ref={elementRef}>
-      <Filters>
-        <TicketsSearch />
-        <FilterItem title={showTitle ? "Лимиты" : ""}>
-          <LimitSelect />
-        </FilterItem>
-        <FilterItem title={showTitle ? "Статус" : ""}>
-          <StatusSelect />
-        </FilterItem>
-        <FilterItem title={showTitle ? "Способ закупки" : ""}>
+    <Space direction="vertical" className={filtersStyle.filters}>
+      <Space wrap={expanded} className={style.ticketContainer}>
+        Заявка:
+        <TicketName />
+        <UserSelect />
+        <TicketStatusSelect />
+        <TicketDateFilter />
+        <CategoryNameInput />
+        <InitiatorSelect />
+        <LimitSelect />
+        <FilialSelect />
+        <OkpdInput />
+      </Space>
+
+      {!expanded && (
+        <div className={style.expandContainer}>
+          <DownCircleFilled
+            className={style.expand}
+            onClick={() => setExpanded(true)}
+          />
+        </div>
+      )}
+
+      {expanded && (
+        <Space>
+          Закупка:
+          <TenderNum />
+          <TenderStatusSelect />
           <TenderTypeSelect />
-        </FilterItem>
-        <FilterItem title={showTitle ? "Дата" : ""}>
-          <DateFilter />
-        </FilterItem>
-      </Filters>
-    </div>
+          <NmckInput />
+        </Space>
+      )}
+
+      {expanded && (
+        <Space>
+          Контракт:
+          <ContractNumInput />
+          <ContractDateSelect />
+          <ContractPriceInput />
+          <KontragentInput />
+        </Space>
+      )}
+
+      {expanded && (
+        <div className={style.expandContainer}>
+          <UpCircleFilled
+            className={style.expand}
+            onClick={() => setExpanded(false)}
+          />
+        </div>
+      )}
+    </Space>
   );
 };
 

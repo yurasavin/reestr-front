@@ -11,7 +11,7 @@ const NmckInput: React.FC = () => {
         controls={false}
         precision={2}
         stringMode
-        onChange={(value) => setNmckFrom && setNmckFrom(value)}
+        onChange={(value) => setNmckFrom && setNmckFrom(value as string)}
         placeholder="НМЦК от"
         style={{ width: 125 }}
       />
@@ -19,7 +19,7 @@ const NmckInput: React.FC = () => {
         controls={false}
         precision={2}
         stringMode
-        onChange={(value) => setNmckTo && setNmckTo(value)}
+        onChange={(value) => setNmckTo && setNmckTo(value as string)}
         placeholder="НМЦК до"
         style={{ width: 125 }}
       />

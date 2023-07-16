@@ -14,7 +14,7 @@ const ContractPriceInput: React.FC = () => {
         precision={2}
         stringMode
         onChange={(value) =>
-          setContractPriceFrom && setContractPriceFrom(value)
+          setContractPriceFrom && setContractPriceFrom(value as string)
         }
         placeholder="Цена контракта от"
         style={{ width: 150 }}
@@ -23,7 +23,9 @@ const ContractPriceInput: React.FC = () => {
         controls={false}
         precision={2}
         stringMode
-        onChange={(value) => setContractPriceTo && setContractPriceTo(value)}
+        onChange={(value) =>
+          setContractPriceTo && setContractPriceTo(value as string)
+        }
         placeholder="Цена контракта до"
         style={{ width: 150 }}
       />

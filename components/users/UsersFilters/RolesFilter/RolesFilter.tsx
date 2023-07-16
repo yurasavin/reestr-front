@@ -10,7 +10,7 @@ interface RoleData {
 }
 
 const RolesFilter: React.FC = () => {
-  const { role, setRole } = useContext(UsersResourceContext);
+  const { setRole } = useContext(UsersResourceContext);
   const resource = useResource<RoleData[]>({
     swrKey: { path: "users/roles/" },
   });
@@ -19,7 +19,6 @@ const RolesFilter: React.FC = () => {
     <Select
       allowClear
       className={styles.select}
-      defaultValue={role}
       fieldNames={{ value: "id", label: "name" }}
       loading={!resource.data}
       placeholder="Роль"

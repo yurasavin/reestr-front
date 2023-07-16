@@ -4,11 +4,10 @@ import { Input } from "antd";
 import { useContext } from "react";
 
 const TicketName: React.FC = () => {
-  const { ticketName, setTicketName } = useContext(TicketsResourceContext);
+  const { setTicketName } = useContext(TicketsResourceContext);
 
   return (
     <Input
-      defaultValue={ticketName}
       onChange={(e) => setTicketName && setTicketName(e.target.value)}
       placeholder="Предмет закупки"
       allowClear

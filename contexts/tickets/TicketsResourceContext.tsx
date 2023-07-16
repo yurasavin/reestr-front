@@ -6,9 +6,9 @@ import { createContext, Dispatch, SetStateAction, useState } from "react";
 
 interface TicketsResourceContextInterface {
   resource?: ReturnType<typeof useTicketInfiniteListResource>;
-  ticketName?: string;
+  ticketName: string;
   setTicketName?: Dispatch<SetStateAction<string>>;
-  categoryName?: string;
+  categoryName: string;
   setCategoryName?: Dispatch<SetStateAction<string>>;
   dateAfter: Dayjs | null;
   setDateAfter?: Dispatch<SetStateAction<Dayjs | null>>;
@@ -16,44 +16,59 @@ interface TicketsResourceContextInterface {
   setDateBefore?: Dispatch<SetStateAction<Dayjs | null>>;
   status?: boolean;
   setStatus?: Dispatch<SetStateAction<boolean | undefined>>;
-  users?: number[];
+  users: number[];
   setUsers?: Dispatch<SetStateAction<number[]>>;
   year?: number;
   setYear?: Dispatch<SetStateAction<number | undefined>>;
-  initiators?: number[];
+  initiators: number[];
   setInitiators?: Dispatch<SetStateAction<number[]>>;
-  filials?: number[];
+  filials: number[];
   setFilials?: Dispatch<SetStateAction<number[]>>;
-  tenderStatuses?: TenderStatus[];
+  tenderStatuses: TenderStatus[];
   setTenderStatuses?: Dispatch<SetStateAction<TenderStatus[]>>;
-  tenderTypes?: number[];
+  tenderTypes: number[];
   setTenderTypes?: Dispatch<SetStateAction<number[]>>;
-  tenderNum?: string;
+  tenderNum: string;
   setTenderNum?: Dispatch<SetStateAction<string>>;
-  nmckFrom?: string;
+  nmckFrom: string | null;
   setNmckFrom?: Dispatch<SetStateAction<string | null>>;
-  nmckTo?: string;
+  nmckTo: string | null;
   setNmckTo?: Dispatch<SetStateAction<string | null>>;
-  okpd?: string;
+  okpd: string;
   setOkpd?: Dispatch<SetStateAction<string>>;
-  contractNum?: string;
+  contractNum: string;
   setContractNum?: Dispatch<SetStateAction<string>>;
   contractDateAfter: Dayjs | null;
   setContractDateAfter?: Dispatch<SetStateAction<Dayjs | null>>;
   contractDateBefore: Dayjs | null;
   setContractDateBefore?: Dispatch<SetStateAction<Dayjs | null>>;
-  contractPriceFrom?: string;
+  contractPriceFrom: string | null;
   setContractPriceFrom?: Dispatch<SetStateAction<string | null>>;
-  contractPriceTo?: string;
+  contractPriceTo: string | null;
   setContractPriceTo?: Dispatch<SetStateAction<string | null>>;
-  kontragent?: string;
+  kontragent: string;
   setKontragent?: Dispatch<SetStateAction<string>>;
 }
 const TicketsResourceContext = createContext<TicketsResourceContextInterface>({
+  ticketName: "",
+  categoryName: "",
   dateAfter: null,
   dateBefore: null,
+  users: [],
+  initiators: [],
+  filials: [],
+  tenderStatuses: [],
+  tenderTypes: [],
+  tenderNum: "",
+  nmckFrom: null,
+  nmckTo: null,
+  okpd: "",
+  contractNum: "",
   contractDateAfter: null,
   contractDateBefore: null,
+  contractPriceFrom: null,
+  contractPriceTo: null,
+  kontragent: "",
 });
 
 interface TicketsResourceProviderProps {

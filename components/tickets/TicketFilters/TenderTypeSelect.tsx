@@ -6,7 +6,7 @@ import { Select } from "antd";
 import { useContext } from "react";
 
 const TenderTypeSelect: React.FC = () => {
-  const { tenderTypes, setTenderTypes } = useContext(TicketsResourceContext);
+  const { setTenderTypes } = useContext(TicketsResourceContext);
   const resource = useTenderTypesResource();
 
   const options223FZ: TenderTypeData[] = [];
@@ -28,7 +28,6 @@ const TenderTypeSelect: React.FC = () => {
   return (
     <Select
       allowClear
-      defaultValue={tenderTypes}
       fieldNames={{ value: "id", label: "name" }}
       loading={!resource.data}
       mode="multiple"

@@ -9,7 +9,7 @@ interface UserData {
 }
 
 const UserSelect: React.FC = () => {
-  const { users, setUsers } = useContext(TicketsResourceContext);
+  const { setUsers } = useContext(TicketsResourceContext);
   const resource = useResource<UserData[]>({
     swrKey: { path: "users/choices/" },
   });
@@ -18,7 +18,6 @@ const UserSelect: React.FC = () => {
     <Select
       allowClear
       placeholder="Ответственный"
-      defaultValue={users}
       loading={!resource.data}
       onChange={(users) => setUsers && setUsers(users)}
       options={resource.data?.data}

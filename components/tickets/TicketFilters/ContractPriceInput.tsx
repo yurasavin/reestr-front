@@ -3,12 +3,9 @@ import { InputNumber, Space } from "antd";
 import { useContext } from "react";
 
 const ContractPriceInput: React.FC = () => {
-  const {
-    contractPriceFrom,
-    setContractPriceFrom,
-    contractPriceTo,
-    setContractPriceTo,
-  } = useContext(TicketsResourceContext);
+  const { setContractPriceFrom, setContractPriceTo } = useContext(
+    TicketsResourceContext
+  );
 
   return (
     <Space.Compact>
@@ -16,7 +13,6 @@ const ContractPriceInput: React.FC = () => {
         controls={false}
         precision={2}
         stringMode
-        defaultValue={contractPriceFrom}
         onChange={(value) =>
           setContractPriceFrom && setContractPriceFrom(value)
         }
@@ -27,7 +23,6 @@ const ContractPriceInput: React.FC = () => {
         controls={false}
         precision={2}
         stringMode
-        defaultValue={contractPriceTo}
         onChange={(value) => setContractPriceTo && setContractPriceTo(value)}
         placeholder="Цена контракта до"
         style={{ width: 150 }}

@@ -9,7 +9,7 @@ interface LimitData {
 }
 
 const LimitSelect: React.FC = () => {
-  const { year, setYear } = useContext(TicketsResourceContext);
+  const { setYear } = useContext(TicketsResourceContext);
   const resource = useResource<LimitData[]>({
     swrKey: { path: "limits/" },
   });
@@ -28,7 +28,6 @@ const LimitSelect: React.FC = () => {
     <Select
       allowClear
       placeholder="Лимиты"
-      defaultValue={year}
       loading={!resource.data}
       onChange={(year) => setYear && setYear(year)}
       options={options}

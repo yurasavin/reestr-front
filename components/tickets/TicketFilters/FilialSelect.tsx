@@ -9,7 +9,7 @@ interface FilialData {
 }
 
 const FilialSelect: React.FC = () => {
-  const { filials, setFilials } = useContext(TicketsResourceContext);
+  const { setFilials } = useContext(TicketsResourceContext);
   const resource = useResource<FilialData[]>({
     swrKey: { path: "tickets/filials/" },
   });
@@ -18,7 +18,6 @@ const FilialSelect: React.FC = () => {
     <Select
       allowClear
       placeholder="Филиал"
-      defaultValue={filials}
       loading={!resource.data}
       onChange={(filials) => setFilials && setFilials(filials)}
       options={resource.data?.data}

@@ -3,13 +3,12 @@ import { Select } from "antd";
 import { useContext } from "react";
 
 const TicketStatusSelect: React.FC = () => {
-  const { status, setStatus } = useContext(TicketsResourceContext);
+  const { setStatus } = useContext(TicketsResourceContext);
 
   return (
     <Select
       placeholder="Статус заявки"
       allowClear
-      defaultValue={status}
       style={{ width: 150 }}
       onChange={(status) => setStatus && setStatus(status)}
       options={[

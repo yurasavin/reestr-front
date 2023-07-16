@@ -9,7 +9,7 @@ interface TicketInitiatorData {
 }
 
 const InitiatorSelect: React.FC = () => {
-  const { initiators, setInitiators } = useContext(TicketsResourceContext);
+  const { setInitiators } = useContext(TicketsResourceContext);
   const resource = useResource<TicketInitiatorData[]>({
     swrKey: { path: "tickets/ticket-initiators/" },
   });
@@ -18,7 +18,6 @@ const InitiatorSelect: React.FC = () => {
     <Select
       allowClear
       placeholder="Инициатор"
-      defaultValue={initiators}
       loading={!resource.data}
       onChange={(initiators) => setInitiators && setInitiators(initiators)}
       options={resource.data?.data}

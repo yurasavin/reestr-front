@@ -4,16 +4,13 @@ import { Select } from "antd";
 import { useContext } from "react";
 
 const TenderStatusSelect: React.FC = () => {
-  const { tenderStatuses, setTenderStatuses } = useContext(
-    TicketsResourceContext
-  );
+  const { setTenderStatuses } = useContext(TicketsResourceContext);
 
   return (
     <Select
       placeholder="Статус закупки"
       allowClear
       mode="multiple"
-      defaultValue={tenderStatuses}
       onChange={(statuses) => setTenderStatuses && setTenderStatuses(statuses)}
       options={[
         {

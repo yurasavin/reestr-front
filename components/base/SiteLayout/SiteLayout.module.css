@@ -5,5 +5,8 @@
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
     background-color: var(--primary-hover);
+    height: 100%;
 }

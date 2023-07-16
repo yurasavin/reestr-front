@@ -1,6 +1,5 @@
 .list {
-    overflow: auto;
-    height: 94%;
+    overflow-y: auto;
 }
 
 .spinner {
